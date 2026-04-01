@@ -15,3 +15,7 @@
 - Created `README.md` with a reminder for Pritish to run the project inside `gemini_env`.
 - Prepared the repo for publishing: verified pending files, confirmed branch `main`, and confirmed `origin` points to `git@github.com:pritishrv/vidiq-hpc.git`.
 - Committed the initial project files as `d6dab1d` with message `Add project prompts and setup notes`, then pushed `main` to `origin` over SSH successfully.
+- Attempted to copy the GitHub SSH keypair to the HPC account at `adhp543@localhost` on port `2000`, but the SSH connection was rejected with `Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password)` before any files were transferred.
+- Retried the transfer with direct `scp -P 2000` to `adhp543@localhost:~/.ssh/`. The copy still failed with the same authentication error before any files could be written remotely.
+- Created `~/.ssh/config` with a `github.com` host entry that forces Git to use `~/.ssh/id_ed25519_github` via `IdentitiesOnly yes`.
+- Added `reports/gemini-text-dataset-report.md`, a survey report on text datasets for embedding-space analysis, and prepared it for publishing to GitHub.
