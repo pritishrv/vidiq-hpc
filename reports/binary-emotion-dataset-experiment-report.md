@@ -18,8 +18,61 @@ This recommendation is based on:
 - the existing text-dataset reports in this repository
 - a full pass over the local literature set in `vidiq/lit-survey/gemini`
 - the extracted title / abstract / conclusion report in `vidiq/reports/title-abstract-conclusion.md`
+- current SST-2 dataset information from the Stanford Sentiment Treebank page, the Hugging Face dataset card, and GLUE-format dataset metadata
 
-The immediate target use case is sentence-level embeddings for clean text datasets such as:
+The immediate target use case is now centered on SST-2 and other similar short-text sentiment datasets.
+
+## SST-2 Dataset Profile
+
+SST-2 is the binary sentiment version of the Stanford Sentiment Treebank.
+
+Important practical facts:
+
+- it is an English movie-review sentiment dataset
+- it is binary: `0 = negative`, `1 = positive`
+- the common Hugging Face / GLUE-formatted version has approximately:
+  - `67.3k` train examples
+  - `872` validation examples
+  - `1.82k` test examples
+- the public test split exists, but the labels are hidden in the standard benchmark format
+- many examples are short review snippets or phrase-like fragments rather than clean full sentences
+- texts are usually short, but there is wide variation in length
+
+Important historical context:
+
+- the original Stanford Sentiment Treebank contains fine-grained phrase labels for `215,154` phrases drawn from `11,855` sentences
+- SST-2 is the binary positive / negative task derived from that resource
+
+Operational implications for embedding work:
+
+- SST-2 is good for studying a clean polarity axis
+- SST-2 is not ideal for claims about full-document sentiment
+- some inputs are incomplete phrases, so sentence encoders may still work well, but fragment sensitivity should be expected
+- because the official test labels are hidden, the validation split is the main public labeled evaluation split unless an internal train split is created
+
+## Dataset-Specific Decision For SST-2
+
+For SST-2, keep the same primary model family:
+
+- contrastive sentence encoder
+
+Primary model:
+
+- `BAAI/bge-base-en-v1.5`
+
+Strong alternate:
+
+- `sentence-transformers/all-mpnet-base-v2`
+
+Dataset-specific note:
+
+- SST-2 is simple enough that a supervised sentiment classifier can perform very well, but the objective here is to study embedding geometry rather than maximize task accuracy
+- therefore the encoder should remain general-purpose and sentence-oriented
+- a supervised classifier fine-tuned on SST-2 should be treated as an upper-bound reference, not the main embedding model
+
+## Original Broader Use Case
+
+The broader use case still includes sentence-level embeddings for clean text datasets such as:
 
 - SST-2
 - Subjectivity
@@ -116,6 +169,12 @@ For the current datasets, the canonical unit is:
 
 Do not start with token-level embeddings as the primary experimental object.
 
+For SST-2 specifically:
+
+- use one embedding per row in the dataset
+- do not attempt to reconstruct parse-tree phrase hierarchies for the first pass
+- treat each row as the operational text unit even when it is only a fragment
+
 ### Pooling Rule
 
 Use masked mean pooling over the final hidden states.
@@ -132,6 +191,30 @@ Do not default to:
 - raw `CLS` only
 - first-token pooling unless the model explicitly expects it
 - unpooled token sets as the primary representation
+
+For SST-2, masked mean pooling is preferred because:
+
+- many inputs are short fragments, where single-token pooling can be unstable
+- the task is polarity-oriented rather than syntax-probe-oriented
+- mean pooling gives a cleaner sentence- or snippet-level representation for geometry analysis
+
+### Sequence Length Rule
+
+Default starting point for SST-2:
+
+- `max_length = 64`
+
+Escalate only if truncation is observed at non-trivial rates.
+
+Fallback:
+
+- use `max_length = 128` if a measurable tail of examples is being cut off
+
+Reason:
+
+- SST-2 examples are generally short
+- shorter max length improves throughput and batching efficiency
+- there is little reason to pay the cost of very long sequence settings for this dataset
 
 ### Normalization Rule
 
@@ -177,13 +260,38 @@ For each dataset split, save:
 - keep original text and label
 - inspect class balance
 - record length statistics
+- preserve the official validation split
 - sample a manageable but representative subset if the dataset is large
+
+For SST-2 specifically:
+
+- use the standard train / validation split from the dataset source
+- do not evaluate primary results on the hidden-label test split
+- keep a copy of the raw text exactly as provided
+- record:
+  - class counts in train and validation
+  - token-length distribution
+  - truncation rate under the chosen tokenizer and max length
+  - proportion of fragment-like examples if manually inspected
+
+Recommended first SST-2 setup:
+
+1. use the full public train split for embedding extraction
+2. use the official validation split for labeled evaluation
+3. optionally create a stratified train subset for quick iteration
 
 ### Phase 2: Embedding Extraction
 
 - extract sentence embeddings with the primary encoder
 - save raw, normalized, and centered-normalized embeddings
 - log batch size, max sequence length, truncation policy, and device
+
+For SST-2, also log:
+
+- tokenizer truncation count
+- average tokenized length
+- median tokenized length
+- class-wise counts after any filtering
 
 ### Phase 3: Geometry Validation
 
@@ -193,6 +301,10 @@ Run all validation on both:
 - mean-centered + L2-normalized embeddings
 
 This comparison is important because geometry improvements may come from post-processing rather than the encoder alone.
+
+For SST-2, the main question is:
+
+- does the embedding space exhibit a stable positive / negative polarity separation without relying only on a supervised classifier
 
 ### Phase 4: Comparative Baselines
 
@@ -220,6 +332,8 @@ Notes:
 
 - compute on the same representation variants
 - report sensitivity to the number of clusters if using unsupervised methods
+- for SST-2, set the primary unsupervised target to `k = 2`
+- also report whether the discovered clusters align with the binary labels
 
 ### Distance Structure
 
@@ -235,6 +349,13 @@ Purpose:
 
 - measure whether classes are geometrically separated
 - estimate whether a simple semantic axis is present
+
+For SST-2, add:
+
+- class mean difference vector `mu_pos - mu_neg`
+- projection histograms of examples onto that vector
+
+This is one of the most interpretable geometry checks for a binary sentiment dataset.
 
 ### Linear Separability
 
@@ -257,6 +378,12 @@ Interpretation:
 
 - high linear probe performance is stronger evidence than a pretty 2D plot
 
+For SST-2, this is a primary metric, not a secondary one.
+
+Reason:
+
+- if the embeddings do not support strong linear sentiment separation on SST-2, the geometry is not doing the intended job
+
 ### Neighborhood Quality
 
 Use:
@@ -267,6 +394,12 @@ Use:
 Purpose:
 
 - test whether local geometry preserves label semantics
+
+For SST-2, report:
+
+- kNN accuracy for small `k` values such as `1`, `5`, and `11`
+- positive-neighbor purity for positive points
+- negative-neighbor purity for negative points
 
 ### Dimensionality and Spectrum
 
@@ -293,6 +426,11 @@ Important:
 
 - do not rely on brittle isotropy claims from a single simple metric
 - treat isotropy as a diagnostic, not a success metric by itself
+
+For SST-2:
+
+- anisotropy diagnostics matter, but only after task-level separation is confirmed
+- do not optimize the pipeline around isotropy alone
 
 ### Representation Similarity Across Models
 
@@ -335,6 +473,13 @@ Reason:
 - more expensive or more specialized
 - not necessary for the first implementation
 
+For SST-2, recommended order is:
+
+1. cosine distance
+2. Euclidean distance on normalized embeddings
+3. optional Mahalanobis distance
+4. only later, OT-style or DDR-style analyses
+
 ### Important Caution About Cosine
 
 Do not assume cosine similarity is universally meaningful.
@@ -376,6 +521,18 @@ Mitigation:
 - inspect nearest neighbors
 - examine misclassified examples
 - compare across multiple datasets with different confounds
+
+In SST-2 this matters a lot because:
+
+- many examples are short
+- some examples are highly polarized snippets
+- a few sentiment-bearing words can dominate the signal
+
+Add these checks:
+
+- inspect examples nearest to each class centroid
+- inspect examples near the decision boundary
+- inspect very short examples separately
 
 ### Dominant Common Direction
 
@@ -420,6 +577,58 @@ Mitigation:
 - document known confounds
 - compare multiple datasets
 
+For SST-2 specifically, note:
+
+- domain is movie reviews
+- many examples are fragments rather than natural full sentences
+- lexical polarity cues may be unusually strong
+- some compositional phenomena like negation still matter, but the dataset is not cleanly balanced around them
+
+This means SST-2 is strong for a first polarity-axis experiment, but weak as the only evidence for general sentiment geometry.
+
+## SST-2-Specific Validation Priority
+
+For SST-2, prioritize metrics in this order:
+
+1. linear probe accuracy and macro F1 on the validation split
+2. centroid separation and intra / inter-class distance ratio
+3. kNN accuracy and neighborhood purity
+4. silhouette and Davies-Bouldin
+5. PCA spectrum and anisotropy diagnostics
+6. 2D visualization
+
+Reason:
+
+- SST-2 is binary and label-clean enough that separability metrics should lead
+- plots and isotropy diagnostics are useful, but should not be the headline result
+
+## Recommended SST-2 Baselines
+
+Use these baselines for comparison:
+
+### Embedding Baselines
+
+- `BAAI/bge-base-en-v1.5`
+- `sentence-transformers/all-mpnet-base-v2`
+
+### Lightweight Non-Embedding Baseline
+
+- TF-IDF + logistic regression
+
+Purpose:
+
+- determine whether dense embeddings are beating a simple lexical baseline in separability and neighborhood structure
+
+### Supervised Upper-Bound Reference
+
+- a standard SST-2 classifier such as DistilBERT or BERT fine-tuned for sentiment classification
+
+Purpose:
+
+- provide a task-accuracy reference point
+- not the main geometry model
+- useful to calibrate how much signal is available in the dataset
+
 ## Recommended First Experiment Matrix
 
 ### Datasets
@@ -429,6 +638,8 @@ Start with:
 - SST-2
 - Subjectivity
 - GYAFC
+
+If work is currently focused only on SST-2, treat it as the primary dataset and defer the others until the SST-2 pipeline is stable.
 
 Optional later:
 
@@ -468,6 +679,13 @@ For each run, report:
 - PCA explained variance for top components
 - optional IsoScore
 
+For SST-2 specifically, also report:
+
+- validation accuracy and macro F1 from a linear probe
+- kNN accuracy at `k = 1, 5, 11`
+- projection histogram statistics on the positive-minus-negative centroid direction
+- truncation rate under the chosen tokenizer settings
+
 ## Default Prompt Context Summary
 
 If this document is used in later prompts, the default assumptions should be:
@@ -475,11 +693,15 @@ If this document is used in later prompts, the default assumptions should be:
 - use sentence-level embeddings
 - start with `BAAI/bge-base-en-v1.5`
 - use masked mean pooling
+- use `max_length = 64` first for SST-2
 - save raw, normalized, and centered-normalized embeddings
+- preserve the official SST-2 validation split
 - validate with both cluster metrics and supervised separability metrics
 - do not trust cosine alone
 - do not trust 2D plots alone
 - treat raw decoder-LLM hidden states as a later comparison, not the primary first model
+- use TF-IDF + logistic regression as a lexical baseline
+- use a fine-tuned sentiment classifier only as an upper-bound reference
 
 ## Current Bottom Line
 
@@ -489,5 +711,13 @@ The safest first implementation for `vidiq-hpc` is:
 - sentence-level mean-pooled embeddings
 - explicit normalization and centering variants
 - a validation stack that combines cluster, distance, probe, and spectrum metrics
+
+For SST-2 specifically, the safest first implementation is:
+
+- `BAAI/bge-base-en-v1.5`
+- masked mean pooling
+- `max_length = 64` unless truncation proves otherwise
+- evaluation on the official validation split
+- linear probe + centroid separation + kNN + cluster metrics as the main validation panel
 
 This is the recommended baseline against which any later LLM hidden-state or more exotic geometry method should be compared.
