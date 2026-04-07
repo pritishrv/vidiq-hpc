@@ -1,0 +1,15 @@
+{
+  "train_embeddings": {
+    "centered_l2": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_train_model_selection_bge-base-en-v1-5_centered_l2.npy",
+    "l2": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_train_model_selection_bge-base-en-v1-5_l2.npy",
+    "metadata": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_train_model_selection_bge-base-en-v1-5_metadata.json",
+    "raw": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_train_model_selection_bge-base-en-v1-5_raw.npy"
+  },
+  "train_split_used_for_model_selection": "train_model_selection",
+  "validation_embeddings": {
+    "centered_l2": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_validation_bge-base-en-v1-5_centered_l2.npy",
+    "l2": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_validation_bge-base-en-v1-5_l2.npy",
+    "metadata": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_validation_bge-base-en-v1-5_metadata.json",
+    "raw": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_validation_bge-base-en-v1-5_raw.npy"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "avg_whitespace_token_length": 9.368577368577368,
+  "class_counts": {
+    "0": 2978,
+    "1": 3756
+  },
+  "median_whitespace_token_length": 7.0,
+  "num_examples": 6734,
+  "split": "train_model_selection"
+}

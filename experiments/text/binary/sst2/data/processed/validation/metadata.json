@@ -1,0 +1,10 @@
+{
+  "avg_whitespace_token_length": 19.548165137614678,
+  "class_counts": {
+    "0": 428,
+    "1": 444
+  },
+  "median_whitespace_token_length": 19.0,
+  "num_examples": 872,
+  "split": "validation"
+}

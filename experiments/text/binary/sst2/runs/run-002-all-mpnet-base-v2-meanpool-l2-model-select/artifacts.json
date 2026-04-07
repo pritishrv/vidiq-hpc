@@ -1,0 +1,14 @@
+{
+  "train_embeddings": {
+    "centered_l2": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_train_all-mpnet-base-v2_centered_l2.npy",
+    "l2": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_train_all-mpnet-base-v2_l2.npy",
+    "metadata": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_train_all-mpnet-base-v2_metadata.json",
+    "raw": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_train_all-mpnet-base-v2_raw.npy"
+  },
+  "validation_embeddings": {
+    "centered_l2": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_validation_all-mpnet-base-v2_centered_l2.npy",
+    "l2": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_validation_all-mpnet-base-v2_l2.npy",
+    "metadata": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_validation_all-mpnet-base-v2_metadata.json",
+    "raw": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/binary/sst2/artifacts/embeddings/sst2_validation_all-mpnet-base-v2_raw.npy"
+  }
+}

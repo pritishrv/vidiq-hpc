@@ -1,0 +1,10 @@
+{
+  "avg_tokenized_length": 40.019050023014444,
+  "batch_size": 32,
+  "device": "cpu",
+  "max_length": 64,
+  "median_tokenized_length": 40.0,
+  "model_name": "sentence-transformers/all-mpnet-base-v2",
+  "truncation_count": 160,
+  "truncation_rate": 0.0023756848654026045
+}

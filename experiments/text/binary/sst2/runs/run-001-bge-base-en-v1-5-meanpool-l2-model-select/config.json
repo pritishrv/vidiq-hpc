@@ -1,0 +1,36 @@
+{
+  "experiment_name": "sst2-model-selection-first",
+  "dataset": {
+    "loader": "glue",
+    "path": "glue",
+    "name": "sst2",
+    "text_column": "sentence",
+    "label_column": "label",
+    "train_split": "train",
+    "validation_split": "validation",
+    "train_sample_fraction_for_model_selection": 0.1,
+    "train_sample_seed": 42
+  },
+  "models": [
+    {
+      "name": "BAAI/bge-base-en-v1.5",
+      "slug": "bge-base-en-v1-5"
+    },
+    {
+      "name": "sentence-transformers/all-mpnet-base-v2",
+      "slug": "all-mpnet-base-v2"
+    }
+  ],
+  "embedding": {
+    "pooling": "mean",
+    "normalize_l2": true,
+    "mean_center": false,
+    "max_length": 64,
+    "batch_size": 32
+  },
+  "evaluation": {
+    "knn_k_values": [1, 5],
+    "logistic_max_iter": 2000,
+    "random_seed": 42
+  }
+}

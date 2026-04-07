@@ -1,0 +1,5 @@
+numpy
+datasets
+transformers
+torch
+scikit-learn

@@ -1,0 +1,9 @@
+{
+  "dataset_name": "sst2",
+  "dataset_path": "glue",
+  "splits": [
+    "train",
+    "validation",
+    "test"
+  ]
+}
