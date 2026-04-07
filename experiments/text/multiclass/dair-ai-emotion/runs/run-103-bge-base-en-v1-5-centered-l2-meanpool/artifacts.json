@@ -1,0 +1,17 @@
+{
+  "embedding_variant": "centered_l2",
+  "train_embeddings": {
+    "centered_l2": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_train_bge-base-en-v1-5_centered_l2.npy",
+    "l2": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_train_bge-base-en-v1-5_l2.npy",
+    "metadata": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_train_bge-base-en-v1-5_metadata.json",
+    "raw": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_train_bge-base-en-v1-5_raw.npy"
+  },
+  "train_split_used": "train",
+  "validation_embeddings": {
+    "centered_l2": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_validation_bge-base-en-v1-5_centered_l2.npy",
+    "l2": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_validation_bge-base-en-v1-5_l2.npy",
+    "metadata": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_validation_bge-base-en-v1-5_metadata.json",
+    "raw": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_validation_bge-base-en-v1-5_raw.npy"
+  },
+  "validation_split_used": "validation"
+}

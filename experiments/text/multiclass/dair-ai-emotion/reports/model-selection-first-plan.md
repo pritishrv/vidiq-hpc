@@ -1,200 +1,69 @@
-# dair-ai/emotion Model Selection First Plan
+# dair-ai/emotion Multiclass Execution Plan
 
 ## Purpose
 
-This document defines the first-stage `dair-ai/emotion` experiment whose goal is:
+This document defines the first-stage `dair-ai/emotion` experiment plan.
 
-- choose the best embedding model for the multiclass text experiment
-- avoid running the full variation matrix before model choice is clear
+The goal is:
 
-This stage fixes the embedding recipe and compares only models.
+- move directly into the multiclass experiment with the model already selected from the binary setup
+- avoid repeating a likely low-value model-selection stage
+- save time and avoid unnecessary compute spend
 
 ## Principle
 
-Before testing:
+The binary SST-2 experiment already selected:
 
-- multiple pooling strategies
-- centering variants
-- alternate normalization strategies
-- large visualization and validation panels
+- `BAAI/bge-base-en-v1.5`
 
-first determine which embedding model is strongest under one controlled recipe.
+That result is being carried forward into `dair-ai/emotion` instead of repeating the same bakeoff.
 
-This is the fastest way to reduce the search space while still making a defensible choice.
+Reason:
 
-## Fixed Recipe For Model Comparison
+- the multiclass ranking may differ slightly, but the expected benefit of rerunning a full model-selection stage is low
+- `BAAI/bge-base-en-v1.5` is already a strong fit for sentence-level geometry analysis
+- the more important unknown for the multiclass setup is the embedding representation and class geometry, not the model family itself
 
-All candidate models must use the exact same embedding recipe:
+So this multiclass plan intentionally skips model selection to save time and avoid wasting computation.
+
+## Fixed Starting Point
+
+Use this as the starting recipe:
 
 - dataset: `dair-ai/emotion`
 - text unit: one dataset row
 - split usage:
-  - stratified random subset of the train split for model-selection training artifacts
+  - full train split for embedding extraction and training-side artifacts
   - validation split for evaluation
+- model: `BAAI/bge-base-en-v1.5`
 - pooling: masked mean pooling over final hidden states
 - sequence length: `max_length = 64`
-- normalization: L2 normalization
-- no centering in this first stage
-- no CLS-only pooling in this first stage
+- save these embedding variants:
+  - raw mean pooled
+  - L2-normalized mean pooled
+  - mean-centered + L2-normalized mean pooled
+- do not start with CLS-only pooling
 
 Reason:
 
-- this controls for embedding formation
-- differences in results are more attributable to model quality
+- this mirrors the successful binary workflow after model selection
+- it gets directly to the multiclass question that actually matters
 
-## Data Budget For Model Selection
+## Why Model Selection Is Being Skipped
 
-Use a small but stable subset for the training side of model selection:
+Model selection is not being run first here.
 
-- `10%` stratified random sample from the `dair-ai/emotion` train split
-- full validation split for evaluation
-- default sample fraction: `0.1`
-- default random seed: `42`
-
-Reason:
-
-- large enough to preserve class balance and multiclass structure
-- small enough to keep model ranking cheap
-- sufficient for comparing the first two encoder candidates
-
-Do not go below `5%` unless the goal is only a rough smoke test.
-
-## Candidate Models
-
-Run these first:
-
-1. `BAAI/bge-base-en-v1.5`
-2. `sentence-transformers/all-mpnet-base-v2`
-
-Optional third candidate:
-
-3. one SimCSE-family sentence encoder
-
-Do not include decoder-LLM hidden-state baselines in the first model-selection round.
-
-## Minimal Metrics Panel
-
-For each model, compute:
-
-### 1. Linear Probe
-
-- multinomial logistic regression
-
-Report:
-
-- validation accuracy
-- macro F1
-
-Purpose:
-
-- tests whether the six emotion classes are linearly separable in the embedding space
-
-### 2. Neighborhood Quality
-
-- kNN classification
-
-Report:
-
-- accuracy at `k = 1`
-- accuracy at `k = 5`
-- macro F1 at `k = 1`
-- macro F1 at `k = 5`
-
-Purpose:
-
-- tests whether local neighborhoods preserve class labels
-
-### 3. Centroid Separation
-
-Report:
-
-- centroid-distance matrix between all class centroids
-- average same-class versus cross-class distance ratio
-
-Purpose:
-
-- checks whether the model forms interpretable class structure rather than only one coarse polarity axis
-
-### 4. Cluster Diagnostic
-
-Report:
-
-- silhouette score
-- Davies-Bouldin index
-
-Purpose:
-
-- gives a quick unsupervised view of class compactness and separation
-
-### 5. Spectrum Diagnostic
-
-Report:
-
-- PCA explained variance of the top components
-
-Purpose:
-
-- checks whether the space is dominated by a few directions
-
-### 6. Confusion Structure
-
-Report:
-
-- confusion matrix from the linear probe
-
-Purpose:
-
-- identifies which emotion classes overlap most strongly
-
-## Decision Rule
-
-Select the best model using this priority order:
-
-1. highest macro F1 from multinomial logistic regression
-2. strongest kNN macro F1
-3. cleaner centroid-distance structure and same-class versus cross-class separation
-4. better silhouette and Davies-Bouldin scores
-5. healthier PCA spectrum if the other metrics are close
-
-If one model clearly wins on the first three criteria, it becomes the default model for the rest of the multiclass experiment.
-
-## Minimum Recommended Runs
-
-Use these run ids:
-
-1. `run-001-bge-meanpool-l2-model-select`
-2. `run-002-mpnet-meanpool-l2-model-select`
-
-Optional:
-
-3. `run-003-simcse-meanpool-l2-model-select`
-
-## What Not To Do Yet
-
-Do not run these until model selection is complete:
-
-- mean-centering ablations
-- CLS pooling
-- UMAP-heavy analysis
-- decoder-LLM hidden-state baselines
-- very large run grids
-
-These come after the winning model is chosen.
-
-## Stage 2 After Model Selection
-
-Once the best model is selected, run the second-stage ablations on that model:
+The plan is to:
 
 1. raw mean pooled
 2. mean pooled + L2
 3. mean pooled + centered + L2
-4. optional CLS + L2
+4. optional CLS + L2 later only if needed
 
-Then add:
+Only if the multiclass results are unexpectedly weak or unstable should the repo go back and run:
 
-- `TF-IDF + logistic regression` baseline
-- broader geometry diagnostics
-- plots
+- `sentence-transformers/all-mpnet-base-v2`
+- or a fresh multiclass model-selection bakeoff
 
 ## Multiclass-Specific Evaluation Focus
 
@@ -208,16 +77,65 @@ The multiclass experiment should pay special attention to:
 
 The question is not only whether the embeddings classify well, but whether they form interpretable multiclass geometry.
 
+## Immediate Execution Plan
+
+### Stage 1: Dataset Preparation
+
+- load `dair-ai/emotion`
+- preserve the original train and validation splits
+- remove empty rows if any
+- record:
+  - per-class counts
+  - token-length statistics
+  - truncation rate under the chosen tokenizer
+
+### Stage 2: Embedding Generation
+
+- generate BGE embeddings for the full train split
+- generate BGE embeddings for the validation split
+- save:
+  - raw mean pooled embeddings
+  - L2-normalized embeddings
+  - mean-centered + L2-normalized embeddings
+- save labels, texts, and metadata alongside them
+
+### Stage 3: Multiclass Validation
+
+Run all quantitative metrics on the original embedding dimensionality, not on reduced plots.
+
+Recommended first metric panel:
+
+- multinomial logistic regression
+- kNN at `k = 1` and `k = 5`
+- macro F1
+- confusion matrix
+- centroid-distance matrix
+- average same-class versus cross-class distance ratio
+- silhouette score
+- Davies-Bouldin index
+- PCA explained variance
+
+### Stage 4: Visualization
+
+Use dimensionality reduction only for visualization:
+
+- PCA 2D
+- UMAP 2D or t-SNE fallback
+- class-projection plots when useful
+
+These plots are for inspection only and should not replace the original-space metrics.
+
+### Stage 5: Baseline Comparison
+
+After the embedding variants are compared:
+
+- add `TF-IDF + logistic regression`
+- optionally add `sentence-transformers/all-mpnet-base-v2` only if the BGE results look weak or ambiguous
+
 ## Current Expected Outcome
 
-The expected front-runner is:
+The expected default model remains:
 
 - `BAAI/bge-base-en-v1.5`
 
-The strongest immediate comparison is:
-
-- `sentence-transformers/all-mpnet-base-v2`
-
-This expectation should be treated as a hypothesis, not a final decision.
-
-The purpose of this stage is to confirm or overturn that hypothesis quickly.
+The purpose of this plan is to move directly into embedding generation and multiclass validation without burning time on a likely redundant model-selection stage.

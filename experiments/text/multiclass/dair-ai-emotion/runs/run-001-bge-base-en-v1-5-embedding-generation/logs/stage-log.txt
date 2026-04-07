@@ -1,0 +1,6 @@
+[2026-04-07T03:49:03.425462+00:00] embed-start: embedding train split with BAAI/bge-base-en-v1.5
+[2026-04-07T03:50:07.519623+00:00] embed-start: embedding train split with BAAI/bge-base-en-v1.5
+[2026-04-07T03:52:35.598152+00:00] embed-done: finished train split
+[2026-04-07T03:52:35.599068+00:00] embed-start: embedding validation split with BAAI/bge-base-en-v1.5
+[2026-04-07T03:52:55.103234+00:00] embed-done: finished validation split
+[2026-04-07T03:52:55.280013+00:00] complete: saved multiclass embedding artifacts

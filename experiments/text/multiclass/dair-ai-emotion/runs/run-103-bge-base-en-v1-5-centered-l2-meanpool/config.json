@@ -1,0 +1,35 @@
+{
+  "experiment_name": "dair-ai-emotion-bge-ablation-stage",
+  "dataset": {
+    "loader": "huggingface",
+    "path": "dair-ai/emotion",
+    "text_column": "text",
+    "label_column": "label",
+    "train_split": "train",
+    "validation_split": "validation",
+    "label_names": ["sadness", "joy", "love", "anger", "fear", "surprise"]
+  },
+  "model": {
+    "name": "BAAI/bge-base-en-v1.5",
+    "slug": "bge-base-en-v1-5"
+  },
+  "variants": [
+    {
+      "name": "raw-meanpool",
+      "embedding_key": "raw"
+    },
+    {
+      "name": "l2-meanpool",
+      "embedding_key": "l2"
+    },
+    {
+      "name": "centered-l2-meanpool",
+      "embedding_key": "centered_l2"
+    }
+  ],
+  "evaluation": {
+    "knn_k_values": [1, 5],
+    "logistic_max_iter": 2000,
+    "random_seed": 42
+  }
+}

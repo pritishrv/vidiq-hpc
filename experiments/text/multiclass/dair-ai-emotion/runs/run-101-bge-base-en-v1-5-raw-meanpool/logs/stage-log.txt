@@ -1,0 +1,15 @@
+[2026-04-07T03:56:30.266592+00:00] load: loading embedding variant 'raw'
+[2026-04-07T03:56:30.283978+00:00] metric-start: running multinomial logistic regression
+[2026-04-07T03:56:49.301602+00:00] load: loading embedding variant 'raw'
+[2026-04-07T03:56:49.320652+00:00] metric-start: running multinomial logistic regression
+[2026-04-07T03:56:53.279115+00:00] metric-done: finished multinomial logistic regression
+[2026-04-07T03:56:53.279196+00:00] metric-start: running kNN probes
+[2026-04-07T03:56:53.723183+00:00] metric-done: finished kNN probes
+[2026-04-07T03:56:53.723311+00:00] metric-start: computing centroid metrics
+[2026-04-07T03:56:54.874798+00:00] metric-done: finished centroid metrics
+[2026-04-07T03:56:54.874895+00:00] metric-start: computing cluster diagnostics
+[2026-04-07T03:56:54.917158+00:00] metric-done: finished cluster diagnostics
+[2026-04-07T03:56:54.917218+00:00] metric-start: computing PCA spectrum metrics
+[2026-04-07T03:56:54.930742+00:00] metric-done: finished PCA spectrum metrics
+[2026-04-07T03:56:54.930796+00:00] metric-start: computing confusion matrix
+[2026-04-07T03:56:54.932486+00:00] complete: finished variant 'raw-meanpool'

@@ -1,0 +1,20 @@
+{
+  "experiment_name": "dair-ai-emotion-bge-embedding-generation",
+  "dataset": {
+    "loader": "huggingface",
+    "path": "dair-ai/emotion",
+    "text_column": "text",
+    "label_column": "label",
+    "train_split": "train",
+    "validation_split": "validation"
+  },
+  "model": {
+    "name": "BAAI/bge-base-en-v1.5",
+    "slug": "bge-base-en-v1-5"
+  },
+  "embedding": {
+    "pooling": "mean",
+    "max_length": 64,
+    "batch_size": 32
+  }
+}
