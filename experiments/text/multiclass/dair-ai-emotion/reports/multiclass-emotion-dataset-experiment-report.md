@@ -624,3 +624,25 @@ The safest first multiclass implementation for `vidiq-hpc` is:
 - validation: macro F1, confusion structure, centroid-distance matrices, neighborhood purity, and clustering diagnostics
 
 This should be the multiclass baseline against which any later LLM hidden-state or more exotic geometry method is compared.
+
+## Current Result Snapshot
+
+- model: `BAAI/bge-base-en-v1.5` (carried across from the completed SST-2 study)
+- embedding representation: raw mean pooled vectors (L2 and centered-L2 variants still saved for reference)
+- dataset splits:
+  - train: `16000` examples over six labels (`sadness`, `joy`, `love`, `anger`, `fear`, `surprise`)
+  - validation: `2000` examples with the same label set
+- truncation at `max_length = 64`: `6.4%` of tokens in both splits (consider a `max_length = 128` check later)
+- metrics (original-space):
+  - logistic regression macro F1 ≈ `0.697`
+  - kNN@5 macro F1 ≈ `0.647`
+  - centroid same/cross distance ratio ≈ `0.953`
+  - silhouette ≈ `0.004`
+  - Davies–Bouldin ≈ `7.9`
+- confusion matrix shows `joy`/`love` overlap, `anger`/`fear`/`sadness` mixing, and a weak `surprise` class (`runs/run-101-bge-base-en-v1-5-raw-meanpool/metrics/confusion-matrix.json`)
+- visualization-only plots (PCA, t-SNE fallback, centroid cosine heatmaps) live under `artifacts/plots/bge-variant-visuals/`
+
+Decision:
+
+- default multiclass setup: `BAAI/bge-base-en-v1.5` with raw mean pooled embeddings
+- keep focusing on per-class macro metrics rather than clean clusters
