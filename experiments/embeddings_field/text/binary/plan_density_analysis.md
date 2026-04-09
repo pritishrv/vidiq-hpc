@@ -14,7 +14,7 @@ Analyze `BAAI/bge-base-en-v1.5` embeddings for SST-2 in the new `embeddings_fiel
 
 ### Step 3: Distance & Density profiling
 1. For every point, compute distance to its own centroid and to the opposite centroid (cosine/euclidean).
-2. Bin distances into quantiles (e.g., quartiles) or fixed-radius shells; compute density = points_per_bin / shell_volume proxy (difference of spheres) and save the bins (script `run_density_overlap_analysis.py`).
+2. Bin distances into quantiles (e.g., quartiles) or fixed-radius shells; compute density = points_per_bin / shell_volume proxy (difference of spheres) and record the fraction of opposite-class points landing in the same bin (overlap volume). The script `run_density_overlap_analysis.py` will output both.
 3. Produce a density curve per class showing how density decreases as distance increases.
 4. Compare density curves between raw and centered variants to see if centering tightens mass near the centroid.
 

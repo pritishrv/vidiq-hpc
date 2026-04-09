@@ -19,16 +19,18 @@ def compute_distances(vectors: np.ndarray, centroid: np.ndarray) -> np.ndarray:
     return np.linalg.norm(vectors - centroid, axis=1)
 
 
-def build_bins(distances: np.ndarray, n_bins: int = 10) -> list[dict[str, float]]:
+def build_bins(distances: np.ndarray, opposite_distances: np.ndarray, n_bins: int = 10) -> list[dict[str, float]]:
     edges = np.percentile(distances, np.linspace(0, 100, n_bins + 1))
     bins = []
     for start, end in zip(edges[:-1], edges[1:]):
         mask = (distances >= start) & (distances < end if end > start else distances >= end)
+        opposite_mask = (opposite_distances >= start) & (opposite_distances < end if end > start else opposite_distances >= end)
         bins.append(
             {
                 "start": float(start),
                 "end": float(end),
                 "density": int(mask.sum()),
+                "opposite_count": int(opposite_mask.sum()),
                 "midpoint": float((start + end) / 2),
             }
         )
@@ -65,8 +67,8 @@ def main() -> None:
     pos_overlap = (pos_to_neg < pos_dist).mean()
     neg_overlap = (neg_to_pos < neg_dist).mean()
 
-    pos_bins = build_bins(pos_dist)
-    neg_bins = build_bins(neg_dist)
+    pos_bins = build_bins(pos_dist, neg_dist)
+    neg_bins = build_bins(neg_dist, pos_dist)
 
     stats = {
         "variant": args.variant,
