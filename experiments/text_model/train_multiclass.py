@@ -92,7 +92,7 @@ class EmotionEmbeddingClassifier(nn.Module):
             token_type_ids=token_type_ids,
             return_dict=True,
         )
-        hidden = outputs.hidden_states[-1][:, -1, :]
+        hidden = outputs.hidden_states[-1][:, -1, :].to(torch.float32)
         logits = self.projection(hidden)
         return hidden, logits
 
