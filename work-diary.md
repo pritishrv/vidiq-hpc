@@ -27,6 +27,13 @@
 - Created `meetings/2026-04-11_minutes_llm-embedding-geometry_sentiment-experiments_neurips.md` with full meeting minutes, discussion notes, and action points for both Pritish and Daniel through to the 4 May NeurIPS deadline.
 - Created `experiments/text/multiclass/dair-ai-emotion/reports/next-experiments-plan.md` defining five new experiment stages: (1) inter-centroid Euclidean distance matrix in 768D, (2) cross-model validation of the belt-density pattern, (3) fine-tuned classifier with logit-geometry correlation analysis, (4) improved stacked overlap bar charts, (5) multi-panel pairwise scatter plot figure.
 
+## 2026-04-12
+
+- Pulled latest changes from remote: Pritish had pushed `experiments/embeddings_field/text/binary/plan_density_analysis.md`, `run_density_overlap_analysis.py`, multiclass embeddings_field placeholders, and a new `experiments/text_model/` directory (`train_multiclass.py`, `requirements.txt`, `README.md`).
+- Read three meeting transcripts from today's sessions (`meetings/2026-04-12_1_minutes.docx`, `_2_minutes.docx`, `_3_minutes.docx`).
+- Created `meetings/2026-04-12_minutes_embedding-geometry_density-analysis_hpc-training.md` with full minutes and action points covering: density calculation correction (y-axis label fix, per-unit-volume density only drops), the void finding (no points from centroid to r≈7.5 for any emotion), the no-pure-emotion observation, the corrected overlap definition (distance-to-centroid comparison, no radius threshold), centroid distance matrix results (sadness nearest anger / furthest joy), radial scatter results (fear most dispersed at 12.77, love tightest at 11.32), and the HPC fine-tuned model training plan (Qwen3 1.7B, 768-dim embedding layer, 5-class head).
+- Committed and pushed all four files (3 transcripts + minutes) as commit `f329143`.
+
 ## 2026-04-07
 
 - Reviewed the local literature set in `/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq/lit-survey/gemini` using the extracted summary report in `/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq/reports/title-abstract-conclusion.md`.
