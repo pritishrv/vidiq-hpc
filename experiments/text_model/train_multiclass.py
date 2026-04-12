@@ -72,7 +72,7 @@ class EmotionEmbeddingClassifier(nn.Module):
         self.transformer = AutoModelForCausalLM.from_pretrained(
             backbone,
             trust_remote_code=True,
-            output_hidden_states=False,
+            output_hidden_states=True,
         )
         if freeze_backbone:
             for param in self.transformer.parameters():
@@ -92,7 +92,7 @@ class EmotionEmbeddingClassifier(nn.Module):
             token_type_ids=token_type_ids,
             return_dict=True,
         )
-        hidden = outputs.last_hidden_state[:, -1, :]
+        hidden = outputs.hidden_states[-1][:, -1, :]
         logits = self.projection(hidden)
         return hidden, logits
 
