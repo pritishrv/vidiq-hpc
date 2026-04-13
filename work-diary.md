@@ -34,6 +34,22 @@
 - Created `meetings/2026-04-12_minutes_embedding-geometry_density-analysis_hpc-training.md` with full minutes and action points covering: density calculation correction (y-axis label fix, per-unit-volume density only drops), the void finding (no points from centroid to r≈7.5 for any emotion), the no-pure-emotion observation, the corrected overlap definition (distance-to-centroid comparison, no radius threshold), centroid distance matrix results (sadness nearest anger / furthest joy), radial scatter results (fear most dispersed at 12.77, love tightest at 11.32), and the HPC fine-tuned model training plan (Qwen3 1.7B, 768-dim embedding layer, 5-class head).
 - Committed and pushed all four files (3 transcripts + minutes) as commit `f329143`.
 
+## 2026-04-13
+
+- Updated `experiments/text_model/train_multiclass.py` to cast the final hidden state to `float32` before the projection head and increased the classifier output size from 5 to 6 labels for the balanced 6-class setup.
+- Checked the processed multiclass training labels and confirmed the current `texts.jsonl` split contains labels `0-5`, with 572 examples in class `5`.
+- Added Hyperion batch scripts under `hpc/`, including `train_multiclass.slurm` and `train_multiclass_frozen_backbone.slurm`, with GPU A100 resource settings, run-duration footer, and completion email handling.
+- Added raw source datasets `experiments/text/multiclass/dair-ai-emotion/data/raw/balanced_emotions_6classes.csv` and `experiments/text/multiclass/dair-ai-emotion/data/raw/20-emotion-dataset.csv`.
+- Added planning prompts `prompts/02-archive-text-model-runs.md` and `prompts/03-slurm-run-id-from-job-name-and-id.md` to define the archive/symlink workflow and the SLURM-derived run-id scheme.
+- Extended `experiments/text_model/train_multiclass.py` with an archive-root workflow: large `model/` and `tokenizer/` artifacts now save under `/users/aczd097/archive/vidiq-hpc/text_model/<run_id>/`, the local run directory keeps analysis and metrics, and symlinks reconnect the archived model/tokenizer paths back into the visible run folder.
+- Added `run_metadata.json` generation with timestamp, git commit, args, dataset information, archive paths, symlink targets, and SLURM job metadata (`SLURM_JOB_NAME`, `SLURM_JOB_ID`).
+- Updated `.gitignore` to ignore `experiments/text_model/runs/` so generated run outputs do not accumulate in Git.
+- Changed the text-model run-id scheme so SLURM jobs use `<job_name>_<job_id>` as the run identifier, and updated the default/fallback naming logic accordingly.
+- Updated `hpc/train_multiclass.slurm` and `hpc/train_multiclass_frozen_backbone.slurm` to use short 8-character SLURM job names and to pass `--run-name "${SLURM_JOB_NAME}_${SLURM_JOB_ID}"`.
+- Extended `experiments/text_model/train_multiclass.py` to support direct CSV training via `--csv-path`, automatically infer the text column, map string emotion labels to numeric ids, and size the classifier output layer from the dataset label set so both the balanced 6-class CSV and the unbalanced 20-class CSV can be trained directly.
+- Added six new SLURM scripts for balanced and unbalanced CSV training at 10, 50, and 100 epochs: `train_multiclass_balanced_{10e,50e,100e}.slurm` and `train_multiclass_unbalanced_{10e,50e,100e}.slurm`.
+- Increased the wall-clock limit on those six new SLURM jobs from 4 hours to 24 hours.
+
 ## 2026-04-07
 
 - Reviewed the local literature set in `/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq/lit-survey/gemini` using the extracted summary report in `/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq/reports/title-abstract-conclusion.md`.
