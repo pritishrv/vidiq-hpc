@@ -49,6 +49,10 @@
 - Extended `experiments/text_model/train_multiclass.py` to support direct CSV training via `--csv-path`, automatically infer the text column, map string emotion labels to numeric ids, and size the classifier output layer from the dataset label set so both the balanced 6-class CSV and the unbalanced 20-class CSV can be trained directly.
 - Added six new SLURM scripts for balanced and unbalanced CSV training at 10, 50, and 100 epochs: `train_multiclass_balanced_{10e,50e,100e}.slurm` and `train_multiclass_unbalanced_{10e,50e,100e}.slurm`.
 - Increased the wall-clock limit on those six new SLURM jobs from 4 hours to 24 hours.
+- Diagnosed the suspected large-file Git problem: the current repo and `origin/main` are clean (`.git` around single-digit MB locally), so the slowdown appears isolated to the old Hyperion clone rather than current remote history.
+- Verified this by making a fresh filtered temp clone from `origin`; the clean clone measured roughly `7.2M` for `.git` and `23M` total checkout size before deletion.
+- Identified that Hyperion cannot clone over SSH (`github.com:22` timeout), so the recovery path there must use HTTPS instead of `git@github.com:...`.
+- Confirmed the current SLURM failures are due to `--model-path models/qwen3-1.7B` not existing on Hyperion. The next required change is to update the batch scripts to stop using that fake local path and instead use either a real local checkpoint path or the real Hugging Face model id, with explicit HF/proxy environment exports inside the SLURM scripts rather than relying on `.bashrc`.
 
 ## 2026-04-07
 
