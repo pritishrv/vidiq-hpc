@@ -374,14 +374,19 @@ def get_default_run_name(args: argparse.Namespace) -> str:
     slurm_job_id = os.getenv("SLURM_JOB_ID")
     if slurm_job_name and slurm_job_id:
         return f"{slurm_job_name}_{slurm_job_id}"
-    return f"qwen3-1.7B-{args.num_epochs}e-{args.batch_size}b-{random.randint(1000,9999)}"
+    model_tag = Path(str(args.model_path).rstrip("/")).name or "text-model"
+    return f"{model_tag}-{args.num_epochs}e-{args.batch_size}b-{random.randint(1000,9999)}"
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Train qwen3-based emotion classifier and log 768D embeddings.")
     parser.add_argument("--data-root", type=Path, default=None, help="Dataset root containing processed text/labels.")
     parser.add_argument("--csv-path", type=Path, default=None, help="Raw CSV dataset path for direct training.")
-    parser.add_argument("--model-path", type=Path, default=Path("models/qwen3-1.7B"), help="Local qwen3 checkpoint path.")
+    parser.add_argument(
+        "--model-path",
+        default="Qwen/Qwen3-1.7B",
+        help="Local checkpoint path or Hugging Face model id for the Qwen backbone.",
+    )
     parser.add_argument("--run-root", type=Path, default=Path("experiments/text_model/runs"))
     parser.add_argument("--archive-root", type=Path, default=Path("/users/aczd097/archive/vidiq-hpc/text_model"))
     parser.add_argument("--run-name", default=None)
@@ -402,7 +407,9 @@ def main() -> None:
         args.data_root = args.data_root.expanduser()
     if args.csv_path is not None:
         args.csv_path = args.csv_path.expanduser()
-    args.model_path = args.model_path.expanduser()
+    expanded_model_path = Path(args.model_path).expanduser()
+    if expanded_model_path.exists():
+        args.model_path = str(expanded_model_path)
     args.run_root = args.run_root.expanduser()
     args.archive_root = args.archive_root.expanduser()
     if args.data_root is None and args.csv_path is None:

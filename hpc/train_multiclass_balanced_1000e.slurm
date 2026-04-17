@@ -1,0 +1,46 @@
+#!/bin/bash
+#SBATCH -D /users/aczd097/git/vidiq-hpc
+#SBATCH --job-name tmqb1000
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=daniel.sikar@city.ac.uk
+#SBATCH --partition=gpu-a100
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=6
+#SBATCH --mem=47GB
+#SBATCH --time=72:00:00
+#SBATCH --gres=gpu:a100:1
+#SBATCH -e outputs/%x_%j.e
+#SBATCH -o outputs/%x_%j.o
+
+# Environment
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+export CUDA_VISIBLE_DEVICES=0
+export HF_HOME="${HF_HOME:-/users/aczd097/sharedscratch/huggingface}"
+export HF_HUB_CACHE="${HF_HUB_CACHE:-${HF_HOME}/hub}"
+export TRANSFORMERS_CACHE="${TRANSFORMERS_CACHE:-${HF_HOME}/transformers}"
+source /users/aczd097/sharedscratch/venvs/main/bin/activate
+
+# Start
+start=$(date +%s)
+mkdir -p outputs
+echo "Job started at $(date)"
+echo "Model ref: Qwen/Qwen3-1.7B"
+echo "HF_HOME: ${HF_HOME}"
+
+python experiments/text_model/train_multiclass.py \
+    --csv-path experiments/text/multiclass/dair-ai-emotion/data/raw/balanced_emotions_6classes.csv \
+    --run-root experiments/text_model/runs \
+    --run-name "${SLURM_JOB_NAME}_${SLURM_JOB_ID}" \
+    --batch-size 8 \
+    --num-epochs 1000 \
+    --learning-rate 5e-5 \
+    --max-length 256
+
+# Duration + email
+end=$(date +%s)
+diff=$((end-start))
+echo "Completed at $(date) - $(( diff/60 ))m $(( diff%60 ))s"
+
+tail -n 50 "outputs/${SLURM_JOB_NAME}_${SLURM_JOB_ID}.o" | \
+    mail -s "${SLURM_JOB_NAME} (${SLURM_JOB_ID}) done" daniel.sikar@city.ac.uk

@@ -6,4 +6,8 @@ experiments/text/*/*/artifacts/embeddings/*.npy
 experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/*.npy
 experiments/text/*/*/artifacts/logs/mplconfig/
 outputs/
-experiments/text_model/runs/
+experiments/text_model/runs/*/model
+experiments/text_model/runs/*/model/
+experiments/text_model/runs/*/tokenizer
+experiments/text_model/runs/*/tokenizer/
+meetings/*_minutes*.docx

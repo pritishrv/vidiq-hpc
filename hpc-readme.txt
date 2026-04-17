@@ -16,6 +16,12 @@ Hyperion 2 - SLURM Batch Job Instructions
 5. Submit the job
    sbatch hpc/train_multiclass.slurm
 
+   First validate the default Qwen model access:
+   sbatch hpc/check_model_access.slurm
+
+   Then submit any training job:
+   sbatch hpc/train_multiclass.slurm
+
 6. Monitor the job
    squeue -u aczd097
 
