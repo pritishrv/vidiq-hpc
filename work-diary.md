@@ -17,6 +17,31 @@
 - Committed the initial project files as `d6dab1d` with message `Add project prompts and setup notes`, then pushed `main` to `origin` over SSH successfully.
 - Attempted to copy the GitHub SSH keypair to the HPC account at `adhp543@localhost` on port `2000`, but the SSH connection was rejected with `Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password)` before any files were transferred.
 - Retried the transfer with direct `scp -P 2000` to `adhp543@localhost:~/.ssh/`. The copy still failed with the same authentication error before any files could be written remotely.
+## 2026-04-17
+
+- Fixed the Qwen/Hugging Face resolution in the text-model training workflow: `experiments/text_model/train_multiclass.py` now defaults to the real repo id `Qwen/Qwen3-1.7B`, and the multiclass SLURM scripts no longer require a separate `MODEL_REF` environment variable.
+- Added `hpc/check_model_access.slurm` as a fast smoke test that loads the default Qwen tokenizer/model and runs a tiny forward pass before committing to longer training jobs.
+- Added six new long-run multiclass batch scripts with 72-hour limits: `train_multiclass_balanced_{250e,500e,1000e}.slurm` and `train_multiclass_unbalanced_{250e,500e,1000e}.slurm`.
+- Updated `.gitignore` so `experiments/text_model/runs/<run_id>/analysis`, `run_metadata.json`, and `train_metrics.json` can be tracked, while `model/` and `tokenizer/` remain ignored.
+- Pulled the first completed balanced fine-tuning run artifacts into the repo under `experiments/text_model/runs/tmqb0010_17763/`, including `analysis/centroids.json`, `analysis/eval_embeddings.npy`, `analysis/eval_logits.npy`, `analysis/eval_metrics.json`, `run_metadata.json`, and `train_metrics.json`.
+- Confirmed the first completed balanced run exists and appears structurally successful; detailed metric interpretation is still pending.
+- Added `prompts/04-image-sentiment-dataset-search.md` to drive external dataset-search agents.
+- Confirmed six image-dataset survey reports are now present for analysis:
+  - `reports/chatgpt-image-datasets.md`
+  - `reports/claude-image-datasets.md`
+  - `reports/deepseek-image-datasets.md`
+  - `reports/gemini-image-datasets.md`
+  - `reports/grok-image-datasets.md`
+  - `reports/lechat-image-datasets.md`
+- The image-dataset search prompt `prompts/04-image-sentiment-dataset-search.md` and the generated image-dataset reports are still local/untracked in this checkout and need to be added to the repo.
+- Main handoff for tomorrow:
+  - inspect `experiments/text_model/runs/tmqb0010_17763/train_metrics.json` and `analysis/eval_metrics.json`
+  - assess whether the 10-epoch balanced run is learning useful class structure
+  - read across the six image-dataset reports and synthesize a ranked shortlist
+  - add `prompts/04-image-sentiment-dataset-search.md` plus the image-dataset reports to git
+  - compare the shortlist against the 16 April minutes item on the image extension
+  - decide the first image dataset and whether to start with full-image embeddings only or immediately plan segmented-object follow-up
+
 - Created `~/.ssh/config` with a `github.com` host entry that forces Git to use `~/.ssh/id_ed25519_github` via `IdentitiesOnly yes`.
 - Added `reports/gemini-text-dataset-report.md`, a survey report on text datasets for embedding-space analysis, and prepared it for publishing to GitHub.
 - Added `reports/openai-text-dataset-report.md` and prepared the new report plus the diary update for publishing to GitHub.
