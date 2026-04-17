@@ -384,7 +384,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--csv-path", type=Path, default=None, help="Raw CSV dataset path for direct training.")
     parser.add_argument(
         "--model-path",
-        default="models/qwen3-1.7B",
+        default="Qwen/Qwen3-1.7B",
         help="Local checkpoint path or Hugging Face model id for the Qwen backbone.",
     )
     parser.add_argument("--run-root", type=Path, default=Path("experiments/text_model/runs"))

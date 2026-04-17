@@ -16,11 +16,11 @@ Hyperion 2 - SLURM Batch Job Instructions
 5. Submit the job
    sbatch hpc/train_multiclass.slurm
 
-   First validate the model reference:
-   MODEL_REF="your-huggingface-model-id-or-local-path" sbatch hpc/check_model_access.slurm
+   First validate the default Qwen model access:
+   sbatch hpc/check_model_access.slurm
 
-   Then submit any training job with the same model reference:
-   MODEL_REF="your-huggingface-model-id-or-local-path" sbatch hpc/train_multiclass.slurm
+   Then submit any training job:
+   sbatch hpc/train_multiclass.slurm
 
 6. Monitor the job
    squeue -u aczd097
