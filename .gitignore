@@ -5,6 +5,8 @@ __pycache__/
 .venv/
 experiments/text/*/*/artifacts/embeddings/*.npy
 experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/*.npy
+experiments/embeddings_field/text/multiclass/*/artifacts/embeddings/*.npy
+experiments/embeddings_field/text/multiclass/*/data/processed/train/*.npy
 experiments/text/*/*/artifacts/logs/mplconfig/
 outputs/
 experiments/text_model/runs/*/model
