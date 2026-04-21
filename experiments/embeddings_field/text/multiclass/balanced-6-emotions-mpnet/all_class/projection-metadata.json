@@ -1,0 +1,13 @@
+{
+  "embeddings": "experiments/embeddings_field/text/multiclass/balanced-6-emotions-mpnet/artifacts/embeddings/balanced-6-emotions-mpnet_raw.npy",
+  "labels": "experiments/embeddings_field/text/multiclass/balanced-6-emotions-mpnet/data/processed/train/labels.npy",
+  "projection": "PCA-2D",
+  "classes": [
+    "sadness",
+    "joy",
+    "love",
+    "anger",
+    "fear",
+    "surprise"
+  ]
+}
