@@ -9,6 +9,8 @@ This repo currently covers two main workstreams:
 
 ## Main Areas
 
+- `experiments.md`
+  repo-level map of experiment families, models, datasets, and output locations
 - `experiments/text/`
   dataset-specific text experiment pipelines, reports, configs, and outputs
 - `experiments/text_model/`
@@ -52,6 +54,8 @@ Key batch scripts:
   fast smoke test for Qwen tokenizer/model availability
 - `hpc/train_multiclass.slurm`
   main multiclass training job
+- `hpc/run_qwen_bge_parity.slurm`
+  rebuilds the Qwen parity embedding/metric/plot bundle from the tracked Qwen bridge artifacts
 - `hpc/train_multiclass_frozen_backbone.slurm`
   frozen-backbone variant
 - `hpc/train_multiclass_balanced_{10e,50e,100e,250e,500e,1000e}.slurm`
