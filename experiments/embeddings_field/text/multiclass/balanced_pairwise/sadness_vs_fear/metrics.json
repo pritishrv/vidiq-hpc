@@ -1,0 +1,214 @@
+{
+  "labels": [
+    "sadness",
+    "fear"
+  ],
+  "counts": {
+    "a": 572,
+    "b": 572
+  },
+  "a_bins": [
+    {
+      "start": 7.267708778381348,
+      "end": 8.189152431488036,
+      "midpoint": 7.728430604934692,
+      "density": 58,
+      "density_per_unit": 62.944706173242814,
+      "overlap_count": 15,
+      "overlap_ratio": 0.25862068965516793,
+      "bin_width": 0.9214436531066887
+    },
+    {
+      "start": 8.189152431488036,
+      "end": 8.47510986328125,
+      "midpoint": 8.332131147384644,
+      "density": 57,
+      "density_per_unit": 199.33036760946527,
+      "overlap_count": 23,
+      "overlap_ratio": 0.4035087719298175,
+      "bin_width": 0.2859574317932143
+    },
+    {
+      "start": 8.47510986328125,
+      "end": 8.686161136627197,
+      "midpoint": 8.580635499954223,
+      "density": 57,
+      "density_per_unit": 270.0765510500761,
+      "overlap_count": 31,
+      "overlap_ratio": 0.5438596491227975,
+      "bin_width": 0.2110512733459462
+    },
+    {
+      "start": 8.686161136627197,
+      "end": 8.875126075744628,
+      "midpoint": 8.780643606185912,
+      "density": 57,
+      "density_per_unit": 301.64325861834953,
+      "overlap_count": 44,
+      "overlap_ratio": 0.7719298245613899,
+      "bin_width": 0.18896493911743129
+    },
+    {
+      "start": 8.875126075744628,
+      "end": 9.062839984893799,
+      "midpoint": 8.968983030319214,
+      "density": 57,
+      "density_per_unit": 303.6535771821991,
+      "overlap_count": 54,
+      "overlap_ratio": 0.9473684210526149,
+      "bin_width": 0.18771390914917063
+    },
+    {
+      "start": 9.062839984893799,
+      "end": 9.200881385803223,
+      "midpoint": 9.13186068534851,
+      "density": 57,
+      "density_per_unit": 412.9195996598189,
+      "overlap_count": 56,
+      "overlap_ratio": 0.9824561403508599,
+      "bin_width": 0.13804140090942418
+    },
+    {
+      "start": 9.200881385803223,
+      "end": 9.360906600952148,
+      "midpoint": 9.280893993377685,
+      "density": 57,
+      "density_per_unit": 356.1938657414313,
+      "overlap_count": 48,
+      "overlap_ratio": 0.8421052631578799,
+      "bin_width": 0.16002521514892543
+    },
+    {
+      "start": 9.360906600952148,
+      "end": 9.602119636535644,
+      "midpoint": 9.481513118743896,
+      "density": 57,
+      "density_per_unit": 236.3056368911272,
+      "overlap_count": 68,
+      "overlap_ratio": 1.19298245614033,
+      "bin_width": 0.24121303558349538
+    },
+    {
+      "start": 9.602119636535644,
+      "end": 9.953985500335694,
+      "midpoint": 9.778052568435669,
+      "density": 57,
+      "density_per_unit": 161.99354886096756,
+      "overlap_count": 114,
+      "overlap_ratio": 1.999999999999965,
+      "bin_width": 0.35186586380005025
+    },
+    {
+      "start": 9.953985500335694,
+      "end": 11.790132522583008,
+      "midpoint": 10.872059011459351,
+      "density": 57,
+      "density_per_unit": 31.043265767594168,
+      "overlap_count": 118,
+      "overlap_ratio": 2.070175438596455,
+      "bin_width": 1.8361470222473137
+    }
+  ],
+  "b_bins": [
+    {
+      "start": 7.280375003814697,
+      "end": 8.019707679748535,
+      "midpoint": 7.650041341781616,
+      "density": 58,
+      "density_per_unit": 78.44912295637582,
+      "overlap_count": 7,
+      "overlap_ratio": 0.1206896551724117,
+      "bin_width": 0.7393326759338379
+    },
+    {
+      "start": 8.019707679748535,
+      "end": 8.289909362792969,
+      "midpoint": 8.154808521270752,
+      "density": 57,
+      "density_per_unit": 210.9535342554716,
+      "overlap_count": 26,
+      "overlap_ratio": 0.45614035087718496,
+      "bin_width": 0.2702016830444336
+    },
+    {
+      "start": 8.289909362792969,
+      "end": 8.548497867584228,
+      "midpoint": 8.419203615188598,
+      "density": 57,
+      "density_per_unit": 220.427431783993,
+      "overlap_count": 40,
+      "overlap_ratio": 0.7017543859648999,
+      "bin_width": 0.25858850479125906
+    },
+    {
+      "start": 8.548497867584228,
+      "end": 8.70532684326172,
+      "midpoint": 8.626912355422974,
+      "density": 57,
+      "density_per_unit": 363.4532442347689,
+      "overlap_count": 36,
+      "overlap_ratio": 0.6315789473684099,
+      "bin_width": 0.15682897567749166
+    },
+    {
+      "start": 8.70532684326172,
+      "end": 8.907905101776123,
+      "midpoint": 8.806615972518921,
+      "density": 57,
+      "density_per_unit": 281.3727416654005,
+      "overlap_count": 49,
+      "overlap_ratio": 0.8596491228070025,
+      "bin_width": 0.2025782585144036
+    },
+    {
+      "start": 8.907905101776123,
+      "end": 9.087579345703125,
+      "midpoint": 8.997742223739625,
+      "density": 57,
+      "density_per_unit": 317.2407950866796,
+      "overlap_count": 66,
+      "overlap_ratio": 1.1578947368420849,
+      "bin_width": 0.1796742439270016
+    },
+    {
+      "start": 9.087579345703125,
+      "end": 9.297653961181641,
+      "midpoint": 9.192616653442382,
+      "density": 57,
+      "density_per_unit": 271.33216390834764,
+      "overlap_count": 72,
+      "overlap_ratio": 1.2631578947368198,
+      "bin_width": 0.2100746154785167
+    },
+    {
+      "start": 9.297653961181641,
+      "end": 9.518829154968262,
+      "midpoint": 9.408241558074952,
+      "density": 57,
+      "density_per_unit": 257.71425368339806,
+      "overlap_count": 78,
+      "overlap_ratio": 1.368421052631555,
+      "bin_width": 0.2211751937866211
+    },
+    {
+      "start": 9.518829154968262,
+      "end": 9.921955108642578,
+      "midpoint": 9.72039213180542,
+      "density": 57,
+      "density_per_unit": 141.39501433849665,
+      "overlap_count": 92,
+      "overlap_ratio": 1.61403508771927,
+      "bin_width": 0.4031259536743157
+    },
+    {
+      "start": 9.921955108642578,
+      "end": 12.772510528564453,
+      "midpoint": 11.347232818603516,
+      "density": 57,
+      "density_per_unit": 19.99610307578661,
+      "overlap_count": 103,
+      "overlap_ratio": 1.8070175438596174,
+      "bin_width": 2.850555419921875
+    }
+  ]
+}

@@ -15,3 +15,7 @@ Outputs (models, npy embeddings, logits, metrics) should live under `experiments
 ## Training Script
 
 `train_multiclass.py` instantiates a Qwen3 transformer, trains a small projection head for the 5-class emotion task, and collects the 768-dimensional embeddings for the held-out split. It automatically stratifies the balanced dataset, saves checkpoints/metrics under the run directory, and exports the embeddings plus centroid summary so you can compare logits with embedding geometry after training.
+
+## Dataset Preparation Script
+
+`scripts/filter_emotion20_subset.py` downloads `shreyaspullehf/emotion-dataset-20-emotions`, filters it down to the six emotions you care about, balances the classes by downsampling, and saves stratified train/validation partitions (texts/labels/metadata) in `experiments/text_model/data/emotion20_small`. Run that script before training so `train_multiclass.py` has the filtered data to consume.

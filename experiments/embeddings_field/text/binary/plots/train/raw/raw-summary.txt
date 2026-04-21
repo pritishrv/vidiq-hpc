@@ -1,0 +1,8 @@
+Variant: raw
+Split: train
+Metric: euclidean
+Positive overlap ratio: 0.0832
+Negative overlap ratio: 0.1334
+Positive furthest dist: 13.4017 idx=65287
+Negative furthest dist: 13.4713 idx=13046
+Bins: 10
