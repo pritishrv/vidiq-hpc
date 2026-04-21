@@ -28,6 +28,10 @@ The main multiclass training entrypoint is:
 
 - `experiments/text_model/train_multiclass.py`
 
+Detailed implementation and paper-method notes:
+
+- [experiments/text_model/README.md](experiments/text_model/README.md)
+
 Current default backbone:
 
 - `Qwen/Qwen3-1.7B`
