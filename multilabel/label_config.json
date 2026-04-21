@@ -1,0 +1,4 @@
+{
+  "default": ["sadness", "joy", "love", "anger", "fear", "surprise"],
+  "binary": ["negative", "positive"]
+}
