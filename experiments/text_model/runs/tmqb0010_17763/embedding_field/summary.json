@@ -1,0 +1,28 @@
+{
+  "run_dir": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text_model/runs/tmqb0010_17763",
+  "output_dir": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text_model/runs/tmqb0010_17763/embedding_field",
+  "source_files": {
+    "eval_embeddings": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text_model/runs/tmqb0010_17763/analysis/eval_embeddings.npy",
+    "eval_logits": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text_model/runs/tmqb0010_17763/analysis/eval_logits.npy",
+    "centroids": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text_model/runs/tmqb0010_17763/analysis/centroids.json",
+    "run_metadata": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/text_model/runs/tmqb0010_17763/run_metadata.json"
+  },
+  "dataset": {
+    "label_names": [
+      "anger",
+      "fear",
+      "happiness",
+      "love",
+      "sadness",
+      "surprise"
+    ],
+    "num_examples": 4038,
+    "embedding_dimensionality": 2048,
+    "label_source": "argmax(eval_logits)",
+    "label_source_note": "This environment lacks sklearn, so the original stratified eval labels were approximated using model predictions.",
+    "pca_explained_variance_ratio": [
+      0.34457796812057495,
+      0.15317527949810028
+    ]
+  }
+}

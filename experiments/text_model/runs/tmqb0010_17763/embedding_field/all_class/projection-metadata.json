@@ -1,0 +1,11 @@
+{
+  "projection": "PCA-2D",
+  "classes": [
+    "anger",
+    "fear",
+    "happiness",
+    "love",
+    "sadness",
+    "surprise"
+  ]
+}
