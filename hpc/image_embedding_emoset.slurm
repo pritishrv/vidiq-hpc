@@ -23,15 +23,23 @@ cd "${REPO_ROOT}"
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export CUDA_VISIBLE_DEVICES=0
 export HF_HOME="${HF_HOME:-/users/aczd097/sharedscratch/huggingface}"
+export HF_HUB_CACHE="${HF_HUB_CACHE:-${HF_HOME}/hub}"
+export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-${HF_HOME}/datasets}"
+export VIDIQ_IMAGE_DATA_ROOT="${VIDIQ_IMAGE_DATA_ROOT:-/users/aczd097/archive/vidiq-hpc/data/image/emoset}"
 source /users/aczd097/sharedscratch/venvs/main/bin/activate
 export PYTHONPATH="${REPO_ROOT}/src:${PYTHONPATH:-}"
 
 # Start
 start=$(date +%s)
 mkdir -p outputs
+mkdir -p "${VIDIQ_IMAGE_DATA_ROOT}"
+mkdir -p "${HF_DATASETS_CACHE}"
 echo "Job started at $(date)"
 echo "Experiment: EmoSet Phase 1 (Full Image)"
 echo "Node: $(hostname)"
+echo "VIDIQ_IMAGE_DATA_ROOT: ${VIDIQ_IMAGE_DATA_ROOT}"
+echo "HF_HOME: ${HF_HOME}"
+echo "HF_DATASETS_CACHE: ${HF_DATASETS_CACHE}"
 
 python3 scripts/run_image_embeddings.py --config configs/emoset_phase1.json
 

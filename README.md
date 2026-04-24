@@ -110,6 +110,12 @@ Image Sentiment:
 sbatch hpc/image_embedding_emoset.slurm
 ```
 
+For the image workflow on Hyperion:
+
+- staged dataset root defaults to `/users/aczd097/archive/vidiq-hpc/data/image/emoset`
+- Hugging Face dataset cache defaults to `/users/aczd097/sharedscratch/huggingface/datasets`
+- the image runner now prefers a staged local dataset if present, and otherwise falls back to the public Hugging Face EmoSet mirror
+
 ## Pushing Results Back
 
 When an HPC job finishes, review the generated files first:

@@ -138,4 +138,25 @@
 - Created `prompts/09-audit-image-embedding-implementation.md` to instruct an agent to audit the Image Embedding framework, specifically focusing on the presence of training/evaluation logic and structured metrics storage.
 - Executed the audit (Prompt 09) and saved the findings to `reports/image-embedding-audit-report.md`.
 - Identified that the architecture, path handling, and logging are successfully aligned with the `kai-centroid-experiments` reference, but the training module (`training.py`) and classification evaluation logic are currently missing from the framework.
+- Added `prompts/10-close-current-experiment-gaps.md`, `prompts/11-fix-image-dataset-download-and-staging.md`, and `prompts/12-codex-only-onboarding-report-prompt.md` to queue the remaining repo-repair and onboarding work.
+- Updated `TODO.md` so the next queued prompt executions are explicit:
+  - Codex to execute `prompts/12-codex-only-onboarding-report-prompt.md`
+  - Gemini to execute `prompts/10-close-current-experiment-gaps.md`
+- Fixed the image dataset staging path for EmoSet so it no longer assumes a repo-local `data/image/emoset/metadata.csv` exists.
+- Extended `src/image_experiments/config.py` to support shell-style `${VAR:-default}` path defaults, Hugging Face dataset ids, split selection, cache roots, and explicit `allow_hf_download` control.
+- Reworked `src/image_experiments/datasets.py` so `EmoSetDataset` now:
+  - prefers a staged local dataset root when `metadata.csv` is present
+  - otherwise falls back to a Hugging Face-backed load from `Woleek/EmoSet-118K`
+  - writes a `source_manifest.json` in the staged data root for provenance
+  - raises actionable errors that describe the expected staged paths and Hyperion storage locations when local and Hugging Face loading both fail
+- Updated `configs/emoset_phase1.json` to default to Hyperion-friendly storage:
+  - `data_root` under `/users/aczd097/archive/vidiq-hpc/data/image/emoset`
+  - `hf_cache_dir` under `/users/aczd097/sharedscratch/huggingface/datasets`
+- Updated `hpc/image_embedding_emoset.slurm` to export:
+  - `HF_HUB_CACHE`
+  - `HF_DATASETS_CACHE`
+  - `VIDIQ_IMAGE_DATA_ROOT`
+  and to create the dataset/cache directories before execution.
+- Fixed JSON artifact writing for the image framework by teaching `src/image_experiments/io_utils.py` to serialize `Path` objects; without this, `run_metadata.json` would fail even after successful dataset resolution.
+- Added a root `README.md` note documenting the default Hyperion image dataset root and Hugging Face cache locations.
 - Modified `hpc/image_embedding_emoset.slurm` to use the `preemptgpu` partition, `a100_80g` GPU, and increased the time limit to 72 hours, following patterns found in `~/git/PyTorch-Scratch-Vision-Transformer-ViT`.

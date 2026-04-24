@@ -47,6 +47,10 @@ def main() -> None:
     print(f"STARTED:    {start_timestamp}")
     print(f"BACKBONE:   {config.backbone}")
     print(f"DEVICE:     {config.device}")
+    print(f"DATA ROOT:  {config.data_root}")
+    print(f"HF DATASET: {config.hf_dataset_id} [{config.dataset_split}]")
+    if config.hf_cache_dir is not None:
+        print(f"HF CACHE:   {config.hf_cache_dir}")
     # Infrastructure TBC
     print(f"INFRA:      TBC (Node: {os.uname().nodename if hasattr(os, 'uname') else 'unknown'})")
     print(f"{'='*60}")
@@ -59,7 +63,14 @@ def main() -> None:
     ])
     
     # Using EmoSet as default for Phase 1
-    dataset = EmoSetDataset(config.data_root, transform=transform, download=True)
+    dataset = EmoSetDataset(
+        config.data_root,
+        transform=transform,
+        download=config.allow_hf_download,
+        dataset_id=config.hf_dataset_id,
+        split=config.dataset_split,
+        hf_cache_dir=config.hf_cache_dir,
+    )
     dataloader = DataLoader(dataset, batch_size=config.batch_size, num_workers=config.num_workers, shuffle=False)
 
     # 2. Embeddings
@@ -94,6 +105,7 @@ def main() -> None:
         "duration_formatted": format_duration(duration),
         "backbone": config.backbone,
         "config": vars(config),
+        "dataset_backend": getattr(dataset, "backend", "unknown"),
         "infra": "TBC"
     }
     write_json(config.log_dir / "run_metadata.json", metadata)

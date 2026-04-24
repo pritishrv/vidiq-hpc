@@ -1,10 +1,14 @@
 {
-  "data_root": "data/image/emoset",
+  "data_root": "${VIDIQ_IMAGE_DATA_ROOT:-/users/aczd097/archive/vidiq-hpc/data/image/emoset}",
   "run_root": "experiments/image/runs",
   "run_name": "emoset_phase1_clip",
   "backbone": "openai/clip-vit-base-patch32",
   "batch_size": 32,
   "num_workers": 4,
   "image_size": 224,
-  "device": "cuda"
+  "device": "cuda",
+  "hf_dataset_id": "Woleek/EmoSet-118K",
+  "dataset_split": "train",
+  "hf_cache_dir": "${HF_DATASETS_CACHE:-/users/aczd097/sharedscratch/huggingface/datasets}",
+  "allow_hf_download": true
 }

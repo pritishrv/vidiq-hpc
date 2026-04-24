@@ -9,6 +9,8 @@
 
 ## Next Session
 
+- [ ] Codex: execute `prompts/12-codex-only-onboarding-report-prompt.md`.
+- [ ] Gemini: execute `prompts/10-close-current-experiment-gaps.md`.
 - [ ] Add `prompts/04-image-sentiment-dataset-search.md` to the repo.
 - [ ] Add the image-dataset reports to the repo:
   - `reports/chatgpt-image-datasets.md`
