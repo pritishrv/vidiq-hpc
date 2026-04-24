@@ -9,7 +9,6 @@ experiments/embeddings_field/text/multiclass/*/artifacts/embeddings/*.npy
 experiments/embeddings_field/text/multiclass/*/data/processed/train/*.npy
 experiments/text/*/*/artifacts/logs/mplconfig/
 outputs/
-!outputs/.gitkeep
 experiments/text_model/runs/*/model
 experiments/text_model/runs/*/model/
 experiments/text_model/runs/*/tokenizer
