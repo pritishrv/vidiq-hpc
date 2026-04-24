@@ -3,13 +3,13 @@
 #SBATCH --job-name=ie_emo1
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=daniel.sikar@city.ac.uk
-#SBATCH --partition=gpu-a100
+#SBATCH --partition=preemptgpu
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32GB
 #SBATCH --time=08:00:00
-#SBATCH --gres=gpu:a100:1
+#SBATCH --gres=gpu:a100_80g:1
 #SBATCH -e outputs/%x_%j.e
 #SBATCH -o outputs/%x_%j.o
 
