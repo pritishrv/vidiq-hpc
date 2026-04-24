@@ -1,0 +1,10 @@
+{
+  "data_root": "data/image/emoset",
+  "run_root": "experiments/image/runs",
+  "run_name": "emoset_phase1_clip",
+  "backbone": "openai/clip-vit-base-patch32",
+  "batch_size": 32,
+  "num_workers": 4,
+  "image_size": 224,
+  "device": "cuda"
+}

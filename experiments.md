@@ -159,7 +159,24 @@ Status:
 - its code and artifacts are clearly analysis-oriented
 - some of its model provenance is incomplete in top-level metadata, so not every bundle can be named with the same confidence as the `experiments/text/` runs
 
-### 5. Supporting planning and reporting work
+### 5. Image sentiment experiments (Planned)
+
+Nature of the work:
+- Extending embedding geometry research to the visual domain
+- Replicating categorical cluster and outlier patterns in image embedding space
+- Comparing "full image" geometry against "segmented object" geometry to test the contextual tightening hypothesis
+- Investigating cross-modal geometry alignment between text and image sentiments
+
+Target Datasets:
+- **EmoSet-118K** (Primary for Phase 1): Large-scale (118K labeled images), balanced 8-class Mikels emotion taxonomy, includes object and action attributes.
+- **EmoVerse** (Primary for Phase 2): Features Background-Attribute-Subject (B-A-S) triplets and SAM/DINO segmentation masks for part-whole geometric analysis.
+
+Status:
+- Dataset research and selection is complete.
+- Six survey reports and a ranked synthesis are checked into the repository.
+- Implementation of the Phase 1 embedding generation is pending.
+
+### 6. Supporting planning and reporting work
 
 Primary roots: `reports/`, `prompts/`, and `meetings/`
 

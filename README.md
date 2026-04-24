@@ -71,6 +71,97 @@ sbatch hpc/check_model_access.slurm
 sbatch hpc/train_multiclass_balanced_10e.slurm
 ```
 
+## Batch Commands
+
+Smoke test:
+
+```bash
+sbatch hpc/check_model_access.slurm
+```
+
+Training:
+
+```bash
+sbatch hpc/train_multiclass.slurm
+sbatch hpc/train_multiclass_frozen_backbone.slurm
+sbatch hpc/train_multiclass_balanced_10e.slurm
+sbatch hpc/train_multiclass_balanced_50e.slurm
+sbatch hpc/train_multiclass_balanced_100e.slurm
+sbatch hpc/train_multiclass_balanced_250e.slurm
+sbatch hpc/train_multiclass_balanced_500e.slurm
+sbatch hpc/train_multiclass_balanced_1000e.slurm
+sbatch hpc/train_multiclass_unbalanced_10e.slurm
+sbatch hpc/train_multiclass_unbalanced_50e.slurm
+sbatch hpc/train_multiclass_unbalanced_100e.slurm
+sbatch hpc/train_multiclass_unbalanced_250e.slurm
+sbatch hpc/train_multiclass_unbalanced_500e.slurm
+sbatch hpc/train_multiclass_unbalanced_1000e.slurm
+```
+
+Qwen parity:
+
+```bash
+sbatch hpc/run_qwen_bge_parity.slurm
+```
+
+Image Sentiment:
+
+```bash
+sbatch hpc/image_embedding_emoset.slurm
+```
+
+## Pushing Results Back
+
+When an HPC job finishes, review the generated files first:
+
+```bash
+git status --short
+```
+
+Typical tracked result locations in this repo are:
+
+- `experiments/text/.../runs/`
+- `experiments/text/.../artifacts/plots/`
+- `experiments/text/.../artifacts/metrics/`
+- `experiments/text_model/runs/<run_id>/analysis/`
+- `experiments/text_model/runs/<run_id>/run_metadata.json`
+- `experiments/text_model/runs/<run_id>/train_metrics.json`
+
+Typical ignored or non-remote result locations are:
+
+- `outputs/`
+- `experiments/text/.../artifacts/embeddings/*.npy`
+- `experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/*.npy`
+- `experiments/embeddings_field/.../artifacts/embeddings/*.npy`
+- `experiments/text_model/runs/<run_id>/model/`
+- `experiments/text_model/runs/<run_id>/tokenizer/`
+
+For a normal result push:
+
+```bash
+git add experiments/ README.md
+git status --short
+git commit -m "Add latest experiment results"
+git push
+```
+
+For a Qwen training run, you will usually want to stage the tracked source-run outputs under `experiments/text_model/runs/<run_id>/` and any dataset-level bridge, metrics, plots, or report updates under `experiments/text/multiclass/dair-ai-emotion/`.
+
+For the Qwen parity workflow, you will usually want to stage:
+
+```bash
+git add \
+  experiments/text/multiclass/dair-ai-emotion/runs/ \
+  experiments/text/multiclass/dair-ai-emotion/artifacts/metrics/ \
+  experiments/text/multiclass/dair-ai-emotion/artifacts/plots/ \
+  experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/*.json
+git status --short
+git commit -m "Add Qwen parity results"
+git push
+```
+
+Use `git status --short` before committing so you do not accidentally try to push ignored HPC scratch output or unrelated local edits.
+
 Run outputs are written under:
 
 - `experiments/text_model/runs/<run_id>/`
