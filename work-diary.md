@@ -166,3 +166,13 @@
   - runs a stratified held-out linear-probe evaluation
   - writes `classification-summary.json`, `confusion-matrix.json`, `train-history.json`, and `linear_probe.pt` under the run artifact tree
 - Modified `hpc/image_embedding_emoset.slurm` to use the `preemptgpu` partition, `a100_80g` GPU, and increased the time limit to 72 hours, following patterns found in `~/git/PyTorch-Scratch-Vision-Transformer-ViT`.
+- Started an ad hoc Hyperion validation run on `gpu04` outside the normal SLURM queue to accelerate debugging of the EmoSet image pipeline.
+- The current manual runner is `tests.sh`, which:
+  - activates `/users/aczd097/sharedscratch/venvs/main/bin/activate`
+  - logs the installed `safetensors` version
+  - applies a temporary in-place `sed` patch forcing `use_safetensors=True` in `src/image_experiments/embeddings.py`
+  - byte-compiles `src/image_experiments/embeddings.py`
+  - runs `python3 scripts/run_image_embeddings.py --config configs/emoset_phase1.json`
+  - appends all output to `tests.log`
+- The run was launched with `nohup ./tests.sh &` and is being monitored with `tail -f tests.log`.
+- This manual `gpu04` run is ongoing and is explicitly being used to jump the normal queue for immediate debugging feedback. The next review point is Saturday, 2026-04-25, after returning to the HPC results.
