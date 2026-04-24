@@ -21,6 +21,13 @@ class ImageExperimentConfig:
     dataset_split: str = "train"
     hf_cache_dir: Path | None = None
     allow_hf_download: bool = True
+    enable_eval: bool = True
+    eval_test_size: float = 0.2
+    eval_seed: int = 42
+    eval_epochs: int = 20
+    eval_learning_rate: float = 1e-3
+    eval_weight_decay: float = 0.0
+    eval_batch_size: int = 128
 
     @property
     def run_dir(self) -> Path:
@@ -33,6 +40,14 @@ class ImageExperimentConfig:
     @property
     def artifact_dir(self) -> Path:
         return self.run_dir / "artifacts"
+
+    @property
+    def metrics_dir(self) -> Path:
+        return self.artifact_dir / "metrics"
+
+    @property
+    def model_dir(self) -> Path:
+        return self.artifact_dir / "models"
 
 
 def _expand_path(value: str | None) -> Path | None:

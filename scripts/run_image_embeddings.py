@@ -23,6 +23,7 @@ from image_experiments.io_utils import ensure_dir, write_json, get_timestamp, fo
 from image_experiments.datasets import EmoSetDataset
 from image_experiments.embeddings import ImageEmbedder
 from image_experiments.geometry import calculate_centroids, calculate_radial_density
+from image_experiments.training import LinearProbeConfig, run_linear_probe
 
 
 def parse_args() -> argparse.Namespace:
@@ -41,6 +42,8 @@ def main() -> None:
     ensure_dir(config.run_dir)
     ensure_dir(config.log_dir)
     ensure_dir(config.artifact_dir)
+    ensure_dir(config.metrics_dir)
+    ensure_dir(config.model_dir)
 
     print(f"{'='*60}")
     print(f"EXPERIMENT: {config.run_name}")
@@ -93,6 +96,37 @@ def main() -> None:
     write_json(config.artifact_dir / "centroids.json", centroid_serializable)
     write_json(config.artifact_dir / "density.json", density_results)
 
+    eval_summary = None
+    if config.enable_eval:
+        eval_cfg = LinearProbeConfig(
+            test_size=config.eval_test_size,
+            seed=config.eval_seed,
+            epochs=config.eval_epochs,
+            learning_rate=config.eval_learning_rate,
+            weight_decay=config.eval_weight_decay,
+            batch_size=config.eval_batch_size,
+        )
+        print("Starting linear-probe evaluation...")
+        eval_results = run_linear_probe(embeddings, labels, eval_cfg, config.device)
+        eval_summary = {
+            "splits": eval_results["splits"],
+            "training": {
+                "epochs": eval_results["training"]["epochs"],
+                "learning_rate": eval_results["training"]["learning_rate"],
+                "weight_decay": eval_results["training"]["weight_decay"],
+                "batch_size": eval_results["training"]["batch_size"],
+            },
+            "evaluation": eval_results["evaluation"],
+            "num_classes": eval_results["num_classes"],
+        }
+        write_json(config.metrics_dir / "classification-summary.json", eval_summary)
+        write_json(
+            config.metrics_dir / "confusion-matrix.json",
+            {"matrix": eval_results["confusion_matrix"]},
+        )
+        write_json(config.metrics_dir / "train-history.json", eval_results["training"]["history"])
+        torch.save(eval_results["state_dict"], config.model_dir / "linear_probe.pt")
+
     # 5. Final Log
     end_time = time.time()
     duration = end_time - start_time
@@ -106,6 +140,7 @@ def main() -> None:
         "backbone": config.backbone,
         "config": vars(config),
         "dataset_backend": getattr(dataset, "backend", "unknown"),
+        "evaluation_summary": eval_summary,
         "infra": "TBC"
     }
     write_json(config.log_dir / "run_metadata.json", metadata)

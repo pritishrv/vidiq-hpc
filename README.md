@@ -115,6 +115,7 @@ For the image workflow on Hyperion:
 - staged dataset root defaults to `/users/aczd097/archive/vidiq-hpc/data/image/emoset`
 - Hugging Face dataset cache defaults to `/users/aczd097/sharedscratch/huggingface/datasets`
 - the image runner now prefers a staged local dataset if present, and otherwise falls back to the public Hugging Face EmoSet mirror
+- the current image config also runs a linear-probe evaluation on the generated embeddings and saves classification metrics under `experiments/image/runs/<run_name>/artifacts/metrics/`
 
 ## Pushing Results Back
 

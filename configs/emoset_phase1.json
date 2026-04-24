@@ -10,5 +10,12 @@
   "hf_dataset_id": "Woleek/EmoSet-118K",
   "dataset_split": "train",
   "hf_cache_dir": "${HF_DATASETS_CACHE:-/users/aczd097/sharedscratch/huggingface/datasets}",
-  "allow_hf_download": true
+  "allow_hf_download": true,
+  "enable_eval": true,
+  "eval_test_size": 0.2,
+  "eval_seed": 42,
+  "eval_epochs": 20,
+  "eval_learning_rate": 0.001,
+  "eval_weight_decay": 0.0,
+  "eval_batch_size": 128
 }

@@ -159,4 +159,10 @@
   and to create the dataset/cache directories before execution.
 - Fixed JSON artifact writing for the image framework by teaching `src/image_experiments/io_utils.py` to serialize `Path` objects; without this, `run_metadata.json` would fail even after successful dataset resolution.
 - Added a root `README.md` note documenting the default Hyperion image dataset root and Hugging Face cache locations.
+- Generated `reports/codex-onboarding-report.md` as a Codex-authored technical onboarding report that identifies the current source-of-truth files, active workstreams, output locations, and known inconsistencies for future agents.
+- Added `src/image_experiments/training.py` and extended the image framework with a minimal supervised evaluation path based on a frozen-embedding linear probe.
+- Updated `scripts/run_image_embeddings.py` and `configs/emoset_phase1.json` so the current image workflow now:
+  - generates embeddings and geometry outputs
+  - runs a stratified held-out linear-probe evaluation
+  - writes `classification-summary.json`, `confusion-matrix.json`, `train-history.json`, and `linear_probe.pt` under the run artifact tree
 - Modified `hpc/image_embedding_emoset.slurm` to use the `preemptgpu` partition, `a100_80g` GPU, and increased the time limit to 72 hours, following patterns found in `~/git/PyTorch-Scratch-Vision-Transformer-ViT`.
