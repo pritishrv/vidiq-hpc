@@ -1,0 +1,38 @@
+{
+  "bridge_run": "run-201-qwen3-1-7b-finetune-10e",
+  "embedding_export": {
+    "base_slug": "dair_ai_emotion_qwen_holdout_qwen3-1-7b",
+    "output_bundle_slug": "qwen-bge-parity"
+  },
+  "evaluation": {
+    "label_mismatch_note": "The Qwen stage uses happiness while the earlier BGE stage uses joy. Cross-stage comparisons must explain this mapping explicitly.",
+    "source_eval_only": true
+  },
+  "experiment_name": "dair-ai-emotion-qwen-bge-parity",
+  "model": {
+    "embedding_extraction": {
+      "hidden_state": "final_transformer_layer",
+      "pooling": "none",
+      "sequence_position": "last_token_position",
+      "source_note": "The source training pipeline uses hidden_states[-1][:, -1, :] after right padding with eos as pad token."
+    },
+    "name": "Qwen/Qwen3-1.7B",
+    "slug": "qwen3-1-7b"
+  },
+  "run_start_index": 301,
+  "stage": "qwen-bge-parity",
+  "variants": [
+    {
+      "embedding_key": "raw",
+      "name": "raw"
+    },
+    {
+      "embedding_key": "l2",
+      "name": "l2"
+    },
+    {
+      "embedding_key": "centered_l2",
+      "name": "centered-l2"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "bridge_run": "run-201-qwen3-1-7b-finetune-10e",
+  "embedding_export": {
+    "base_slug": "dair_ai_emotion_qwen_holdout_qwen3-1-7b",
+    "paths": {
+      "centered_l2": "experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_qwen_holdout_qwen3-1-7b_centered_l2.npy",
+      "l2": "experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_qwen_holdout_qwen3-1-7b_l2.npy",
+      "metadata": "experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_qwen_holdout_qwen3-1-7b_metadata.json",
+      "raw": "experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_qwen_holdout_qwen3-1-7b_raw.npy"
+    }
+  },
+  "generated_runs": [
+    {
+      "run_id": "run-301-qwen3-1-7b-bge-parity-raw",
+      "summary_path": "experiments/text/multiclass/dair-ai-emotion/runs/run-301-qwen3-1-7b-bge-parity-raw/metrics/summary.json",
+      "variant_name": "raw"
+    },
+    {
+      "run_id": "run-302-qwen3-1-7b-bge-parity-l2",
+      "summary_path": "experiments/text/multiclass/dair-ai-emotion/runs/run-302-qwen3-1-7b-bge-parity-l2/metrics/summary.json",
+      "variant_name": "l2"
+    },
+    {
+      "run_id": "run-303-qwen3-1-7b-bge-parity-centered-l2",
+      "summary_path": "experiments/text/multiclass/dair-ai-emotion/runs/run-303-qwen3-1-7b-bge-parity-centered-l2/metrics/summary.json",
+      "variant_name": "centered-l2"
+    }
+  ],
+  "limits": {
+    "label_mismatch_note": "The Qwen stage uses happiness while the earlier BGE stage uses joy. Cross-stage comparisons must explain this mapping explicitly.",
+    "reason": "The tracked Qwen bridge/source artifacts expose held-out embeddings and logits, but not a train/validation embedding bundle comparable to the earlier BGE embedding-generation stage.",
+    "skipped_bge_style_probes": [
+      "logistic_regression_probe",
+      "knn_probe"
+    ],
+    "source_eval_only": true
+  },
+  "source_artifacts": {
+    "bridge_run": "experiments/text/multiclass/dair-ai-emotion/runs/run-201-qwen3-1-7b-finetune-10e",
+    "eval_embeddings": "experiments/text_model/runs/tmqb0010_17763/analysis/eval_embeddings.npy",
+    "eval_logits": "experiments/text_model/runs/tmqb0010_17763/analysis/eval_logits.npy",
+    "eval_metrics": "experiments/text_model/runs/tmqb0010_17763/analysis/eval_metrics.json",
+    "train_metrics": "experiments/text_model/runs/tmqb0010_17763/train_metrics.json"
+  }
+}

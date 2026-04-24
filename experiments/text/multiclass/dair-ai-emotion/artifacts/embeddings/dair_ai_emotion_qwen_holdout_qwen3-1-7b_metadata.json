@@ -1,0 +1,49 @@
+{
+  "artifact_split": "heldout_eval",
+  "batching": {
+    "pad_token_policy": "eos_as_pad_token",
+    "padding_side": "right"
+  },
+  "bridge_run": "run-201-qwen3-1-7b-finetune-10e",
+  "embedding_extraction": {
+    "hidden_state": "final_transformer_layer",
+    "pooling": "none",
+    "sequence_position": "last_token_position",
+    "source_note": "The source training pipeline uses hidden_states[-1][:, -1, :] after right padding with eos as pad token."
+  },
+  "label_names": [
+    "anger",
+    "fear",
+    "happiness",
+    "love",
+    "sadness",
+    "surprise"
+  ],
+  "label_note": "The Qwen stage uses happiness while the earlier BGE stage uses joy. Cross-stage comparisons must explain this mapping explicitly.",
+  "model_name": "Qwen/Qwen3-1.7B",
+  "model_slug": "qwen3-1-7b",
+  "num_examples": 4038,
+  "source_eval_only": true,
+  "source_run_id": "tmqb0010_17763",
+  "source_run_root": "../../../../../text_model/runs/tmqb0010_17763",
+  "split_provenance": {
+    "csv_path": "/users/aczd097/git/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/data/raw/balanced_emotions_6classes.csv",
+    "csv_sha256": "8617528dc8504576aac4edc28e8594c1f61774b166d1dfc14514a38d7566d98b",
+    "eval_label_counts": [
+      673,
+      673,
+      673,
+      673,
+      673,
+      673
+    ],
+    "eval_text_sample_sha256": "794bf8fb4bebd17fe330953d13b10153e7bd8cbbb6abc1f0a8fc3cb430e2ea20",
+    "filtered_row_count": 20190,
+    "seed": 42,
+    "test_size": 0.2
+  },
+  "vectors_shape": [
+    4038,
+    2048
+  ]
+}

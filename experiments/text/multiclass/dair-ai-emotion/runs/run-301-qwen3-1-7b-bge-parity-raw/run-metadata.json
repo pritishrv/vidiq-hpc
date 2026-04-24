@@ -1,0 +1,5 @@
+{
+  "config_path": "experiments/text/multiclass/dair-ai-emotion/configs/qwen-bge-parity.json",
+  "created_at_utc": "2026-04-21T19:43:35.727203+00:00",
+  "experiment_name": "dair-ai-emotion-qwen-bge-parity"
+}

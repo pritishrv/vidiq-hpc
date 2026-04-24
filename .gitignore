@@ -13,4 +13,4 @@ experiments/text_model/runs/*/model
 experiments/text_model/runs/*/model/
 experiments/text_model/runs/*/tokenizer
 experiments/text_model/runs/*/tokenizer/
-meetings/*_minutes*.docx
+meetings/*transcript*.docx

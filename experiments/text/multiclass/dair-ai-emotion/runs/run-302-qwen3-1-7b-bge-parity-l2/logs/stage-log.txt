@@ -1,0 +1,27 @@
+[2026-04-21T19:36:31.941358+00:00] load: loading Qwen parity embedding variant 'l2'
+[2026-04-21T19:36:31.943165+00:00] metric-start: computing centroid metrics
+[2026-04-21T19:37:11.118010+00:00] metric-done: finished centroid metrics
+[2026-04-21T19:37:11.118631+00:00] metric-start: computing cluster diagnostics
+[2026-04-21T19:37:11.474987+00:00] metric-done: finished cluster diagnostics
+[2026-04-21T19:37:11.475527+00:00] metric-start: computing PCA spectrum metrics
+[2026-04-21T19:37:11.565929+00:00] metric-done: finished PCA spectrum metrics
+[2026-04-21T19:37:11.575268+00:00] metric-start: writing model prediction confusion matrix
+[2026-04-21T19:37:11.580994+00:00] complete: finished Qwen parity variant 'l2'
+[2026-04-21T19:42:09.475718+00:00] load: loading Qwen parity embedding variant 'l2'
+[2026-04-21T19:42:09.476547+00:00] metric-start: computing centroid metrics
+[2026-04-21T19:42:49.255822+00:00] metric-done: finished centroid metrics
+[2026-04-21T19:42:49.256512+00:00] metric-start: computing cluster diagnostics
+[2026-04-21T19:42:49.612486+00:00] metric-done: finished cluster diagnostics
+[2026-04-21T19:42:49.613118+00:00] metric-start: computing PCA spectrum metrics
+[2026-04-21T19:42:49.702707+00:00] metric-done: finished PCA spectrum metrics
+[2026-04-21T19:42:49.712270+00:00] metric-start: writing model prediction confusion matrix
+[2026-04-21T19:42:49.717868+00:00] complete: finished Qwen parity variant 'l2'
+[2026-04-21T19:44:13.860391+00:00] load: loading Qwen parity embedding variant 'l2'
+[2026-04-21T19:44:13.860998+00:00] metric-start: computing centroid metrics
+[2026-04-21T19:44:52.809790+00:00] metric-done: finished centroid metrics
+[2026-04-21T19:44:52.810383+00:00] metric-start: computing cluster diagnostics
+[2026-04-21T19:44:53.163504+00:00] metric-done: finished cluster diagnostics
+[2026-04-21T19:44:53.164061+00:00] metric-start: computing PCA spectrum metrics
+[2026-04-21T19:44:53.253947+00:00] metric-done: finished PCA spectrum metrics
+[2026-04-21T19:44:53.254498+00:00] metric-start: writing model prediction confusion matrix
+[2026-04-21T19:44:53.259675+00:00] complete: finished Qwen parity variant 'l2'

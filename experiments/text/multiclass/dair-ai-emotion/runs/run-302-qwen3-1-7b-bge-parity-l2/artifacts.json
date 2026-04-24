@@ -1,0 +1,16 @@
+{
+  "embedding_variant": "l2",
+  "eval_embeddings": {
+    "centered_l2": "/users/aczd097/git/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_qwen_holdout_qwen3-1-7b_centered_l2.npy",
+    "l2": "/users/aczd097/git/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_qwen_holdout_qwen3-1-7b_l2.npy",
+    "metadata": "/users/aczd097/git/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_qwen_holdout_qwen3-1-7b_metadata.json",
+    "raw": "/users/aczd097/git/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/artifacts/embeddings/dair_ai_emotion_qwen_holdout_qwen3-1-7b_raw.npy"
+  },
+  "source_bridge_run": "/users/aczd097/git/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/runs/run-201-qwen3-1-7b-finetune-10e",
+  "source_run_artifacts": {
+    "eval_embeddings": "/users/aczd097/git/vidiq-hpc/experiments/text_model/runs/tmqb0010_17763/analysis/eval_embeddings.npy",
+    "eval_logits": "/users/aczd097/git/vidiq-hpc/experiments/text_model/runs/tmqb0010_17763/analysis/eval_logits.npy",
+    "eval_metrics": "/users/aczd097/git/vidiq-hpc/experiments/text_model/runs/tmqb0010_17763/analysis/eval_metrics.json",
+    "train_metrics": "/users/aczd097/git/vidiq-hpc/experiments/text_model/runs/tmqb0010_17763/train_metrics.json"
+  }
+}
