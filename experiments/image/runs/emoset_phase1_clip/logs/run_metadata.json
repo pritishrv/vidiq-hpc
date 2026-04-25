@@ -1,0 +1,51 @@
+{
+  "run_name": "emoset_phase1_clip",
+  "start_timestamp": "2026-04-24T19:30:06.385303+00:00",
+  "end_timestamp": "2026-04-24T21:08:39.263587+00:00",
+  "duration_seconds": 5912.878258228302,
+  "duration_formatted": "1h 38m 32s",
+  "backbone": "openai/clip-vit-base-patch32",
+  "config": {
+    "data_root": "/users/aczd097/archive/vidiq-hpc/data/image/emoset",
+    "run_root": "experiments/image/runs",
+    "run_name": "emoset_phase1_clip",
+    "backbone": "openai/clip-vit-base-patch32",
+    "batch_size": 32,
+    "num_workers": 0,
+    "image_size": 224,
+    "device": "cuda",
+    "hf_dataset_id": "Woleek/EmoSet-118K",
+    "dataset_split": "train",
+    "hf_cache_dir": "/users/aczd097/sharedscratch/huggingface/datasets",
+    "allow_hf_download": true,
+    "enable_eval": true,
+    "eval_test_size": 0.2,
+    "eval_seed": 42,
+    "eval_epochs": 20,
+    "eval_learning_rate": 0.001,
+    "eval_weight_decay": 0.0,
+    "eval_batch_size": 128
+  },
+  "dataset_backend": "huggingface",
+  "evaluation_summary": {
+    "splits": {
+      "num_train": 75586,
+      "num_eval": 18895,
+      "test_size": 0.2,
+      "seed": 42
+    },
+    "training": {
+      "epochs": 20,
+      "learning_rate": 0.001,
+      "weight_decay": 0.0,
+      "batch_size": 128
+    },
+    "evaluation": {
+      "loss": 0.5656158309555079,
+      "accuracy": 0.7931198477745056,
+      "macro_f1": 0.8007378874146795
+    },
+    "num_classes": 8
+  },
+  "infra": "TBC"
+}

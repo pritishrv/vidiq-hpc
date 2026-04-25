@@ -1,0 +1,45 @@
+{
+  "run_name": "tmqb0250_17780",
+  "timestamp_utc": "2026-04-20T01:56:43.714547+00:00",
+  "git_commit": "1b801ff0af5eb0727ca54720b800c8834d53e5a8",
+  "slurm_job_name": "tmqb0250",
+  "slurm_job_id": "17780",
+  "args": {
+    "data_root": null,
+    "csv_path": "experiments/text/multiclass/dair-ai-emotion/data/raw/balanced_emotions_6classes.csv",
+    "model_path": "Qwen/Qwen3-1.7B",
+    "run_root": "experiments/text_model/runs",
+    "archive_root": "/users/aczd097/archive/vidiq-hpc/text_model",
+    "run_name": "tmqb0250_17780",
+    "batch_size": 8,
+    "num_epochs": 250,
+    "learning_rate": 5e-05,
+    "max_length": 256,
+    "test_size": 0.2,
+    "seed": 42,
+    "device": "cuda",
+    "freeze_backbone": false
+  },
+  "dataset": {
+    "source_type": "csv",
+    "source_path": "/users/aczd097/git/vidiq-hpc/experiments/text/multiclass/dair-ai-emotion/data/raw/balanced_emotions_6classes.csv",
+    "text_column": "cleaned_text",
+    "label_column": "emotion",
+    "num_labels": 6,
+    "label_to_id": {
+      "anger": 0,
+      "fear": 1,
+      "happiness": 2,
+      "love": 3,
+      "sadness": 4,
+      "surprise": 5
+    }
+  },
+  "local_run_root": "/users/aczd097/git/vidiq-hpc/experiments/text_model/runs/tmqb0250_17780",
+  "archive_run_root": "/mnt/archive/users/aczd097/vidiq-hpc/text_model/tmqb0250_17780",
+  "analysis_dir": "/users/aczd097/git/vidiq-hpc/experiments/text_model/runs/tmqb0250_17780/analysis",
+  "model_symlink": "/users/aczd097/git/vidiq-hpc/experiments/text_model/runs/tmqb0250_17780/model",
+  "model_target": "/mnt/archive/users/aczd097/vidiq-hpc/text_model/tmqb0250_17780/model",
+  "tokenizer_symlink": "/users/aczd097/git/vidiq-hpc/experiments/text_model/runs/tmqb0250_17780/tokenizer",
+  "tokenizer_target": "/mnt/archive/users/aczd097/vidiq-hpc/text_model/tmqb0250_17780/tokenizer"
+}

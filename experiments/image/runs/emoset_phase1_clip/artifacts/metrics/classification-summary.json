@@ -1,0 +1,20 @@
+{
+  "splits": {
+    "num_train": 75586,
+    "num_eval": 18895,
+    "test_size": 0.2,
+    "seed": 42
+  },
+  "training": {
+    "epochs": 20,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "batch_size": 128
+  },
+  "evaluation": {
+    "loss": 0.5656158309555079,
+    "accuracy": 0.7931198477745056,
+    "macro_f1": 0.8007378874146795
+  },
+  "num_classes": 8
+}
