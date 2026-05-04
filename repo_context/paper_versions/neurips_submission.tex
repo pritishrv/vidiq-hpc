@@ -55,8 +55,11 @@
        in LLM and Neural Emotion Representations}
 
 \author{
-  Anonymous Authors \\
-  \textit{Submitted to NeurIPS 2026 --- Double-blind review version}
+  Daniel Sikar \And
+  Aimee Bottrill-Frost \And
+  Pritish Ranjan Verma \And
+  Joshua Narindra Bhawanlall \\
+  \textit{Submitted to NeurIPS 2026}
 }
 
 \begin{document}
@@ -333,6 +336,10 @@ Finding 5 documents the global representational inversion.
 
 A consistent two-zone density structure emerges across all 8 LLM variants and
 human brain fMRI (Figure~\ref{fig:clusters-density}).
+The structural parallel is qualitative: packing density magnitudes differ substantially
+across systems, and density-shape similarity does not reach conventional significance
+under permutation testing (Wasserstein $p\!=\!0.46$).
+The claim is descriptive --- shared organisational logic, not matched compression.
 
 \textbf{The Void.}
 No data points exist within approximately 0.375--0.625 normalised distance units of
@@ -608,16 +615,16 @@ vanishes under random permutation.
 The analysis interpolates brain and LLM overlap-vs-distance curves onto a shared
 normalised-radius grid of 100 equally spaced points ($\tilde{d}\in[0, 2.5]$) and
 computes Pearson correlation between the resulting 100-point vectors.
-The $r\!=\!0.9565$ ($p\!=\!3.20\!\times\!10^{-54}$, 95\% CI [0.9370, 0.9725]) is
-therefore computed over $N\!=\!100$ interpolated grid points, \emph{not} over 5
-independent emotion categories or 200 biological subjects.
-The tightly specified $p$-value reflects the effective sample size of 100 interpolation
-bins; inference must rest on the permutation test ($n\!=\!5000$, $p\!=\!0.000$, which
-destroys cross-system shape alignment when shuffled) and on the qualitative consistency
-of the functional form (Figure~\ref{fig:brain-uncertainty}).
-Additional evidence: KS statistic $= 0.57$ ($p\!=\!2.46\!\times\!10^{-15}$), Cohen's
-$d\!=\!1.34$ --- indicating that while gradient \emph{shape} is shared, absolute
-density of representations around centroids differs substantially between systems.
+The ambiguity-gradient curves show high shape correspondence
+($r\!=\!0.9565$, 95\% CI [0.9370, 0.9725]),
+supported by a full-pipeline permutation test ($n\!=\!5000$ shuffles, $p<0.001$)
+that destroys cross-system alignment when labels are shuffled.
+The $r$ is computed over $N\!=\!100$ interpolated grid points and should not be
+treated as an independent-sample $p$-value; the permutation test is the inferential
+basis.
+KS statistic $= 0.57$ and Cohen's $d\!=\!1.34$ confirm that while gradient
+\emph{shape} is shared, absolute packing density differs substantially between systems
+--- shared ambiguity structure, distinct representational compaction.
 
 % ---------------------------------------------------------------------------
 \subsection{Finding 5: The Valence-Arousal Inversion}
@@ -666,13 +673,16 @@ Brain-brain noise ceiling             & $+0.47$   & Upper 0.484, lower 0.460 \\
 \end{tabular}
 \end{center}
 
-The noise ceiling contextualises the divergence precisely: brain subjects agree with
-each other at $r\!\approx\!0.47$, yet the fine-tuned LLM RDM is in the \emph{opposite
-direction} ($r\!=\!-0.88$) from the brain RDM --- a magnitude substantially larger
-than within-brain agreement.
-Bootstrap 95\% CI: $[-0.9967,\,+0.6994]$ (wide, as expected with $K\!=\!3$, 1 df).
-The reliable finding is the sign (consistently negative) and contrast with the positive
-noise ceiling; specific magnitudes are indicative.
+RDM comparisons provide directional evidence of global inversion, but because only
+three shared emotion categories are available, exact correlation magnitudes are
+unstable (bootstrap 95\% CI: $[-0.9967,\,+0.6994]$, as expected with $K\!=\!3$, 1 df).
+The noise ceiling contextualises the directionality: brain subjects agree with each
+other at $r\!\approx\!0.47$, yet the fine-tuned LLM RDM points in the
+\emph{opposite direction} ($r\!=\!-0.88$) --- sign and contrast with the noise
+ceiling are the load-bearing quantities, not the exact magnitude.
+The 11D systems-level result (Section~\ref{sec:inversion}) provides stronger support
+because its bootstrap CI for the fine-tuned comparison remains fully negative
+($[-0.9899,\,-0.1178]$).
 
 \textbf{(5b) RDM comparison in 11D systems-level space.}
 
@@ -796,8 +806,23 @@ high-dimensional representations: any system encoding discrete categories via
 distributed activation will produce centroids surrounded by distributed instances,
 generating a void, a belt, and an ambiguity gradient.
 
+\textbf{Statistical hierarchy of evidence.}
+The findings differ in evidentiary strength.
+The \emph{strongest} evidence is the margin-uncertainty coupling: brain centroid margin
+predicts classifier uncertainty (AUC$\,{=}\,0.81$ vs.\ 0.56 for raw distance),
+collapsing under feature shuffling; LLM centroid margin predicts logit margin
+($r\!=\!0.99$, permutation $p\!=\!0.00$).
+\emph{Strong} evidence: the valence--arousal axis inversion, supported by independent
+permutation tests on PC-axis correlations ($p\,{<}\,0.05$ for all three systems).
+\emph{Supportive} evidence: the 11D RDM inversion, whose bootstrap CI for
+fine-tuned LLMs is fully negative.
+\emph{Descriptive evidence only}: the 48D RDM magnitude (3-point Pearson, wide CI)
+and the void--belt density similarity (Wasserstein permutation $p\!=\!0.46$).
+The primary evidence for global inversion is therefore the valence--arousal axis
+analysis, not the 3-emotion RSA magnitude.
+
 \textbf{The relational paradox: different priorities, not failure.}
-The near-opposite RDM correlation does not indicate that either system is wrong.
+The near-opposite RDM directionality does not indicate that either system is wrong.
 LLMs trained on text corpora encode emotion co-occurrence statistics from natural
 language --- ``fear'' and ``sadness'' share negative hedonic contexts and appear in
 similar syntactic environments, placing their centroids near each other along the
