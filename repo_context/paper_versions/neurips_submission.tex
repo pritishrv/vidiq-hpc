@@ -741,31 +741,20 @@ supported independently by centroid margin and classifier uncertainty.
 % ===========================================================================
 
 \textbf{The shared geometric principle.}
-Both LLM embedding spaces and the tested brain fMRI dataset exhibit the same general
-relationship: geometric positioning relative to class prototypes predicts
-representational certainty.
-In LLMs this operates via centroid margin predicting logit margin; in the brain,
-via centroid margin predicting classifier uncertainty.
-These are complementary implementations of a geometric competition principle.
-The mechanistic interpretation likely lies in the mathematics of distributed
-high-dimensional representations: any system encoding discrete categories via
-distributed activation will produce centroids surrounded by distributed instances,
-generating a void, a belt, and an ambiguity gradient.
+Both systems exhibit the same relationship: geometric positioning relative to class
+prototypes predicts representational certainty --- centroid margin predicts logit margin
+in LLMs and classifier uncertainty in the brain.
+This follows from the mathematics of distributed representations: any system encoding
+discrete categories via distributed activation produces centroids in zero-density space
+surrounded by a belt of instances, generating a void and an ambiguity gradient.
 
 \textbf{Statistical hierarchy of evidence.}
-The findings differ in evidentiary strength.
-The \emph{strongest} evidence is the margin-uncertainty coupling: brain centroid margin
-predicts classifier uncertainty (AUC$\,{=}\,0.81$ vs.\ 0.56 for raw distance),
-collapsing under feature shuffling; LLM centroid margin predicts logit margin
-($r\!=\!0.99$, permutation $p\!=\!0.00$).
-\emph{Strong} evidence: the valence--arousal axis inversion, supported by independent
-permutation tests on PC-axis correlations ($p\,{<}\,0.05$ for all three systems).
-\emph{Supportive} evidence: the 11D RDM inversion, whose bootstrap CI for
-fine-tuned LLMs is fully negative.
-\emph{Descriptive evidence only}: the 48D RDM magnitude (3-point Pearson, wide CI)
-and the void--belt density similarity (Wasserstein permutation $p\!=\!0.46$).
-The primary evidence for global inversion is therefore the valence--arousal axis
-analysis, not the 3-emotion RSA magnitude.
+\emph{Strongest}: margin-uncertainty coupling (AUC$\,{=}\,0.81$ vs.\ 0.56, feature-shuffle
+control, LLM margin-logit $r\!=\!0.99$).
+\emph{Strong}: V-A axis inversion, with permutation $p\,{<}\,0.05$ for all three systems.
+\emph{Supportive}: 11D RDM inversion (bootstrap CI fully negative).
+\emph{Descriptive only}: 48D RDM magnitude (wide CI, $K\!=\!3$) and void--belt density
+similarity (Wasserstein $p\!=\!0.46$).
 
 \textbf{The relational paradox: different priorities, not failure.}
 The inverted RDM directionality reflects different operational demands, not error.
@@ -776,38 +765,28 @@ differs fundamentally from sadness's low-arousal withdrawal, so arousal is the m
 behaviourally predictive axis.
 
 \textbf{Limitations.}
-Our evidence covers one text emotion dataset (6 classes) and one brain fMRI dataset
+Evidence covers one text emotion dataset (6 classes) and one brain fMRI dataset
 (5 emotions, 40 subjects, one ROI atlas).
-The 3-emotion cross-system label mapping (fear$\approx$afraid, happiness$\approx$delighted,
-sadness$\approx$depressed) relies on conceptual equivalence and introduces non-trivial
-uncertainty into all RSA comparisons.
-The V-A analysis relies on externally assigned category-level coordinates rather than
-participant-specific ratings; the global-axis findings should be interpreted as
-supportive evidence, not as the main proof of the margin-based ambiguity mechanism.
-All findings are observational; no causal evidence is established.
+The 3-emotion cross-system label mapping relies on conceptual equivalence, introducing
+uncertainty into RSA comparisons.
+V-A coordinates are category-level approximations; global-axis findings are supportive
+evidence, not primary proof.
+All findings are observational.
 
 % ===========================================================================
 \section{Conclusion}
 % ===========================================================================
 
-We have presented five findings characterising the geometry of emotion representations
-in LLMs and human fMRI.
 The core result is a paradox: a geometric competition principle for representational
-ambiguity is observable across both systems --- LLMs via centroid margin predicting
-logit margin; the brain via centroid margin predicting classifier uncertainty ---
-yet global representational organisation is inverted: LLMs sort emotions by valence,
-the brain by arousal.
+ambiguity is shared across LLMs and brain fMRI --- centroid margin predicts logit margin
+in LLMs and classifier uncertainty in the brain --- yet global organisation is inverted:
+LLMs sort emotions by valence, the brain by arousal.
 
 Three findings have practical value: the low-rank subspace (2.6\% capacity, 20D)
 shows efficient emotion encoding does not require large representations;
 the margin-vs-distance contrast (AUC 0.81 vs.\ 0.56) provides a reusable diagnostic;
 and the V-A inversion suggests training on arousal distinctions may be necessary for
 biological alignment.
-
-More broadly, the coexistence of shared local geometry with globally inverted structure
-suggests that cross-system alignment in affective representation is not a binary
-question: two systems can share the same local competitive logic while differing
-fundamentally in what they prioritise globally.
 
 % ===========================================================================
 \bibliographystyle{abbrvnat}
