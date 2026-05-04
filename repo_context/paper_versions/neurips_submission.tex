@@ -16,6 +16,7 @@
 % =============================================================================
 
 \documentclass{article}
+\raggedbottom
 
 \usepackage{neurips_2024}   % [preprint] for arXiv, [final] for camera-ready
 
@@ -147,8 +148,6 @@ linear subspaces.
 \citet{ethayarajh2019} documented anisotropy in contextualised representations.
 \citet{kumar2022} showed fine-tuning can compress pretrained features --- directly
 relevant to our compaction finding.
-Our contribution extends this work by characterising the full radial density and
-competitive margin geometry of emotion embeddings.
 
 \textbf{Brain--LLM alignment.}
 \citet{caucheteux2022} showed partial convergence between brain activations and LLMs
@@ -157,8 +156,6 @@ during language processing.
 predictive processing.
 \citet{huth2016} linked distributional semantics to cortical topography.
 \citet{ismayilzada2026} found alignment during creative thinking (preprint).
-Our work differs: we study emotion rather than language processing, focus on the local
-geometric ambiguity mechanism, and document a systematic global inversion.
 
 \textbf{Distributed neural coding of emotion.}
 \citet{horikawa2020} showed visually evoked emotion representations are high-dimensional,
@@ -306,14 +303,10 @@ Systems are compared by Pearson correlation between vectorised RDMs.
 A brain--brain noise ceiling estimates the upper bound imposed by individual subject
 variability: upper 0.484, lower 0.460 (mean $\approx\!0.47$), computed by split-half
 resampling of the 40-subject dataset.
-With $K\!=\!3$ emotions, RDMs contain 3 unique pairwise distances;
-reported Pearson correlations have 1 degree of freedom.
-The standard $t$-test for $r\!=\!-0.88$ with 1 df gives $p\!\approx\!0.21$ ---
-formally non-significant.
-No inferential p-value should be attached to these magnitudes.
-The load-bearing quantities are sign (direction of inversion) and contrast with the
-noise ceiling; the 11D systems-level result (Section~\ref{sec:inversion}) provides
-the stronger inferential basis via a bootstrap CI that remains fully negative.
+With $K\!=\!3$ emotions, RDMs have 1 degree of freedom ($p\!\approx\!0.21$ for $r\!=\!-0.88$;
+formally non-significant); load-bearing quantities are sign and noise-ceiling contrast.
+The 11D result (Section~\ref{sec:inversion}) provides stronger support via a fully
+negative bootstrap CI.
 
 % ===========================================================================
 \section{Results}
@@ -594,9 +587,6 @@ vanishes under random permutation.
 \end{figure}
 
 \textbf{The ambiguity gradient comparison.}
-The analysis interpolates brain and LLM overlap-vs-distance curves onto a shared
-normalised-radius grid of 100 equally spaced points ($\tilde{d}\in[0, 2.5]$) and
-computes Pearson correlation between the resulting 100-point vectors.
 The ambiguity-gradient curves exhibit a consistent monotonic structure across systems,
 with ambiguity increasing as a function of normalised distance from class centroids.
 This qualitative alignment is supported by a full-pipeline permutation test
@@ -617,31 +607,7 @@ KS statistic $= 0.57$ and Cohen's $d\!=\!1.34$ confirm that while gradient
 The most novel finding of the study is that the shared local ambiguity principle
 coexists with a global inversion of representational geometry.
 
-\textbf{(5a) RDM comparison in 48D raw ROI space (Figure~\ref{fig:rdms}).}
-
-\begin{figure}[h!]
-  \centering
-  \begin{subfigure}[b]{0.48\textwidth}
-    \includegraphics[width=\textwidth]{rdm_cosine_brain}
-    \caption{Brain RDM (cosine): arousal-structured. Depressed--calm (0.72) and
-             afraid--excited (0.82) are close; affect separates by activation
-             intensity.}
-    \label{fig:rdm-brain}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[b]{0.48\textwidth}
-    \includegraphics[width=\textwidth]{rdm_cosine_MPNet-Balanced}
-    \caption{LLM RDM (cosine): valence-structured. Sadness--happiness (0.36),
-             love--happiness (0.26) are close; affect separates by hedonic polarity.}
-    \label{fig:rdm-llm}
-  \end{subfigure}
-  \caption{\textbf{RDM comparison (Finding 5a).}
-           The brain organises affect by arousal intensity while the LLM organises
-           by hedonic polarity --- geometries point in opposite directions
-           (direction indicator only; $K\!=\!3$, 1 df, $p\!\approx\!0.21$;
-           see table for values). Noise ceiling $\approx\!+0.47$.}
-  \label{fig:rdms}
-\end{figure}
+\textbf{(5a) RDM comparison in 48D raw ROI space (Appendix~\ref{app:rdm-figures}).}
 
 \begin{center}
 \small
@@ -662,13 +628,10 @@ RDM comparisons provide directional evidence of global inversion, but because on
 three shared emotion categories are available, exact correlation magnitudes are
 unstable (bootstrap 95\% CI: $[-0.9967,\,+0.6994]$, as expected with $K\!=\!3$, 1 df;
 the CI spans positive values and cannot support directional inference at this dimensionality).
-The noise ceiling contextualises the directionality: brain subjects agree with each
-other at $r\!\approx\!0.47$, yet the fine-tuned LLM RDM points in the
-\emph{opposite direction} --- sign and contrast with the noise ceiling are the
-load-bearing quantities; the exact magnitude carries no inferential weight.
-The 11D systems-level result (Section~\ref{sec:inversion}) provides stronger support
-because its bootstrap CI for the fine-tuned comparison remains fully negative
-($[-0.9899,\,-0.1178]$).
+Brain subjects agree at $r\!\approx\!0.47$, yet the fine-tuned LLM RDM points in the
+\emph{opposite direction}; sign and noise-ceiling contrast are load-bearing.
+The 11D bootstrap CI ($[-0.9899,\,-0.1178]$, fully negative) provides stronger
+directional support (Section~\ref{sec:inversion}).
 
 \textbf{(5b) RDM comparison in 11D systems-level space.}
 
@@ -768,13 +731,10 @@ The axis priorities are swapped between LLMs and the brain.}
 Both LLM types are valence-dominant on PC1 ($r\!=\!0.97$--$0.98$);
 the brain is arousal-dominant ($r\!=\!0.96$), with only weak valence alignment on PC2
 ($r\!=\!0.31$).
-Because $K$ is small (5 brain emotions, 6 LLM emotions) and V-A coordinates are
-category-level approximations, these results are presented as global-structure evidence
-rather than primary proof.
-The defensible claim is: \emph{the dominant global axis of the tested neural emotion
-geometry aligns more strongly with an externally defined arousal reference than with
-a valence reference, while the main ambiguity mechanism is supported independently
-by centroid margin and classifier uncertainty.}
+Because $K$ is small and V-A coordinates are category-level approximations, these
+results are global-structure evidence, not primary proof: the dominant neural axis
+aligns more strongly with arousal than valence, while the ambiguity mechanism is
+supported independently by centroid margin and classifier uncertainty.
 
 % ===========================================================================
 \section{Discussion}
@@ -808,24 +768,12 @@ The primary evidence for global inversion is therefore the valence--arousal axis
 analysis, not the 3-emotion RSA magnitude.
 
 \textbf{The relational paradox: different priorities, not failure.}
-The near-opposite RDM directionality does not indicate that either system is wrong.
-LLMs trained on text corpora encode emotion co-occurrence statistics from natural
-language --- ``fear'' and ``sadness'' share negative hedonic contexts and appear in
-similar syntactic environments, placing their centroids near each other along the
-primary valence axis.
-The brain evolved to respond to environmental threats and rewards: fear involves
-a physiological arousal response fundamentally different from the low-arousal
-withdrawal of sadness, and separating states by activation intensity is most predictive
-of appropriate behavioural response.
-Neither system is incorrect; they represent emotion faithfully within their
-respective operational domains.
-
-\textbf{The low-rank emotion subspace.}
-The 2.6\%-capacity finding has direct implications for efficient emotion representation.
-Accuracy in 20D equals or exceeds 768D in all four tested variants.
-For real-time affective computing or edge deployment, projecting to the
-emotion-discriminative subspace is sufficient; larger representations may be
-counterproductive without fine-tuning.
+The inverted RDM directionality reflects different operational demands, not error.
+LLMs encode co-occurrence statistics: ``fear'' and ``sadness'' share negative hedonic
+contexts, clustering centroids along valence.
+The brain evolved to respond to threats and rewards: fear's high-arousal physiology
+differs fundamentally from sadness's low-arousal withdrawal, so arousal is the more
+behaviourally predictive axis.
 
 \textbf{Limitations.}
 Our evidence covers one text emotion dataset (6 classes) and one brain fMRI dataset
@@ -850,14 +798,11 @@ logit margin; the brain via centroid margin predicting classifier uncertainty --
 yet global representational organisation is inverted: LLMs sort emotions by valence,
 the brain by arousal.
 
-Three findings have immediate practical value.
-The low-rank emotion subspace (2.6\% of embedding capacity, 20 of 768 dimensions)
-shows that efficient emotion encoding does not require large representations.
-The margin-vs-distance contrast (AUC 0.81 vs.\ 0.56) provides a reusable diagnostic
-distinguishing relational from radial geometric structure.
-The V-A inversion suggests that training LLMs to distinguish arousal levels within the
-same valence category may be necessary for biological alignment --- a hypothesis for
-future experimental work.
+Three findings have practical value: the low-rank subspace (2.6\% capacity, 20D)
+shows efficient emotion encoding does not require large representations;
+the margin-vs-distance contrast (AUC 0.81 vs.\ 0.56) provides a reusable diagnostic;
+and the V-A inversion suggests training on arousal distinctions may be necessary for
+biological alignment.
 
 More broadly, the coexistence of shared local geometry with globally inverted structure
 suggests that cross-system alignment in affective representation is not a binary
@@ -1053,6 +998,35 @@ it is observable in text-based LLM embeddings and brain fMRI representations und
 systems and datasets tested, but was not apparent in CLIP image embeddings.
 The modality (text vs.\ image), CLIP's training objective, and the emotion taxonomy
 used are candidate explanations.
+
+% ---------------------------------------------------------------------------
+\section{RDM Heatmaps (Finding 5a)}
+\label{app:rdm-figures}
+% ---------------------------------------------------------------------------
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{rdm_cosine_brain}
+    \caption{Brain RDM (cosine): arousal-structured. Depressed--calm (0.72) and
+             afraid--excited (0.82) are close; affect separates by activation
+             intensity.}
+    \label{fig:rdm-brain}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{rdm_cosine_MPNet-Balanced}
+    \caption{LLM RDM (cosine): valence-structured. Sadness--happiness (0.36),
+             love--happiness (0.26) are close; affect separates by hedonic polarity.}
+    \label{fig:rdm-llm}
+  \end{subfigure}
+  \caption{\textbf{RDM comparison (Finding 5a).}
+           The brain organises affect by arousal intensity while the LLM organises
+           by hedonic polarity --- geometries point in opposite directions
+           (direction indicator only; $K\!=\!3$, 1 df, $p\!\approx\!0.21$;
+           see table for values). Noise ceiling $\approx\!+0.47$.}
+  \label{fig:rdms}
+\end{figure}
 
 % ---------------------------------------------------------------------------
 \section{Compute and Reproducibility}
