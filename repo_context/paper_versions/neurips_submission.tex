@@ -623,7 +623,83 @@ density of representations around centroids differs substantially between system
 \label{sec:inversion}
 % ---------------------------------------------------------------------------
 
-\begin{figure}[t]
+The most novel finding of the study is that the shared local ambiguity principle
+coexists with a global inversion of representational geometry.
+
+\textbf{(5a) RDM comparison in 48D raw ROI space (Figure~\ref{fig:rdms}).}
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{rdm_cosine_brain}
+    \caption{Brain RDM (cosine): arousal-structured. Depressed--calm (0.72) and
+             afraid--excited (0.82) are close; affect separates by activation
+             intensity.}
+    \label{fig:rdm-brain}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{rdm_cosine_MPNet-Balanced}
+    \caption{LLM RDM (cosine): valence-structured. Sadness--happiness (0.36),
+             love--happiness (0.26) are close; affect separates by hedonic polarity.}
+    \label{fig:rdm-llm}
+  \end{subfigure}
+  \caption{\textbf{RDM comparison (Finding 5a).}
+           Near-opposite pairwise geometry across systems (brain vs.\ fine-tuned LLM
+           cosine RDM Pearson $r\!=\!-0.8756$; noise ceiling $\approx\!+0.47$).}
+  \label{fig:rdms}
+\end{figure}
+
+\begin{center}
+\small
+\begin{tabular}{lcc}
+\toprule
+Comparison & Pearson $r$ & Notes \\
+\midrule
+Brain vs.\ fine-tuned LLM (cosine)   & $-0.8756$ & Near-opposite geometry \\
+Brain vs.\ pretrained LLM (cosine)   & $-0.5476$ & Confirmed \\
+Brain vs.\ fine-tuned LLM (Manhattan)& $-0.5476$ & Metric-invariant validation \\
+Brain-brain noise ceiling             & $+0.47$   & Upper 0.484, lower 0.460 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The noise ceiling contextualises the divergence precisely: brain subjects agree with
+each other at $r\!\approx\!0.47$, yet the fine-tuned LLM RDM is in the \emph{opposite
+direction} ($r\!=\!-0.88$) from the brain RDM --- a magnitude substantially larger
+than within-brain agreement.
+Bootstrap 95\% CI: $[-0.9967,\,+0.6994]$ (wide, as expected with $K\!=\!3$, 1 df).
+The reliable finding is the sign (consistently negative) and contrast with the positive
+noise ceiling; specific magnitudes are indicative.
+
+\textbf{(5b) RDM comparison in 11D systems-level space.}
+
+\begin{center}
+\small
+\begin{tabular}{lcc}
+\toprule
+Comparison & 48D $r$ & 11D $r$ \\
+\midrule
+Brain vs.\ fine-tuned LLM  & $-0.6371$ & $-0.7539$ \\
+Brain vs.\ pretrained LLM  & $-0.5476$ & $-0.9918$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+As biological signal is denoised from 48 ROIs to 11 systems-level features, the
+divergence \emph{amplifies} rather than shrinks.
+The pretrained LLM at 11D ($r\!=\!-0.9918$) is the strongest cross-system result in
+the study; this specific magnitude carries the uncertainty of a 3-point Pearson
+correlation (1 df) and should be treated as indicative.
+The robust directional claim is: as biological noise is removed, the negative
+correlation between brain and LLM representational geometry becomes more extreme,
+not less --- inconsistent with the hypothesis that the paradox is noise-driven.
+
+\textbf{(5c) Valence-arousal axis alignment.}
+We projected emotion centroids into the leading 2D PCA subspace and correlated each
+axis with external V-A reference coordinates (Table~\ref{tab:va-coords}).
+
+\begin{figure}[h!]
   \centering
   \begin{subfigure}[b]{0.48\textwidth}
     \includegraphics[width=\textwidth]{va_alignment_Brain-fMRI}
@@ -656,40 +732,11 @@ density of representations around centroids differs substantially between system
              Happiness and fear separate on the horizontal axis (valence).}
     \label{fig:centroid-llm}
   \end{subfigure}
-  \caption{\textbf{The Valence-Arousal Inversion.}
+  \caption{\textbf{The Valence-Arousal Inversion (Finding 5c).}
            LLMs organise emotion primarily by valence; the brain primarily by arousal.
            The global representational priorities are swapped.}
   \label{fig:va-inversion}
 \end{figure}
-
-\begin{figure}[t]
-  \centering
-  \begin{subfigure}[b]{0.48\textwidth}
-    \includegraphics[width=\textwidth]{rdm_cosine_brain}
-    \caption{Brain RDM (cosine): arousal-structured. Depressed--calm (0.72) and
-             afraid--excited (0.82) are close; affect separates by activation
-             intensity.}
-    \label{fig:rdm-brain}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[b]{0.48\textwidth}
-    \includegraphics[width=\textwidth]{rdm_cosine_MPNet-Balanced}
-    \caption{LLM RDM (cosine): valence-structured. Sadness--happiness (0.36),
-             love--happiness (0.26) are close; affect separates by hedonic polarity.}
-    \label{fig:rdm-llm}
-  \end{subfigure}
-  \caption{\textbf{RDM comparison.}
-           Near-opposite pairwise geometry across systems (brain vs.\ fine-tuned LLM
-           cosine RDM Pearson $r\!=\!-0.8756$; noise ceiling $\approx\!+0.47$).}
-  \label{fig:rdms}
-\end{figure}
-
-The most novel finding of the study is that the shared local ambiguity principle
-coexists with a global inversion of representational geometry.
-
-\textbf{(6a) Valence-arousal axis alignment.}
-We projected emotion centroids into the leading 2D PCA subspace and correlated each
-axis with external V-A reference coordinates (Table~\ref{tab:va-coords}).
 
 \begin{table}[h]
 \small
@@ -739,53 +786,6 @@ Love               & 8.4 & 5.5 & positive, moderate arousal \\
          scientifically load-bearing element.}
 \label{tab:va-coords}
 \end{table}
-
-\textbf{(6b) RDM comparison in 48D raw ROI space (Figure~\ref{fig:rdms}).}
-
-\begin{center}
-\small
-\begin{tabular}{lcc}
-\toprule
-Comparison & Pearson $r$ & Notes \\
-\midrule
-Brain vs.\ fine-tuned LLM (cosine)   & $-0.8756$ & Near-opposite geometry \\
-Brain vs.\ pretrained LLM (cosine)   & $-0.5476$ & Confirmed \\
-Brain vs.\ fine-tuned LLM (Manhattan)& $-0.5476$ & Metric-invariant validation \\
-Brain-brain noise ceiling             & $+0.47$   & Upper 0.484, lower 0.460 \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-The noise ceiling contextualises the divergence precisely: brain subjects agree with
-each other at $r\!\approx\!0.47$, yet the fine-tuned LLM RDM is in the \emph{opposite
-direction} ($r\!=\!-0.88$) from the brain RDM --- a magnitude substantially larger
-than within-brain agreement.
-Bootstrap 95\% CI: $[-0.9967,\,+0.6994]$ (wide, as expected with $K\!=\!3$, 1 df).
-The reliable finding is the sign (consistently negative) and contrast with the positive
-noise ceiling; specific magnitudes are indicative.
-
-\textbf{(6c) RDM comparison in 11D systems-level space.}
-
-\begin{center}
-\small
-\begin{tabular}{lcc}
-\toprule
-Comparison & 48D $r$ & 11D $r$ \\
-\midrule
-Brain vs.\ fine-tuned LLM  & $-0.6371$ & $-0.7539$ \\
-Brain vs.\ pretrained LLM  & $-0.5476$ & $-0.9918$ \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-As biological signal is denoised from 48 ROIs to 11 systems-level features, the
-divergence \emph{amplifies} rather than shrinks.
-The pretrained LLM at 11D ($r\!=\!-0.9918$) is the strongest cross-system result in
-the study; this specific magnitude carries the uncertainty of a 3-point Pearson
-correlation (1 df) and should be treated as indicative.
-The robust directional claim is: as biological noise is removed, the negative
-correlation between brain and LLM representational geometry becomes more extreme,
-not less --- inconsistent with the hypothesis that the paradox is noise-driven.
 
 % ===========================================================================
 \section{Discussion}
