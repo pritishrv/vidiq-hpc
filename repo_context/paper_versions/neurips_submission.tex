@@ -307,13 +307,15 @@ variability: upper 0.484, lower 0.460 (mean $\approx\!0.47$), computed by split-
 resampling of the 40-subject dataset.
 With $K\!=\!3$ emotions, RDMs contain 3 unique pairwise distances;
 reported Pearson correlations have 1 degree of freedom.
-Specific magnitudes are therefore indicative; directional findings (sign, contrast with
-noise ceiling) are the reliable quantities.
+The standard $t$-test for $r\!=\!-0.88$ with 1 df gives $p\!\approx\!0.21$ ---
+formally non-significant.
+No inferential p-value should be attached to these magnitudes.
+The load-bearing quantities are sign (direction of inversion) and contrast with the
+noise ceiling; the 11D systems-level result (Section~\ref{sec:inversion}) provides
+the stronger inferential basis via a bootstrap CI that remains fully negative.
 
 % ===========================================================================
-\vspace{-1.5em}
 \section{Results}
-\vspace{-0.5em}
 % ===========================================================================
 
 We present five findings in order of increasing cross-system scope.
@@ -321,10 +323,8 @@ Findings 1--3 characterise LLM geometry; Finding 4 introduces the ambiguity grad
 Finding 5 documents the global representational inversion.
 
 % ---------------------------------------------------------------------------
-\vspace{-0.5em}
 \subsection{Finding 1: The Void and the Belt}
 \label{sec:finding1}
-\vspace{-0.3em}
 % ---------------------------------------------------------------------------
 
 A consistent two-zone density structure emerges across all 8 LLM variants and
@@ -502,7 +502,6 @@ Pairwise centroid distances preserve the same relational structure in 20D as in 
 Happiness--Love and Fear--Anger are the closest pairs;
 Sadness--Surprise and Happiness--Fear are the most distant.
 
-\enlargethispage{6\baselineskip}
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.60\textwidth]{silhouette_comparison_20D}
@@ -510,29 +509,9 @@ Sadness--Surprise and Happiness--Fear are the most distant.
            Silhouette scores in full 768D (grey) vs.\ the isolated top-20 SVD subspace
            (red). Pretrained models improve from near-zero to $\approx\!0.41$;
            fine-tuned models improve modestly from already-high baselines.
-           Accuracy in 20D equals or exceeds 768D in all four variants (see text).}
+           Accuracy in 20D equals or exceeds 768D in all four variants (see text).
+           PCA scatter visualisations are in Appendix~\ref{app:scatter}.}
   \label{fig:silhouette}
-\end{figure}
-
-\begin{figure}[h!]
-  \centering
-  \begin{subfigure}[t]{0.49\textwidth}
-    \includegraphics[height=3cm]{comparison_scatter_BGE-Base-Final}
-    \caption{BGE-Base-Final: PCA scatter in full 768D (left) vs.\ top-20 SVD
-             subspace (right). Diffuse clouds sharpen into separated clusters.}
-    \label{fig:scatter-bge}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[t]{0.49\textwidth}
-    \includegraphics[height=3cm]{comparison_scatter_MPNet-Base-Final}
-    \caption{MPNet-Base-Final: same comparison. Silhouette improves from
-             0.057 to 0.415 ($+627\%$) and 0.047 to 0.408 ($+765\%$).}
-    \label{fig:scatter-mpnet}
-  \end{subfigure}
-  \caption{\textbf{768D vs.\ top-20 SVD subspace (Finding 3).}
-           Projecting into the 20-dimensional signal subspace reveals the cluster
-           structure hidden by noise dimensions in the full embedding space.}
-  \label{fig:scatter-comparison}
 \end{figure}
 
 % ---------------------------------------------------------------------------
@@ -560,15 +539,25 @@ MPNet-FT-Final  & 0.9884 & 100.0 \\
 \end{tabular}
 \end{center}
 
-The near-linear relationship ($r\!=\!0.9884$ for MPNet-FT) means centroid margin
-almost perfectly determines logit margin.
-In overlap regions, logit values are biased toward the competing class 93.4--100\% of
-the time.
-Note that in fine-tuned models this relationship is partially expected by the training
-objective; it is reported as a mechanistic characterisation.
+Fine-tuning aligns geometric and logit structure by design, so a positive correlation
+is expected.
+What is not guaranteed by the training objective is the \emph{degree}: a near-linear
+relationship ($r\!=\!0.9884$) means centroid margin almost perfectly determines logit
+margin, with no residual variance attributable to non-geometric factors.
+In overlap regions specifically, logit values are biased toward the competing class
+93.4--100\% of the time --- meaning geometry at the decision boundary is fully
+determinative of classifier confidence, not merely correlated with it.
+This result is reported as a mechanistic characterisation, not a novel discovery:
+its value is establishing that the geometric competition framework (centroid margin)
+is the operative construct in LLMs, which motivates its application to the brain in
+the following section.
 
 \textbf{Brain: centroid margin $\to$ classifier uncertainty.}
-For brain fMRI, raw centroid distance is a weak predictor of classification uncertainty
+Classifier uncertainty is operationalised as $1 - P(\text{correct})$, the complement
+of the LOSO classifier's predicted probability for the true emotion class.
+For AUC computation, samples are binarised at the median: \emph{high uncertainty} is
+defined as $1 - P(\text{correct}) > \text{median}$.
+For brain fMRI, raw centroid distance is a weak predictor of this uncertainty
 (Spearman $r\!=\!0.1509$, AUC$\,{=}\,0.5627$ --- near chance).
 The correct predictor is centroid margin (Equation~\ref{eq:margin}):
 \begin{equation*}
@@ -647,22 +636,24 @@ coexists with a global inversion of representational geometry.
   \end{subfigure}
   \caption{\textbf{RDM comparison (Finding 5a).}
            Brain and LLM emotion geometry is near-opposite: the brain organises
-           affect by arousal intensity while the LLM organises by hedonic polarity
-           (cosine RDM Pearson $r\!=\!-0.8756$; noise ceiling $\approx\!+0.47$).}
+           affect by arousal intensity while the LLM organises by hedonic polarity.
+           Sign of inversion: cosine RDM $r\!=\!-0.8756$ (direction indicator only;
+           $K\!=\!3$, 1 df, $p\!\approx\!0.21$); noise ceiling $\approx\!+0.47$.}
   \label{fig:rdms}
 \end{figure}
 
 \begin{center}
 \small
-\begin{tabular}{lcc}
+\begin{tabular}{lccc}
 \toprule
-Comparison & Pearson $r$ & Notes \\
+Comparison & $r$ (direction only)$^\dagger$ & Notes \\
 \midrule
 Brain vs.\ fine-tuned LLM (cosine)   & $-0.8756$ & Near-opposite geometry \\
 Brain vs.\ pretrained LLM (cosine)   & $-0.1023$ & Confirmed negative \\
 Brain vs.\ fine-tuned LLM (Manhattan)& $-0.5476$ & Metric-invariant validation \\
 Brain-brain noise ceiling             & $+0.47$   & Upper 0.484, lower 0.460 \\
 \bottomrule
+\multicolumn{3}{l}{$^\dagger$ $K\!=\!3$, 1 df; $p\!\approx\!0.21$ for $r\!=\!-0.88$; no inferential p-value is valid.}
 \end{tabular}
 \end{center}
 
@@ -1018,6 +1009,33 @@ lateral parietal cortex;
 
 \textbf{Neighbour context feature (1):} Mean absolute difference between adjacent ROI
 activations within each anatomical region, capturing local inter-regional coordination.
+
+% ---------------------------------------------------------------------------
+% ---------------------------------------------------------------------------
+\section{Finding 3: PCA Scatter Visualisations}
+\label{app:scatter}
+% ---------------------------------------------------------------------------
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[t]{0.49\textwidth}
+    \includegraphics[height=3cm]{comparison_scatter_BGE-Base-Final}
+    \caption{BGE-Base-Final: PCA scatter in full 768D (left) vs.\ top-20 SVD
+             subspace (right). Diffuse clouds sharpen into separated clusters.}
+    \label{fig:scatter-bge}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.49\textwidth}
+    \includegraphics[height=3cm]{comparison_scatter_MPNet-Base-Final}
+    \caption{MPNet-Base-Final: same comparison. Silhouette improves from
+             0.057 to 0.415 ($+627\%$) and 0.047 to 0.408 ($+765\%$).}
+    \label{fig:scatter-mpnet}
+  \end{subfigure}
+  \caption{\textbf{768D vs.\ top-20 SVD subspace (Finding 3).}
+           Projecting into the 20-dimensional signal subspace reveals the cluster
+           structure hidden by noise dimensions in the full embedding space.}
+  \label{fig:scatter-comparison}
+\end{figure}
 
 % ---------------------------------------------------------------------------
 \section{Image Experiments: Negative Result}
