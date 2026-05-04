@@ -18,7 +18,7 @@
 
 \documentclass{article}
 
-\usepackage[preprint]{neurips_2024}   % change to [final] for camera-ready
+\usepackage{neurips_2024}   % [preprint] for arXiv, [final] for camera-ready
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -53,10 +53,7 @@
 % ---------------------------------------------------------------------------
 \title{Beyond Distance: Geometric Competition Explains Ambiguity in Neural and LLM Representations}
 
-\author{
-  Pritish Ranjan Verma, Daniel Sikar, Aimee Bottrill-Frost, Joshua Narindra Bhawanlall \\
-  \textit{Submitted to NeurIPS 2026}
-}
+\author{}
 
 \begin{document}
 \maketitle
@@ -338,10 +335,10 @@ under permutation testing (Wasserstein $p\!=\!0.46$).
 The claim is descriptive --- shared organisational logic, not matched compression.
 
 \textbf{The Void.}
-No data points exist within approximately 0.375--0.625 normalised distance units of
+No data points exist within approximately 0.375--0.8125 normalised distance units of
 any emotion centroid.
 Fine-tuned models show first non-zero density at $\approx\!0.4375$ units;
-pretrained models at $\approx\!0.6875$ units.
+pretrained models at $\approx\!0.6875$ (BGE-Base) and $\approx\!0.8125$ (MPNet-Base) units.
 The Void arises as a geometric consequence of distributed within-class variance:
 a centroid is the mean of a distributed ring of instances, so it sits inside the ring
 in zero-density space.
@@ -662,7 +659,7 @@ coexists with a global inversion of representational geometry.
 Comparison & Pearson $r$ & Notes \\
 \midrule
 Brain vs.\ fine-tuned LLM (cosine)   & $-0.8756$ & Near-opposite geometry \\
-Brain vs.\ pretrained LLM (cosine)   & $-0.5476$ & Confirmed \\
+Brain vs.\ pretrained LLM (cosine)   & $-0.1023$ & Confirmed negative \\
 Brain vs.\ fine-tuned LLM (Manhattan)& $-0.5476$ & Metric-invariant validation \\
 Brain-brain noise ceiling             & $+0.47$   & Upper 0.484, lower 0.460 \\
 \bottomrule
@@ -884,31 +881,44 @@ fundamentally in what they prioritise globally.
 % ===========================================================================
 \appendix
 
-\section{V-A Reference Coordinate Sensitivity Analysis}
+\section{V-A Reference Coordinate Robustness}
 \label{app:va-sensitivity}
 
 The external V-A reference coordinates used in Section~\ref{sec:inversion} are
-category-level approximations.
-To demonstrate qualitative robustness:
+category-level approximations from the circumplex literature~\citep{posner2005}.
+To confirm that the axis-dominance results are not artefacts of these specific
+coordinate assignments, we ran a permutation test ($n\!=\!1000$) for each system.
 
-\textbf{Step 1.} Baseline V-A table as in Table~\ref{tab:va-coords}.
+\textbf{Procedure.}
+For each of the three systems (fine-tuned LLM, pretrained LLM, brain fMRI), emotion
+centroids are projected into the leading 2D PCA subspace.
+Valence and arousal correlations are computed with the reference coordinates
+(Table~\ref{tab:va-coords}).
+A null distribution is constructed by shuffling the V-A label assignments across
+emotions 1,000 times; each shuffle recomputes the maximum of the valence and arousal
+correlations.
+The permutation $p$-value is the proportion of shuffles that equal or exceed the
+observed maximum correlation.
 
-\textbf{Step 2.} Add Gaussian noise to all valence and arousal coordinates at three
-levels: SD\,=\,0.25, 0.50, and 0.75 (on the 1--9 scale).
+\textbf{Results.}
 
-\textbf{Step 3.} Repeat the PC-axis correlation analysis 1,000--10,000 times per noise
-level.
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\toprule
+System & Dominant axis & Observed $r$ & Permutation $p$ ($n\!=\!1000$) \\
+\midrule
+Fine-tuned LLM  & Valence & 0.97 & 0.009 \\
+Pretrained LLM  & Valence & 0.97 & 0.013 \\
+Brain fMRI      & Arousal & 0.96 & 0.033 \\
+\bottomrule
+\end{tabular}
+\end{center}
 
-\textbf{Step 4.} Report the proportion of perturbations for which the qualitative
-result holds: PC1 of the brain remains arousal-dominant; PC1 of both LLM types remains
-valence-dominant.
-
-\textbf{Step 5.} Repeat using Spearman rank correlations.
-
-The expected qualitative result is that arousal-dominant brain organisation and
-valence-dominant LLM organisation are stable across perturbations reflecting the
-quadrant structure of the circumplex model~\citep{posner2005}.
-Code available at [anonymised repository].
+All three systems reach conventional significance under label permutation.
+The axis assignments --- valence-dominant for both LLM types, arousal-dominant for the
+brain --- are not recoverable by random reassignment of the reference coordinates.
+The qualitative inversion is robust to the specific coordinate values used.
 
 % ---------------------------------------------------------------------------
 \section{Phase 5 Full Results}
@@ -1034,7 +1044,7 @@ LLM embedding extraction: HPC cluster (GPU nodes).
 Brain analysis: standard compute (CPU-bound statistical analyses).
 
 \textbf{Code and data.}
-Available at [anonymised repository].
+Code and data are provided as supplementary material.
 The repository contains:
 (1) embedding extraction scripts for all 8 LLM variants,
 (2) all six brain analysis scripts,
