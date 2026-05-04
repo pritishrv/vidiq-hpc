@@ -764,9 +764,10 @@ scientifically load-bearing element.}
   \label{fig:va-inversion}
 \end{figure}
 
-\begin{table}[h]
+\vspace{0.4em}
+\noindent\refstepcounter{table}\label{tab:va-alignment}%
+\begin{center}
 \small
-\centering
 \begin{tabular}{lcccc}
 \toprule
 System & PC1 axis & PC1 $r$ & PC2 axis & Permutation $p$ \\
@@ -776,10 +777,12 @@ Pretrained LLM  & Valence & 0.97 & Arousal ($r\!=\!0.73$) & 0.009 \\
 Human Brain     & Arousal & 0.96 & Valence ($r\!=\!0.31$) & 0.033 \\
 \bottomrule
 \end{tabular}
-\caption{Global representational axis alignment (Figure~\ref{fig:va-inversion}).
-         The axis priorities are swapped between LLMs and the brain.}
-\label{tab:va-alignment}
-\end{table}
+\par\vspace{0.3em}
+{\small\textbf{Table~\thetable:} Global representational axis alignment
+(Figure~\ref{fig:va-inversion}).
+The axis priorities are swapped between LLMs and the brain.}
+\end{center}
+\vspace{0.3em}
 
 Both LLM types are valence-dominant on PC1 ($r\!=\!0.97$--$0.98$);
 the brain is arousal-dominant ($r\!=\!0.96$), with only weak valence alignment on PC2
