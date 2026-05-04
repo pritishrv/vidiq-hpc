@@ -701,6 +701,28 @@ not less --- inconsistent with the hypothesis that the paradox is noise-driven.
 We projected emotion centroids into the leading 2D PCA subspace and correlated each
 axis with external V-A reference coordinates (Table~\ref{tab:va-coords}).
 
+\begin{table}[h]
+\small
+\centering
+\begin{tabular}{lccc}
+\toprule
+Emotion & Valence & Arousal & Quadrant \\
+\midrule
+Afraid / Fear       & $-0.80$ & $0.85$ & negative, high arousal \\
+Calm                & $+0.70$ & $0.15$ & positive, low arousal \\
+Delighted / Happin. & $+0.85$ & $0.70$ & positive, moderate--high arousal \\
+Depressed / Sadness & $-0.85$ & $0.25$ & negative, low arousal \\
+Excited             & $+0.75$ & $0.90$ & positive, high arousal \\
+Love                & $+0.85$ & $0.55$ & positive, moderate arousal \\
+\bottomrule
+\end{tabular}
+\caption{External V-A reference coordinates (normalised circumplex scale:
+         valence $-1$ to $+1$, arousal $0$ to $1$).
+         The quadrant structure --- not exact decimal values --- is the
+         scientifically load-bearing element.}
+\label{tab:va-coords}
+\end{table}
+
 \begin{figure}[h!]
   \centering
   \begin{subfigure}[b]{0.48\textwidth}
@@ -767,27 +789,6 @@ The defensible claim is: \emph{the dominant global axis of the tested neural emo
 geometry aligns more strongly with an externally defined arousal reference than with
 a valence reference, while the main ambiguity mechanism is supported independently
 by centroid margin and classifier uncertainty.}
-
-\begin{table}[h]
-\small
-\centering
-\begin{tabular}{lccc}
-\toprule
-Emotion & Valence (1--9) & Arousal (1--9) & Quadrant \\
-\midrule
-Afraid / Fear      & 2.5 & 7.5 & negative, high arousal \\
-Calm               & 7.0 & 2.5 & positive, low arousal \\
-Delighted / Happin.& 8.2 & 6.5 & positive, moderate--high arousal \\
-Depressed / Sadness& 2.2 & 3.0 & negative, low arousal \\
-Excited            & 7.8 & 8.2 & positive, high arousal \\
-Love               & 8.4 & 5.5 & positive, moderate arousal \\
-\bottomrule
-\end{tabular}
-\caption{External V-A reference coordinates (1--9 SAM scale).
-         The quadrant structure --- not exact decimal values --- is the
-         scientifically load-bearing element.}
-\label{tab:va-coords}
-\end{table}
 
 % ===========================================================================
 \section{Discussion}
