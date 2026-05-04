@@ -1,12 +1,15 @@
-STATISTICAL CORRECTIONS LOG
-============================
-NeurIPS 2026 submission: "Geometric Competition as a Shared Principle of
-Ambiguity in LLM and Neural Emotion Representations"
+CORRECTIONS LOG
+================
+NeurIPS 2026 submission: "Beyond Distance: Geometric Competition Explains
+Ambiguity in Neural and LLM Representations"
 
 Date: 2026-05-04
 Branch: Consise
 
-All corrections were verified against authoritative data files in
+==============================================================================
+PART 1: STATISTICAL CORRECTIONS
+==============================================================================
+All corrections verified against authoritative data files in
 /Users/joshuabhawanlall/vidiq-hpc/experiments/
 
 ------------------------------------------------------------------------------
@@ -47,16 +50,23 @@ Root cause: -0.5476 is the Manhattan correlation (from the separate
            as -0.1023 → -0.9918 (870% deepening), not the understated
            -0.5476 → -0.9918.
 
+Also fixed: 5a table "Brain vs. pretrained LLM (cosine)" was the same wrong
+           value (-0.5476). Corrected to -0.1023 from rdm_comparison_metrics.json
+           (checking_centroids), which uses cosine distances.
+
 ------------------------------------------------------------------------------
 DISCREPANCY #4: MPNet-Base-Final void onset
 ------------------------------------------------------------------------------
 Location:  §5.1 certainty-buffer table (Void Onset column);
-           Appendix certainty-buffer table (Void Onset column)
-Old value: ≈0.6875
+           Appendix certainty-buffer table (Void Onset column);
+           §5.1 body text ("pretrained models at ≈0.6875 units")
+Old value: ≈0.6875 (all three locations)
 New value: ≈0.8125
 Source:    experiments/understanding_text_embeddings/reports/phase2/
            overlap_metrics.json  (first non-zero density bin for MPNet-Base-Final)
 Note:      BGE-Base-Final void onset (0.6875) was already correct.
+           Void range description updated from "0.375–0.625" to "0.375–0.8125"
+           to cover both pretrained models correctly.
 
 ------------------------------------------------------------------------------
 DISCREPANCY #5: Baseline accuracy inconsistency between Finding 2 and Finding 3
@@ -102,10 +112,8 @@ All six metrics confirmed present in data files — no changes to paper required
             enhanced_statistical_results.txt
 
 ------------------------------------------------------------------------------
-EARLIER STATISTICAL REFRAMING (Aimee's notes, same session)
+EARLIER STATISTICAL REFRAMING (Aimee's notes)
 ------------------------------------------------------------------------------
-These were substantive reframings applied before the above corrections:
-
 1. Ambiguity gradient r=0.9565:
    Removed inflated "p=3.20e-54" (computed over interpolated grid, not
    independent samples). Replaced with permutation test p<0.001 (n=5000
@@ -127,5 +135,92 @@ These were substantive reframings applied before the above corrections:
    Ranks evidence from strongest (margin-uncertainty coupling, AUC=0.81,
    permutation p<0.001) down to descriptive only (48D RDM, Void/Belt density).
 
-------------------------------------------------------------------------------
+==============================================================================
+PART 2: CONTRARIAN NEURIPS REVIEW — 13 ISSUES RESOLVED
+==============================================================================
+
+--- BLOCKING ---
+
+ISSUE #1: Appendix A sensitivity analysis described future work, not results
+  Fix: Rewrote as "V-A Reference Coordinate Robustness" reporting the actual
+       permutation test that was run (n=1000). New results table shows:
+       Fine-tuned LLM p=0.009, Pretrained LLM p=0.013, Brain fMRI p=0.033.
+       "Expected qualitative result is..." language removed entirely.
+
+ISSUE #2: Void onset text contradicted corrected table values
+  Fix: Line 344 updated from "pretrained models at ≈0.6875 units" to
+       "≈0.6875 (BGE-Base) and ≈0.8125 (MPNet-Base) units". Void range
+       description updated from "0.375–0.625" to "0.375–0.8125".
+
+ISSUE #3: 5a table "Brain vs. pretrained LLM (cosine)" = -0.5476 (wrong)
+  Fix: Corrected to -0.1023 sourced from rdm_comparison_metrics.json
+       (checking_centroids experiment, cosine distances). The -0.5476 was
+       the Manhattan correlation that had leaked into both row 2 and row 3.
+
+ISSUE #4: [anonymised repository] placeholders unresolved (×2)
+  Fix: Paper converted to double-blind submission format:
+       - \usepackage{neurips_2024} (no option)
+       - \author{} (fully blank)
+       - "Submitted to NeurIPS 2026" removed from author block
+       - Anonymous GitHub unavailable (service error + private repo issues)
+       - Both placeholder locations replaced with "Code and data are provided
+         as supplementary material."
+
+--- SIGNIFICANT ---
+
+ISSUE #5: K=3 RDM — p≈0.21 never stated; correlation framed as evidence
+  Fix: Added explicit "standard t-test for r=-0.88 with 1 df gives p≈0.21,
+       formally non-significant" in three locations: Methods, figure caption,
+       and table footnote (†). Column header renamed to "r (direction only)†".
+
+ISSUE #6: Finding 4a LLM margin-logit — tautology caveat underdefended
+  Fix: Rewritten paragraph leads with "expected by design", then explains
+       what is non-trivial: near-linear degree (r=0.9884, not guaranteed by
+       training), 100% logit agreement at decision boundary (fully
+       determinative, not merely correlated). Explicit statement that this is
+       mechanistic characterisation, not novel discovery, motivating its
+       application to the brain.
+
+ISSUE #7: "Classifier uncertainty" never operationally defined
+  Fix: Added two-sentence definition before the AUC result:
+       "uncertainty = 1 - P(correct)" (complement of LOSO classifier
+       probability for true class); "high uncertainty = above median"
+       (binary threshold for AUC computation).
+
+ISSUE #8: \enlargethispage{6\baselineskip} and \vspace{-} page hacks
+  Fix: Removed \enlargethispage entirely. Moved Finding 3 scatter figures
+       (BGE-Base-Final and MPNet-Base-Final PCA comparison) to new Appendix F
+       with pointer from silhouette figure caption. Removed all \vspace{-}
+       compressions from Results section header. Removed \clearpage that
+       created empty page after scatter figure removal.
+
+ISSUE #9: fMRI sample size comparison table cited wrong references
+  Fix: Added three new BibTeX entries (pinho2018, gordon2017, allen2022).
+       Replaced uncited text with proper \citep commands:
+       - IBC → Pinho et al. 2018, Scientific Data
+       - "Precision Functional Mapping (Children)" row replaced with
+         Gordon et al. 2017 (Midnight Scan Club), Neuron, N=10 (published,
+         citable, same Dosenbach lab)
+       - NSD → Allen et al. 2022, Nature Neuroscience, N=8
+
+--- MINOR ---
+
+ISSUE #10: File header comment had old title
+  Fix: Updated lines 2-3 to new title "Beyond Distance: Geometric Competition
+       Explains Ambiguity in Neural and LLM Representations".
+
+ISSUE #11: [preprint] + real names + venue inconsistency
+  Fix: Resolved as part of Issue #4 — paper is now in correct double-blind
+       submission format throughout.
+
+ISSUE #12: Ismayilzada 2026 preprint same year as submission
+  Fix: Added "(preprint)" flag in inline citation in Related Work.
+
+ISSUE #13: Qwen appears without justification in cross-system extension
+  Fix: Added one-line rationale in Datasets section: included "as a third
+       architecture to test whether the compaction–distribution finding
+       generalises beyond the two primary model families."
+
+==============================================================================
 END OF LOG
+==============================================================================
