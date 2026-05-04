@@ -397,7 +397,7 @@ Variant & Void Onset & Density Peak & Overlap Onset & Certainty Buffer \\
 \midrule
 MPNet-FT-Final  & 0.4375 & 0.562 & 2.438 & $+1.875$ \\
 BGE-FT-Final    & 0.4375 & 0.688 & 2.438 & $+1.750$ \\
-MPNet-Base-Final& 0.6875 & 0.938 & 0.938 & $\phantom{+}0.000$ \\
+MPNet-Base-Final& 0.8125 & 0.938 & 0.938 & $\phantom{+}0.000$ \\
 BGE-Base-Final  & 0.6875 & 0.938 & 1.062 & $+0.125$ \\
 \bottomrule
 \end{tabular}
@@ -406,7 +406,7 @@ BGE-Base-Final  & 0.6875 & 0.938 & 1.062 & $+0.125$ \\
 Fine-tuning creates a geometrically safe zone between peak density and the onset of
 competitive class confusion; for pretrained models this buffer is near zero.
 No embedding aligns exclusively with a single class prototype in any system:
-global overlap rates range from 0.42\% (MPNet-FT-Final) to 19.22\% (BGE-Base-Final),
+global overlap rates range from 1.76\% (MPNet-FT-Final) to 19.22\% (BGE-Base-Final),
 confirming that fine-tuning substantially reduces inter-class geometric confusion.
 
 % ---------------------------------------------------------------------------
@@ -425,10 +425,10 @@ baseline of 16.7\%):
 \toprule
 Variant & Baseline Accuracy (\%) & Erasure Point \\
 \midrule
-MPNet-FT-Final   & 98.14 & dim 15 \\
-BGE-FT-Final     & 98.14 & dim 20 \\
-BGE-Base-Final   & 95.17 & dim 26 \\
-MPNet-Base-Final & 95.17 & dim 67 \\
+MPNet-FT-Final   & 98.24 & dim 15 \\
+BGE-FT-Final     & 97.99 & dim 20 \\
+BGE-Base-Final   & 93.78 & dim 26 \\
+MPNet-Base-Final & 94.08 & dim 67 \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -693,7 +693,7 @@ because its bootstrap CI for the fine-tuned comparison remains fully negative
 Comparison & 48D $r$ & 11D $r$ \\
 \midrule
 Brain vs.\ fine-tuned LLM  & $-0.6371$ & $-0.7539$ \\
-Brain vs.\ pretrained LLM  & $-0.5476$ & $-0.9918$ \\
+Brain vs.\ pretrained LLM  & $-0.1023$ & $-0.9918$ \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -929,7 +929,7 @@ validation set.
 Metric & BGE-FT-Final & MPNet-FT-Final \\
 \midrule
 Total samples               & 4,038   & 4,038 \\
-Overlap samples             & $\approx$73 (1.81\%) & $\approx$17 (0.42\%) \\
+Overlap samples             & $\approx$76 (1.88\%) & $\approx$71 (1.76\%) \\
 Dist-logit Pearson $r$      & 0.9572  & 0.9884 \\
 Logit agreement in overlap  & 93.4\%  & 100\%  \\
 Dominant overlap pair       & Happin./Love & Happin./Love \\
@@ -953,9 +953,9 @@ model.
 \toprule
 Variant & Overlap (\%) & Density Peak & Certainty Buffer & Void Onset \\
 \midrule
-MPNet-FT-Final   & 0.42  & 0.562 & $+1.875$ & $\approx$0.4375 \\
-BGE-FT-Final     & 1.81  & 0.688 & $+1.750$ & $\approx$0.4375 \\
-MPNet-Base-Final & 18.45 & 0.938 & $\phantom{+}0.000$ & $\approx$0.6875 \\
+MPNet-FT-Final   & 1.76  & 0.562 & $+1.875$ & $\approx$0.4375 \\
+BGE-FT-Final     & 1.88  & 0.688 & $+1.750$ & $\approx$0.4375 \\
+MPNet-Base-Final & 18.45 & 0.938 & $\phantom{+}0.000$ & $\approx$0.8125 \\
 BGE-Base-Final   & 19.22 & 0.938 & $+0.125$ & $\approx$0.6875 \\
 BGE-Base-Mid     & 28.14 &  ---  &    ---   &    ---    \\
 MPNet-Base-Mid   & 16.92 &  ---  &    ---   &    ---    \\

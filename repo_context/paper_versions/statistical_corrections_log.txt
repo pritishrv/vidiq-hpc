@@ -1,0 +1,131 @@
+STATISTICAL CORRECTIONS LOG
+============================
+NeurIPS 2026 submission: "Geometric Competition as a Shared Principle of
+Ambiguity in LLM and Neural Emotion Representations"
+
+Date: 2026-05-04
+Branch: Consise
+
+All corrections were verified against authoritative data files in
+/Users/joshuabhawanlall/vidiq-hpc/experiments/
+
+------------------------------------------------------------------------------
+DISCREPANCY #1: MPNet-FT-Final overlap rate
+------------------------------------------------------------------------------
+Location:  §5.1 body text; Appendix consistency table; Appendix certainty-buffer table
+Old value: 0.42% (≈17 samples)
+New value: 1.76% (≈71 samples)
+Source:    experiments/understanding_text_embeddings/reports/phase5/
+           consistency_summary.json  +  overlap_details_MPNet-FT-Final.csv
+Root cause: Paper had been populated from the Phase 2 early-computation report
+           (PHASE_2_DETAILED_REPORT.md), which used a different overlap method.
+           Phase 5 is the authoritative final computation.
+
+------------------------------------------------------------------------------
+DISCREPANCY #2: BGE-FT-Final overlap rate
+------------------------------------------------------------------------------
+Location:  Appendix consistency table; Appendix certainty-buffer table
+Old value: 1.81% (≈73 samples)
+New value: 1.88% (≈76 samples)
+Source:    experiments/understanding_text_embeddings/reports/phase5/
+           consistency_summary.json  +  overlap_details_BGE-FT-Final.csv
+Root cause: Same Phase 2 vs Phase 5 sourcing issue as discrepancy #1.
+
+------------------------------------------------------------------------------
+DISCREPANCY #3: 48D Pearson r for Brain vs. pretrained LLM (Finding 5b table)
+------------------------------------------------------------------------------
+Location:  §5.5 (Finding 5b) RDM table, 48D column, "Brain vs. pretrained LLM" row
+Old value: -0.5476
+New value: -0.1023
+Source:    experiments/brain_embedding_understanding/
+           checking_centroids_with_spatial_context_data/reports/
+           SYSTEMS_LEVEL_PARADOX_REPORT.md
+Root cause: -0.5476 is the Manhattan correlation (from the separate
+           checking_centroids experiment), not the 48D Pearson r.
+           The 48D Pearson r for Brain vs. MPNet-Balanced is -0.1023.
+           Consequence: the amplification from 48D→11D is now correctly shown
+           as -0.1023 → -0.9918 (870% deepening), not the understated
+           -0.5476 → -0.9918.
+
+------------------------------------------------------------------------------
+DISCREPANCY #4: MPNet-Base-Final void onset
+------------------------------------------------------------------------------
+Location:  §5.1 certainty-buffer table (Void Onset column);
+           Appendix certainty-buffer table (Void Onset column)
+Old value: ≈0.6875
+New value: ≈0.8125
+Source:    experiments/understanding_text_embeddings/reports/phase2/
+           overlap_metrics.json  (first non-zero density bin for MPNet-Base-Final)
+Note:      BGE-Base-Final void onset (0.6875) was already correct.
+
+------------------------------------------------------------------------------
+DISCREPANCY #5: Baseline accuracy inconsistency between Finding 2 and Finding 3
+------------------------------------------------------------------------------
+Location:  Finding 2 "Baseline Accuracy" table
+Old values:
+  MPNet-FT-Final   98.14%
+  BGE-FT-Final     98.14%
+  BGE-Base-Final   95.17%
+  MPNet-Base-Final 95.17%
+New values (now matching Finding 3 and Phase 4 authoritative source):
+  MPNet-FT-Final   98.24%
+  BGE-FT-Final     97.99%
+  BGE-Base-Final   93.78%
+  MPNet-Base-Final 94.08%
+Source:    experiments/understanding_text_embeddings/reports/
+           PHASE_4_DETAILED_REPORT.md  +  phase4/subspace_metrics_20D.json
+Root cause: Finding 2 was sourced from Phase 3 (direction-removal baseline, a
+           different cross-validation run). Finding 3 and Phase 4 use the same
+           explicitly computed 768D classification accuracy. Phase 4 is
+           authoritative for both findings.
+
+------------------------------------------------------------------------------
+DISCREPANCY #6: Verification of previously flagged "unverifiable" metrics
+------------------------------------------------------------------------------
+All six metrics confirmed present in data files — no changes to paper required.
+
+  AUC (margin)   = 0.8124
+  AUC (distance) = 0.5627
+    Source: experiments/brain_embedding_understanding/checking_density_geometry/
+            reports/brain finl.html  (notebook cell output)
+
+  Spearman r     = 0.6108,  p = 7.78e-22
+  Shuffle r      = 0.0287,  p = 0.687
+    Source: same notebook (brain finl.html)
+
+  KS statistic   = 0.57
+    Source: experiments/brain_embedding_understanding/global_behavior_comparison/
+            comparison_results.txt
+
+  Cohen's d      = 1.3398  (reported as 1.34 in paper)
+    Source: experiments/brain_embedding_understanding/global_behavior_comparison/
+            enhanced_statistical_results.txt
+
+------------------------------------------------------------------------------
+EARLIER STATISTICAL REFRAMING (Aimee's notes, same session)
+------------------------------------------------------------------------------
+These were substantive reframings applied before the above corrections:
+
+1. Ambiguity gradient r=0.9565:
+   Removed inflated "p=3.20e-54" (computed over interpolated grid, not
+   independent samples). Replaced with permutation test p<0.001 (n=5000
+   shuffles). Added explicit caveat that r is computed over 100 interpolated
+   grid points and should not be treated as an independent-sample p-value.
+
+2. Void/Belt density similarity:
+   Added caveat that density-shape similarity does not reach conventional
+   significance under permutation testing (Wasserstein p=0.46). The claim
+   is now explicitly descriptive — shared organisational logic, not matched
+   compression.
+
+3. 48D RDM (3-point Pearson):
+   Reframed as "directional evidence only" with wide bootstrap CI
+   [-0.9967, +0.6994]. Promoted the 11D fine-tuned bootstrap CI
+   [-0.9899, -0.1178] (fully negative) as stronger inferential support.
+
+4. Statistical hierarchy paragraph added to Discussion:
+   Ranks evidence from strongest (margin-uncertainty coupling, AUC=0.81,
+   permutation p<0.001) down to descriptive only (48D RDM, Void/Belt density).
+
+------------------------------------------------------------------------------
+END OF LOG
