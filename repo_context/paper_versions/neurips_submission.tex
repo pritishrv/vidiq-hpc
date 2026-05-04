@@ -425,40 +425,43 @@ into 15--20 directions; remove them and signal collapses entirely.
 Pretrained MPNet-Base retains decodable signal for 67 dimensions, a $4.5\times$ wider
 manifold than the fine-tuned equivalent (Figure~\ref{fig:signal-cliff}).
 
-\begin{figure}[h!]
-  \centering
-  \begin{subfigure}[t]{0.50\textwidth}
-    \includegraphics[height=4cm]{early_decay_comparison_top25}
-    \caption{Signal cliff: accuracy as dominant directions are removed iteratively.
-             Fine-tuned models reach chance at dimensions 15--20;
-             pretrained BGE at 26, pretrained MPNet at 67.}
-    \label{fig:signal-cliff}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[t]{0.48\textwidth}
-    \includegraphics[height=4cm]{Content_Retention_Comparison_}
-    \caption{Cross-system context retention.
-             Brain $D_{50}\!=\!4$; fine-tuned LLM $D_{50}\!=\!12$;
-             pretrained LLM $D_{50}\!=\!17$.}
-    \label{fig:context-retention}
-  \end{subfigure}
-  \caption{\textbf{Signal structure across systems (Finding 2).}
-           (a) SVD ablation reveals qualitatively different compaction strategies.
-           (b) The brain requires only 4 dominant directions to achieve half its
-           classification accuracy, yet maintains a distributed plateau rather than
-           collapsing to chance --- consistent with distributed biological coding.}
-  \label{fig:signal-structure}
-\end{figure}
-
 \textbf{Cross-system extension.}
-A separate iterative ablation across three systems
-(Figure~\ref{fig:context-retention}) shows qualitatively distinct signal geometries:
-the human brain ($D_{50}\!=\!4$, AUC 0.302) uses the most distributed code ---
+A separate iterative ablation across three systems shows qualitatively distinct signal
+geometries: the human brain ($D_{50}\!=\!4$, AUC 0.302) uses the most distributed code ---
 removing just 4 dominant directions halves accuracy, yet the curve flattens into a
 plateau rather than collapsing to chance~\citep{haxby2001};
-Qwen-FT ($D_{50}\!=\!12$, AUC 0.260) compresses signal into a steep
-cliff; pretrained MPNet ($D_{50}\!=\!17$, AUC 0.331) spreads it across the widest
-manifold.
+Qwen-FT ($D_{50}\!=\!12$, AUC 0.260) compresses signal into a steep cliff;
+pretrained MPNet ($D_{50}\!=\!17$, AUC 0.331) spreads it across the widest manifold.
+
+\vspace{0.4em}
+\noindent
+\begin{minipage}[t]{0.50\textwidth}
+  \centering
+  \includegraphics[height=4cm]{early_decay_comparison_top25}
+  \par\vspace{0.2em}
+  {\footnotesize (a) Signal cliff: accuracy as dominant directions are removed
+  iteratively. Fine-tuned models reach chance at dimensions 15--20;
+  pretrained BGE at 26, pretrained MPNet at 67.}
+  \phantomsection\label{fig:signal-cliff}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.48\textwidth}
+  \centering
+  \includegraphics[height=4cm]{Content_Retention_Comparison_}
+  \par\vspace{0.2em}
+  {\footnotesize (b) Cross-system context retention.
+  Brain $D_{50}\!=\!4$; fine-tuned LLM $D_{50}\!=\!12$;
+  pretrained LLM $D_{50}\!=\!17$.}
+  \phantomsection\label{fig:context-retention}
+\end{minipage}
+\refstepcounter{figure}\label{fig:signal-structure}
+\par\vspace{0.3em}
+\noindent{\small\textbf{Figure~\thefigure: Signal structure across systems (Finding 2).}
+(a) SVD ablation reveals qualitatively different compaction strategies.
+(b) The brain requires only 4 dominant directions to achieve half its classification
+accuracy, yet maintains a distributed plateau rather than collapsing to chance ---
+consistent with distributed biological coding.}
+\par\vspace{0.5em}
 
 % ---------------------------------------------------------------------------
 \subsection{Finding 3: The Low-Rank Emotion Subspace}
