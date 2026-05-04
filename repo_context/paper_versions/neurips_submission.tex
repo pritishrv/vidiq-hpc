@@ -347,31 +347,7 @@ normalised units.
 Fine-tuned models peak earlier (MPNet-FT-Final at 0.5625, BGE-FT-Final at 0.6875);
 pretrained models peak later (both at 0.9375).
 
-\textbf{Certainty buffer.}
-The radial gap between density peak and onset of geometric ambiguity
-($>\!5\%$ overlap rate):
-
-\begin{center}
-\small
-\begin{tabular}{lcccc}
-\toprule
-Variant & Void Onset & Density Peak & Overlap Onset & Certainty Buffer \\
-\midrule
-MPNet-FT-Final  & 0.4375 & 0.562 & 2.438 & $+1.875$ \\
-BGE-FT-Final    & 0.4375 & 0.688 & 2.438 & $+1.750$ \\
-MPNet-Base-Final& 0.6875 & 0.938 & 0.938 & $\phantom{+}0.000$ \\
-BGE-Base-Final  & 0.6875 & 0.938 & 1.062 & $+0.125$ \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-Fine-tuning creates a geometrically safe zone between peak density and the onset of
-competitive class confusion; for pretrained models this buffer is near zero.
-No embedding aligns exclusively with a single class prototype in any system:
-global overlap rates range from 0.42\% (MPNet-FT-Final) to 19.22\% (BGE-Base-Final),
-confirming that fine-tuning substantially reduces inter-class geometric confusion.
-
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
   \begin{subfigure}[t]{0.38\textwidth}
     \includegraphics[height=5cm]{global_density_ambiguity_curves}
@@ -397,6 +373,30 @@ confirming that fine-tuning substantially reduces inter-class geometric confusio
            principle.}
   \label{fig:clusters-density}
 \end{figure}
+
+\textbf{Certainty buffer.}
+The radial gap between density peak and onset of geometric ambiguity
+($>\!5\%$ overlap rate):
+
+\begin{center}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Variant & Void Onset & Density Peak & Overlap Onset & Certainty Buffer \\
+\midrule
+MPNet-FT-Final  & 0.4375 & 0.562 & 2.438 & $+1.875$ \\
+BGE-FT-Final    & 0.4375 & 0.688 & 2.438 & $+1.750$ \\
+MPNet-Base-Final& 0.6875 & 0.938 & 0.938 & $\phantom{+}0.000$ \\
+BGE-Base-Final  & 0.6875 & 0.938 & 1.062 & $+0.125$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Fine-tuning creates a geometrically safe zone between peak density and the onset of
+competitive class confusion; for pretrained models this buffer is near zero.
+No embedding aligns exclusively with a single class prototype in any system:
+global overlap rates range from 0.42\% (MPNet-FT-Final) to 19.22\% (BGE-Base-Final),
+confirming that fine-tuning substantially reduces inter-class geometric confusion.
 
 % ---------------------------------------------------------------------------
 \subsection{Finding 2: Information Compaction vs.\ Distribution}
