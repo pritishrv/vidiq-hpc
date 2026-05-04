@@ -347,32 +347,33 @@ normalised units.
 Fine-tuned models peak earlier (MPNet-FT-Final at 0.5625, BGE-FT-Final at 0.6875);
 pretrained models peak later (both at 0.9375).
 
-\begin{figure}[h!]
+\vspace{0.4em}
+\noindent
+\begin{minipage}[t]{0.38\textwidth}
   \centering
-  \begin{subfigure}[t]{0.38\textwidth}
-    \includegraphics[height=5cm]{global_density_ambiguity_curves}
-    \caption{Radial density profiles (top) and ambiguity gradients (bottom)
-             for all 8 LLM variants.
-             The void region (zero density near centroid) and the Belt
-             (peak density shell) are consistent across all systems.}
-    \label{fig:density-ambiguity}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[t]{0.59\textwidth}
-    \includegraphics[height=5cm]{global_density_decay_comparison_}
-    \caption{Radial density decay for LLM variants (coloured) overlaid with
-             human brain fMRI (dashed black).
-             The two-zone structure extends to neural data.}
-    \label{fig:brain-density}
-  \end{subfigure}
-  \caption{\textbf{The Void and the Belt (Finding 1).}
-           (a) All 8 LLM variants share the same two-zone radial density
-           structure in normalised-distance space.
-           (b) The same structure is present in human brain fMRI emotion
-           representations, establishing it as a cross-system geometric
-           principle.}
-  \label{fig:clusters-density}
-\end{figure}
+  \includegraphics[height=4.5cm]{global_density_ambiguity_curves}
+  \par\vspace{0.2em}
+  {\footnotesize (a) Radial density profiles (top) and ambiguity gradients
+  (bottom) for all 8 LLM variants. The void region (zero density near
+  centroid) and the Belt (peak density shell) are consistent across all systems.}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.59\textwidth}
+  \centering
+  \includegraphics[height=4.5cm]{global_density_decay_comparison_}
+  \par\vspace{0.2em}
+  {\footnotesize (b) Radial density decay for LLM variants (coloured)
+  overlaid with human brain fMRI (dashed black).
+  The two-zone structure extends to neural data.}
+\end{minipage}
+\refstepcounter{figure}\label{fig:clusters-density}
+\par\vspace{0.3em}
+\noindent{\small\textbf{Figure~\thefigure: The Void and the Belt (Finding 1).}
+(a) All 8 LLM variants share the same two-zone radial density structure
+in normalised-distance space.
+(b) The same structure is present in human brain fMRI emotion representations,
+establishing it as a cross-system geometric principle.}
+\par\vspace{0.5em}
 
 \textbf{Certainty buffer.}
 The radial gap between density peak and onset of geometric ambiguity
