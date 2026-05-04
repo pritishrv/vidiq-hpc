@@ -111,14 +111,11 @@ at moderate distances, and a gradient from certainty to ambiguity as geometric e
 to competing prototypes increases.
 
 \textbf{Research gap.}
-Prior work on LLM--brain alignment has focused on language-processing tasks using RSA
-or encoding models~\citep{caucheteux2022,schrimpf2021,li2023b,huth2016,li2023a},
-relating brain regions to model layers.
-Emotion representation geometry has been studied in affective
-computing~\citep{russell1980,koelstra2012} but rarely with the aim of characterising
-the full distributional structure of embedding spaces across a void--belt--margin
-framework. Whether the ambiguity gradient is a shared principle across artificial and
-biological systems has not been previously investigated.
+Prior LLM--brain alignment work has focused on language tasks via RSA or encoding
+models~\citep{caucheteux2022,schrimpf2021,li2023b,huth2016,li2023a}.
+Emotion geometry has been studied in affective computing~\citep{russell1980,koelstra2012}
+but the void--belt--margin structure and its cross-system ambiguity gradient have not
+been previously investigated.
 
 \textbf{Contributions.}
 \begin{enumerate}
@@ -179,9 +176,6 @@ representational axes, not as measured participant ground truth.
 We use the \texttt{dair-ai/emotion} dataset~\citep{saravia2018}, a 6-class text emotion
 corpus (anger, fear, happiness, love, sadness, surprise).
 We use the validation split, balanced to \textbf{4,038 samples} (673 per class).
-Class balance ensures centroids are not displaced by class-size differences and that
-overlap rates are comparable across categories.
-Labels are integer-encoded: anger=0, fear=1, happiness=2, love=3, sadness=4, surprise=5.
 
 \textbf{Brain fMRI dataset.}
 We use OpenNeuro DS005700~\citep{openneuro2024}, ``Neural MO --- fMRI Dataset for
@@ -192,11 +186,8 @@ Each subject contributes activations across \textbf{48 cortical ROIs} from the
 Harvard-Oxford atlas, yielding 200 observations total (40 subjects $\times$ 5 emotions).
 Repeated blocks per subject and emotion are averaged to stable ROI vectors.
 Brain LOSO decoding accuracy is 0.56 (95\% CI: 0.49--0.63, permutation $p<0.001$),
-well above the 5-class chance level of 0.20.
-Our $N\!=\!40$ exceeds high-impact precedents with smaller samples:
-Individual Brain Charting ($N\!=\!12$)~\citep{openneuro2024},
-Precision Functional Mapping of Children ($N\!=\!12$), and
-Natural Scenes Dataset ($N\!=\!8$).
+well above the 5-class chance level of 0.20 (sample-size comparison in
+Appendix~\ref{app:fmri-sample}).
 
 \textbf{LLM variants.}
 We evaluate eight variants by crossing two base models, two training states, and two
