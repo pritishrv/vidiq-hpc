@@ -1,6 +1,5 @@
 % =============================================================================
-% Geometric Competition as a Shared Principle of Ambiguity
-% in LLM and Neural Emotion Representations
+% Beyond Distance: Geometric Competition Explains Ambiguity in Neural and LLM Representations
 %
 % NeurIPS 2026 Submission — Double-blind review version
 %
@@ -157,7 +156,7 @@ during language processing.
 \citet{schrimpf2021} characterised neural architecture convergence with transformer
 predictive processing.
 \citet{huth2016} linked distributional semantics to cortical topography.
-\citet{ismayilzada2026} found alignment during creative thinking.
+\citet{ismayilzada2026} found alignment during creative thinking (preprint).
 Our work differs: we study emotion rather than language processing, focus on the local
 geometric ambiguity mechanism, and document a systematic global inversion.
 
@@ -226,7 +225,9 @@ BGE-Base-Mid    & bge-base-en-v1.5 & Pretrained & L6  & 768 \\
 
 Fine-tuned models were trained on the \texttt{dair-ai/emotion} training split.
 The cross-system context retention experiment (Section~\ref{sec:finding2}) additionally
-includes Qwen3-1.7B fine-tuned~\citep{qwen2025} (PCA-projected to 768D).
+includes Qwen3-1.7B fine-tuned~\citep{qwen2025} (PCA-projected to 768D) as a third
+architecture to test whether the compaction--distribution finding generalises beyond
+the two primary model families.
 
 % ===========================================================================
 \section{Methods}
