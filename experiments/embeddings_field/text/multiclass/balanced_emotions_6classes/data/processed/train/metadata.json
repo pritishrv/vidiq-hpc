@@ -1,0 +1,24 @@
+{
+  "source_csv": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/data/Text_Datasets/20-emotions/balanced_emotions_6classes.csv",
+  "text_column": "cleaned_text",
+  "label_column": "emotion",
+  "label_names": [
+    "sadness",
+    "happiness",
+    "love",
+    "anger",
+    "fear",
+    "surprise"
+  ],
+  "num_examples": 20190,
+  "class_counts": {
+    "sadness": 3365,
+    "happiness": 3365,
+    "love": 3365,
+    "anger": 3365,
+    "fear": 3365,
+    "surprise": 3365
+  },
+  "avg_whitespace_token_length": 8.596136701337295,
+  "median_whitespace_token_length": 9.0
+}

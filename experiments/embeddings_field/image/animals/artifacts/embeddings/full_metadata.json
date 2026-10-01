@@ -1,0 +1,13 @@
+{
+  "prepared_root": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/animals",
+  "split": "full",
+  "model_id": "openai/clip-vit-large-patch14",
+  "batch_size": 32,
+  "device": "mps",
+  "manifest_path": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/animals/data/processed/full/manifest.jsonl",
+  "labels_path": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/animals/data/processed/full/labels.npy",
+  "output_path": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/animals/artifacts/embeddings/full_raw.npy",
+  "num_examples": 5400,
+  "embedding_dimensionality": 768,
+  "dtype": "float32"
+}

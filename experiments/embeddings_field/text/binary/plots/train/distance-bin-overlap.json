@@ -1,0 +1,246 @@
+{
+  "centers": [
+    0.5,
+    1.5,
+    2.5,
+    3.5,
+    4.5,
+    5.5,
+    6.5,
+    7.5,
+    8.5,
+    9.5,
+    10.5,
+    11.5,
+    12.5,
+    13.5
+  ],
+  "pos_bins": [
+    {
+      "start": 0.0,
+      "end": 1.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 1.0,
+      "end": 2.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 2.0,
+      "end": 3.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 3.0,
+      "end": 4.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 4.0,
+      "end": 5.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 5.0,
+      "end": 6.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 6.0,
+      "end": 7.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 7.0,
+      "end": 8.0,
+      "count": 1,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 8.0,
+      "end": 9.0,
+      "count": 710,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 9.0,
+      "end": 10.0,
+      "count": 13367,
+      "overlap_count": 324,
+      "overlap_ratio": 0.02423879703748036,
+      "cumulative_overlap": 324.0
+    },
+    {
+      "start": 10.0,
+      "end": 11.0,
+      "count": 18876,
+      "overlap_count": 1856,
+      "overlap_ratio": 0.09832591650773469,
+      "cumulative_overlap": 2180.0
+    },
+    {
+      "start": 11.0,
+      "end": 12.0,
+      "count": 4324,
+      "overlap_count": 862,
+      "overlap_ratio": 0.1993524514338575,
+      "cumulative_overlap": 3042.0
+    },
+    {
+      "start": 12.0,
+      "end": 13.0,
+      "count": 289,
+      "overlap_count": 82,
+      "overlap_ratio": 0.2837370242214523,
+      "cumulative_overlap": 3124.0
+    },
+    {
+      "start": 13.0,
+      "end": 14.0,
+      "count": 2,
+      "overlap_count": 1,
+      "overlap_ratio": 0.49999999999975,
+      "cumulative_overlap": 3125.0
+    }
+  ],
+  "neg_bins": [
+    {
+      "start": 0.0,
+      "end": 1.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 1.0,
+      "end": 2.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 2.0,
+      "end": 3.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 3.0,
+      "end": 4.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 4.0,
+      "end": 5.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 5.0,
+      "end": 6.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 6.0,
+      "end": 7.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 7.0,
+      "end": 8.0,
+      "count": 0,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "cumulative_overlap": 0.0
+    },
+    {
+      "start": 8.0,
+      "end": 9.0,
+      "count": 244,
+      "overlap_count": 4,
+      "overlap_ratio": 0.01639344262295075,
+      "cumulative_overlap": 4.0
+    },
+    {
+      "start": 9.0,
+      "end": 10.0,
+      "count": 9924,
+      "overlap_count": 379,
+      "overlap_ratio": 0.03819024586860136,
+      "cumulative_overlap": 383.0
+    },
+    {
+      "start": 10.0,
+      "end": 11.0,
+      "count": 15625,
+      "overlap_count": 2141,
+      "overlap_ratio": 0.13702399999999998,
+      "cumulative_overlap": 2524.0
+    },
+    {
+      "start": 11.0,
+      "end": 12.0,
+      "count": 3699,
+      "overlap_count": 1278,
+      "overlap_ratio": 0.34549878345498775,
+      "cumulative_overlap": 3802.0
+    },
+    {
+      "start": 12.0,
+      "end": 13.0,
+      "count": 284,
+      "overlap_count": 167,
+      "overlap_ratio": 0.5880281690140824,
+      "cumulative_overlap": 3969.0
+    },
+    {
+      "start": 13.0,
+      "end": 14.0,
+      "count": 4,
+      "overlap_count": 3,
+      "overlap_ratio": 0.7499999999998125,
+      "cumulative_overlap": 3972.0
+    }
+  ]
+}

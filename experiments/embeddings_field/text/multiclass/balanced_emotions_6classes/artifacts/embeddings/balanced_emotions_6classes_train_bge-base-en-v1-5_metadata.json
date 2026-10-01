@@ -1,0 +1,11 @@
+{
+  "model_name": "BAAI/bge-base-en-v1.5",
+  "model_slug": "bge-base-en-v1-5",
+  "device": "cpu",
+  "max_length": 64,
+  "batch_size": 32,
+  "avg_tokenized_length": 16.527686973749383,
+  "median_tokenized_length": 17.0,
+  "truncation_count": 0,
+  "truncation_rate": 0.0
+}

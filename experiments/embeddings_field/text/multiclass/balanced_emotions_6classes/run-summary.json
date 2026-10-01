@@ -1,0 +1,17 @@
+{
+  "csv_path": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/data/Text_Datasets/20-emotions/balanced_emotions_6classes.csv",
+  "raw_embeddings_path": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/text/multiclass/balanced_emotions_6classes/artifacts/embeddings/balanced_emotions_6classes_train_bge-base-en-v1-5_raw.npy",
+  "label_names": [
+    "sadness",
+    "happiness",
+    "love",
+    "anger",
+    "fear",
+    "surprise"
+  ],
+  "num_examples": 20190,
+  "outputs": {
+    "all_class": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/text/multiclass/balanced_emotions_6classes/all_class",
+    "pairwise": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/text/multiclass/balanced_emotions_6classes/pairwise"
+  }
+}

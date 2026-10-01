@@ -1,0 +1,214 @@
+{
+  "labels": [
+    "joy",
+    "anger"
+  ],
+  "counts": {
+    "a": 572,
+    "b": 572
+  },
+  "a_bins": [
+    {
+      "start": 7.276398658752441,
+      "end": 8.408861637115479,
+      "midpoint": 7.84263014793396,
+      "density": 58,
+      "density_per_unit": 51.21580228948267,
+      "overlap_count": 2,
+      "overlap_ratio": 0.03448275862068906,
+      "bin_width": 1.132462978363037
+    },
+    {
+      "start": 8.408861637115479,
+      "end": 8.653001594543458,
+      "midpoint": 8.530931615829468,
+      "density": 57,
+      "density_per_unit": 233.47263840174494,
+      "overlap_count": 7,
+      "overlap_ratio": 0.12280701754385749,
+      "bin_width": 0.24413995742797923
+    },
+    {
+      "start": 8.653001594543458,
+      "end": 8.860472869873046,
+      "midpoint": 8.756737232208252,
+      "density": 57,
+      "density_per_unit": 274.7368275895057,
+      "overlap_count": 18,
+      "overlap_ratio": 0.31578947368420496,
+      "bin_width": 0.20747127532958842
+    },
+    {
+      "start": 8.860472869873046,
+      "end": 9.015887641906739,
+      "midpoint": 8.938180255889893,
+      "density": 57,
+      "density_per_unit": 366.76050322708664,
+      "overlap_count": 21,
+      "overlap_ratio": 0.3684210526315725,
+      "bin_width": 0.15541477203369247
+    },
+    {
+      "start": 9.015887641906739,
+      "end": 9.25183391571045,
+      "midpoint": 9.133860778808593,
+      "density": 57,
+      "density_per_unit": 241.58042032661928,
+      "overlap_count": 28,
+      "overlap_ratio": 0.49122807017542996,
+      "bin_width": 0.23594627380371058
+    },
+    {
+      "start": 9.25183391571045,
+      "end": 9.412381172180176,
+      "midpoint": 9.332107543945312,
+      "density": 57,
+      "density_per_unit": 355.0356527627624,
+      "overlap_count": 26,
+      "overlap_ratio": 0.45614035087718496,
+      "bin_width": 0.16054725646972656
+    },
+    {
+      "start": 9.412381172180176,
+      "end": 9.632306480407715,
+      "midpoint": 9.522343826293945,
+      "density": 57,
+      "density_per_unit": 259.1789024163903,
+      "overlap_count": 31,
+      "overlap_ratio": 0.5438596491227975,
+      "bin_width": 0.21992530822753942
+    },
+    {
+      "start": 9.632306480407715,
+      "end": 9.867170715332032,
+      "midpoint": 9.749738597869873,
+      "density": 57,
+      "density_per_unit": 242.6934012254693,
+      "overlap_count": 52,
+      "overlap_ratio": 0.9122807017543699,
+      "bin_width": 0.2348642349243164
+    },
+    {
+      "start": 9.867170715332032,
+      "end": 10.232292556762696,
+      "midpoint": 10.049731636047364,
+      "density": 57,
+      "density_per_unit": 156.11227139043717,
+      "overlap_count": 112,
+      "overlap_ratio": 1.9649122807017199,
+      "bin_width": 0.36512184143066406
+    },
+    {
+      "start": 10.232292556762696,
+      "end": 12.230046272277832,
+      "midpoint": 11.231169414520263,
+      "density": 57,
+      "density_per_unit": 28.53204554561527,
+      "overlap_count": 273,
+      "overlap_ratio": 4.789473684210442,
+      "bin_width": 1.9977537155151364
+    }
+  ],
+  "b_bins": [
+    {
+      "start": 7.323908805847168,
+      "end": 8.118260765075684,
+      "midpoint": 7.721084785461426,
+      "density": 58,
+      "density_per_unit": 73.0154931024911,
+      "overlap_count": 3,
+      "overlap_ratio": 0.05172413793103359,
+      "bin_width": 0.794351959228516
+    },
+    {
+      "start": 8.118260765075684,
+      "end": 8.397061538696288,
+      "midpoint": 8.257661151885987,
+      "density": 57,
+      "density_per_unit": 204.44706540723706,
+      "overlap_count": 4,
+      "overlap_ratio": 0.07017543859648999,
+      "bin_width": 0.2788007736206044
+    },
+    {
+      "start": 8.397061538696288,
+      "end": 8.628497982025147,
+      "midpoint": 8.512779760360718,
+      "density": 57,
+      "density_per_unit": 246.28791896445682,
+      "overlap_count": 8,
+      "overlap_ratio": 0.14035087719297998,
+      "bin_width": 0.2314364433288585
+    },
+    {
+      "start": 8.628497982025147,
+      "end": 8.821744346618653,
+      "midpoint": 8.7251211643219,
+      "density": 57,
+      "density_per_unit": 294.96027063639525,
+      "overlap_count": 14,
+      "overlap_ratio": 0.24561403508771498,
+      "bin_width": 0.19324636459350586
+    },
+    {
+      "start": 8.821744346618653,
+      "end": 8.978883743286133,
+      "midpoint": 8.900314044952392,
+      "density": 57,
+      "density_per_unit": 362.73526059551244,
+      "overlap_count": 17,
+      "overlap_ratio": 0.2982456140350825,
+      "bin_width": 0.1571393966674801
+    },
+    {
+      "start": 8.978883743286133,
+      "end": 9.147330284118652,
+      "midpoint": 9.063107013702393,
+      "density": 57,
+      "density_per_unit": 338.3862899070934,
+      "overlap_count": 28,
+      "overlap_ratio": 0.49122807017542996,
+      "bin_width": 0.16844654083251953
+    },
+    {
+      "start": 9.147330284118652,
+      "end": 9.3710186958313,
+      "midpoint": 9.259174489974976,
+      "density": 57,
+      "density_per_unit": 254.81874346366624,
+      "overlap_count": 50,
+      "overlap_ratio": 0.877192982456125,
+      "bin_width": 0.2236884117126472
+    },
+    {
+      "start": 9.3710186958313,
+      "end": 9.636075973510742,
+      "midpoint": 9.50354733467102,
+      "density": 57,
+      "density_per_unit": 215.04785870824182,
+      "overlap_count": 51,
+      "overlap_ratio": 0.8947368421052474,
+      "bin_width": 0.26505727767944265
+    },
+    {
+      "start": 9.636075973510742,
+      "end": 10.109790229797364,
+      "midpoint": 9.872933101654052,
+      "density": 57,
+      "density_per_unit": 120.32570108152302,
+      "overlap_count": 161,
+      "overlap_ratio": 2.824561403508722,
+      "bin_width": 0.47371425628662145
+    },
+    {
+      "start": 10.109790229797364,
+      "end": 12.707820892333984,
+      "midpoint": 11.408805561065673,
+      "density": 57,
+      "density_per_unit": 21.939694870401304,
+      "overlap_count": 233,
+      "overlap_ratio": 4.087719298245542,
+      "bin_width": 2.5980306625366207
+    }
+  ]
+}

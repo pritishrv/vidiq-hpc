@@ -1,0 +1,14 @@
+{
+  "split": "test",
+  "count": 4986,
+  "per_class_counts": {
+    "angry": 831,
+    "fear": 831,
+    "happy": 831,
+    "neutral": 831,
+    "sad": 831,
+    "surprise": 831
+  },
+  "manifest": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/emotions/fer2013_balanced_no_disgust_clip_vitl14/data/processed/test/manifest.jsonl",
+  "labels_path": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/emotions/fer2013_balanced_no_disgust_clip_vitl14/data/processed/test/labels.npy"
+}

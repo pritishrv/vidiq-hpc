@@ -1,0 +1,13 @@
+{
+  "prepared_root": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/emotions/fer2013_balanced_no_disgust_clip_vitl14",
+  "split": "train",
+  "model_id": "openai/clip-vit-large-patch14",
+  "batch_size": 32,
+  "device": "cpu",
+  "manifest_path": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/emotions/fer2013_balanced_no_disgust_clip_vitl14/data/processed/train/manifest.jsonl",
+  "labels_path": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/emotions/fer2013_balanced_no_disgust_clip_vitl14/data/processed/train/labels.npy",
+  "output_path": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/emotions/fer2013_balanced_no_disgust_clip_vitl14/artifacts/embeddings/train_raw.npy",
+  "num_examples": 19026,
+  "embedding_dimensionality": 768,
+  "dtype": "float32"
+}

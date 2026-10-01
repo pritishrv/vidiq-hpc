@@ -1,0 +1,56 @@
+{
+  "dataset_root": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/data/Image_Dataset/FER2013",
+  "output_root": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/emotions/fer2013_balanced_no_disgust_clip_vitl14",
+  "seed": 42,
+  "excluded_classes": [
+    "disgust"
+  ],
+  "classes": [
+    "angry",
+    "fear",
+    "happy",
+    "neutral",
+    "sad",
+    "surprise"
+  ],
+  "label_to_id": {
+    "angry": 0,
+    "fear": 1,
+    "happy": 2,
+    "neutral": 3,
+    "sad": 4,
+    "surprise": 5
+  },
+  "splits": {
+    "train": {
+      "split": "train",
+      "count": 19026,
+      "per_class_counts": {
+        "angry": 3171,
+        "fear": 3171,
+        "happy": 3171,
+        "neutral": 3171,
+        "sad": 3171,
+        "surprise": 3171
+      },
+      "manifest": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/emotions/fer2013_balanced_no_disgust_clip_vitl14/data/processed/train/manifest.jsonl",
+      "labels_path": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/emotions/fer2013_balanced_no_disgust_clip_vitl14/data/processed/train/labels.npy",
+      "balanced_target_per_class": 3171
+    },
+    "test": {
+      "split": "test",
+      "count": 4986,
+      "per_class_counts": {
+        "angry": 831,
+        "fear": 831,
+        "happy": 831,
+        "neutral": 831,
+        "sad": 831,
+        "surprise": 831
+      },
+      "manifest": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/emotions/fer2013_balanced_no_disgust_clip_vitl14/data/processed/test/manifest.jsonl",
+      "labels_path": "/Users/pritishrv/Documents/VIDEO_UNDERSTANDIG/vidiq-hpc/experiments/embeddings_field/image/emotions/fer2013_balanced_no_disgust_clip_vitl14/data/processed/test/labels.npy",
+      "balanced_target_per_class": 831
+    }
+  }
+}

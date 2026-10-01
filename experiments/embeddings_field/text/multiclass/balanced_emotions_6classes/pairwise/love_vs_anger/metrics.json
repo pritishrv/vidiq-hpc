@@ -1,0 +1,278 @@
+{
+  "labels": [
+    "love",
+    "anger"
+  ],
+  "counts": {
+    "a": 3365,
+    "b": 3365
+  },
+  "a_bins": [
+    {
+      "start": 6.648153781890869,
+      "end": 7.541370868682861,
+      "midpoint": 7.094762325286865,
+      "density": 281,
+      "density_per_unit": 314.59317578576264,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.8932170867919922,
+      "surface_log_density": -38.35424273445774
+    },
+    {
+      "start": 7.541370868682861,
+      "end": 7.865963776906331,
+      "midpoint": 7.703667322794596,
+      "density": 280,
+      "density_per_unit": 862.6189695038893,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.32459290822346976,
+      "surface_log_density": -100.50008453001614
+    },
+    {
+      "start": 7.865963776906331,
+      "end": 8.108888626098633,
+      "midpoint": 7.9874262015024815,
+      "density": 280,
+      "density_per_unit": 1152.6198366736423,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.24292484919230173,
+      "surface_log_density": -127.9542573094194
+    },
+    {
+      "start": 8.108888626098633,
+      "end": 8.343133290608725,
+      "midpoint": 8.22601095835368,
+      "density": 281,
+      "density_per_unit": 1199.6004288409051,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.23424466451009174,
+      "surface_log_density": -150.4891269873986
+    },
+    {
+      "start": 8.343133290608725,
+      "end": 8.554620107014975,
+      "midpoint": 8.44887669881185,
+      "density": 280,
+      "density_per_unit": 1323.959595959596,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.21148681640625,
+      "surface_log_density": -170.89415923051433
+    },
+    {
+      "start": 8.554620107014975,
+      "end": 8.77281665802002,
+      "midpoint": 8.663718382517498,
+      "density": 280,
+      "density_per_unit": 1283.246681536804,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.21819655100504498,
+      "surface_log_density": -190.18515198232174
+    },
+    {
+      "start": 8.77281665802002,
+      "end": 8.968031247456869,
+      "midpoint": 8.870423952738445,
+      "density": 281,
+      "density_per_unit": 1439.441595070441,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.19521458943684955,
+      "surface_log_density": -208.1550659724718
+    },
+    {
+      "start": 8.968031247456869,
+      "end": 9.18158213297526,
+      "midpoint": 9.074806690216064,
+      "density": 280,
+      "density_per_unit": 1311.1629077084147,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.21355088551839074,
+      "surface_log_density": -225.72027340759928
+    },
+    {
+      "start": 9.18158213297526,
+      "end": 9.397829055786133,
+      "midpoint": 9.289705594380695,
+      "density": 280,
+      "density_per_unit": 1294.8161128049194,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.216246922810873,
+      "surface_log_density": -243.68428786258386
+    },
+    {
+      "start": 9.397829055786133,
+      "end": 9.710310618082683,
+      "midpoint": 9.554069836934408,
+      "density": 281,
+      "density_per_unit": 899.2530565157822,
+      "overlap_count": 2,
+      "overlap_ratio": 0.007117437722419903,
+      "bin_width": 0.31248156229655066,
+      "surface_log_density": -265.5711457053147
+    },
+    {
+      "start": 9.710310618082683,
+      "end": 10.121588071187338,
+      "midpoint": 9.91594934463501,
+      "density": 280,
+      "density_per_unit": 680.8056164672629,
+      "overlap_count": 2,
+      "overlap_ratio": 0.007142857142857117,
+      "bin_width": 0.41127745310465436,
+      "surface_log_density": -294.3644079367017
+    },
+    {
+      "start": 10.121588071187338,
+      "end": 12.054007530212402,
+      "midpoint": 11.087797800699871,
+      "density": 280,
+      "density_per_unit": 144.89607765658928,
+      "overlap_count": 942,
+      "overlap_ratio": 3.364285714285702,
+      "bin_width": 1.9324194590250645,
+      "surface_log_density": -381.58610542191815
+    }
+  ],
+  "b_bins": [
+    {
+      "start": 6.842607021331787,
+      "end": 8.211868604024252,
+      "midpoint": 7.5272378126780195,
+      "density": 281,
+      "density_per_unit": 205.22010078414098,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 1.3692615826924648,
+      "surface_log_density": -84.16585699694944
+    },
+    {
+      "start": 8.211868604024252,
+      "end": 8.659847577412924,
+      "midpoint": 8.435858090718588,
+      "density": 280,
+      "density_per_unit": 625.0293353770171,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.4479789733886719,
+      "surface_log_density": -170.46198524238278
+    },
+    {
+      "start": 8.659847577412924,
+      "end": 8.889399528503418,
+      "midpoint": 8.774623552958172,
+      "density": 280,
+      "density_per_unit": 1219.7674586073028,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.2295519510904942,
+      "surface_log_density": -199.9920204975931
+    },
+    {
+      "start": 8.889399528503418,
+      "end": 9.093519846598307,
+      "midpoint": 8.991459687550861,
+      "density": 281,
+      "density_per_unit": 1376.639046140289,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.20412031809488873,
+      "surface_log_density": -218.59452941654212
+    },
+    {
+      "start": 9.093519846598307,
+      "end": 9.301481246948242,
+      "midpoint": 9.197500546773274,
+      "density": 280,
+      "density_per_unit": 1346.403705345538,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.2079614003499355,
+      "surface_log_density": -235.9943221175584
+    },
+    {
+      "start": 9.301481246948242,
+      "end": 9.46827220916748,
+      "midpoint": 9.384876728057861,
+      "density": 280,
+      "density_per_unit": 1678.7480345125305,
+      "overlap_count": 1,
+      "overlap_ratio": 0.0035714285714285583,
+      "bin_width": 0.16679096221923828,
+      "surface_log_density": -251.24238861628785
+    },
+    {
+      "start": 9.46827220916748,
+      "end": 9.646281242370605,
+      "midpoint": 9.557276725769043,
+      "density": 281,
+      "density_per_unit": 1578.571575518601,
+      "overlap_count": 1,
+      "overlap_ratio": 0.0035587188612099517,
+      "bin_width": 0.178009033203125,
+      "surface_log_density": -265.26584013009654
+    },
+    {
+      "start": 9.646281242370605,
+      "end": 9.842451095581055,
+      "midpoint": 9.74436616897583,
+      "density": 280,
+      "density_per_unit": 1427.3345033276778,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.19616985321044922,
+      "surface_log_density": -280.2359696826671
+    },
+    {
+      "start": 9.842451095581055,
+      "end": 10.072412490844727,
+      "midpoint": 9.95743179321289,
+      "density": 280,
+      "density_per_unit": 1217.5956737388651,
+      "overlap_count": 0,
+      "overlap_ratio": 0.0,
+      "bin_width": 0.22996139526367188,
+      "surface_log_density": -296.9850313096257
+    },
+    {
+      "start": 10.072412490844727,
+      "end": 10.353411356608072,
+      "midpoint": 10.212911923726399,
+      "density": 281,
+      "density_per_unit": 1000.0040364456673,
+      "overlap_count": 5,
+      "overlap_ratio": 0.017793594306049758,
+      "bin_width": 0.28099886576334576,
+      "surface_log_density": -316.6127830413967
+    },
+    {
+      "start": 10.353411356608072,
+      "end": 10.80305830637614,
+      "midpoint": 10.578234831492107,
+      "density": 280,
+      "density_per_unit": 622.7107737402121,
+      "overlap_count": 12,
+      "overlap_ratio": 0.0428571428571427,
+      "bin_width": 0.4496469497680682,
+      "surface_log_density": -344.0432717398699
+    },
+    {
+      "start": 10.80305830637614,
+      "end": 13.041486740112305,
+      "midpoint": 11.922272523244223,
+      "density": 280,
+      "density_per_unit": 125.08776058238841,
+      "overlap_count": 1946,
+      "overlap_ratio": 6.949999999999974,
+      "bin_width": 2.238428433736164,
+      "surface_log_density": -437.38899280232374
+    }
+  ]
+}

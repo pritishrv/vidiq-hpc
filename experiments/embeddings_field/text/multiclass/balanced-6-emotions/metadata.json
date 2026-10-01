@@ -1,0 +1,24 @@
+{
+  "label_names": [
+    "sadness",
+    "happiness",
+    "love",
+    "anger",
+    "fear",
+    "surprise"
+  ],
+  "counts": {
+    "sadness": 3365,
+    "happiness": 3365,
+    "love": 3365,
+    "anger": 3365,
+    "fear": 3365,
+    "surprise": 3365
+  },
+  "num_examples": 20190,
+  "embeddings_shape": [
+    20190,
+    768
+  ],
+  "source_root": "artifacts/embeddings/balanced-6-emotions"
+}
